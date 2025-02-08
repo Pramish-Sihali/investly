@@ -1,18 +1,18 @@
-import { Button } from "@/components/ui/button";
+import { Loader } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import React, { useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import { logoutMutationFn } from '@/lib/api';
+import { Button } from '@/components/ui/button';
+import { useMutation } from '@tanstack/react-query';
 import {
   Dialog,
-  DialogContent,
-  DialogHeader,
   DialogTitle,
-  DialogDescription,
+  DialogHeader,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { toast } from "@/hooks/use-toast";
-import { logoutMutationFn } from "@/lib/api";
-import { useMutation } from "@tanstack/react-query";
-import { Loader } from "lucide-react";
-import { useRouter } from "next/navigation";
-import React, { useCallback } from "react";
+  DialogContent,
+  DialogDescription,
+} from '@/components/ui/dialog';
 
 const LogoutDialog = (props: {
   isOpen: boolean;
@@ -24,13 +24,13 @@ const LogoutDialog = (props: {
   const { mutate, isPending } = useMutation({
     mutationFn: logoutMutationFn,
     onSuccess: () => {
-      router.replace("/");
+      router.replace('/');
     },
     onError: (error) => {
       toast({
-        title: "Error",
+        title: 'Error',
         description: error.message,
-        variant: "destructive",
+        variant: 'destructive',
       });
     },
   });
@@ -39,30 +39,23 @@ const LogoutDialog = (props: {
     mutate();
   }, []);
   return (
-    <>
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Are you sure you want to log out?</DialogTitle>
-            <DialogDescription>
-              This will end your current session and you will need to log in
-              again to access your account.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button
-              disabled={isPending}
-              type="button"
-              className="!text-white"
-              onClick={handleLogout}
-            >
-              {isPending && <Loader className="animate-spin" />}
-              Yes
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you sure you want to log out?</DialogTitle>
+          <DialogDescription>
+            This will end your current session and you will need to log in again to access your
+            account.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button disabled={isPending} type="button" className="!text-white" onClick={handleLogout}>
+            {isPending && <Loader className="animate-spin" />}
+            Yes
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 

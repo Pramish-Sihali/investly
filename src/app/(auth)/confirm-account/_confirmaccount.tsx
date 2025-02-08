@@ -1,17 +1,18 @@
-"use client";
-import Logo from "@/components/logo";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/hooks/use-toast";
-import { verifyEmailMutationFn } from "@/lib/api";
-import { useMutation } from "@tanstack/react-query";
-import { Loader } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+'use client';
+
+import Logo from '@/components/logo';
+import { Loader } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
+import { verifyEmailMutationFn } from '@/lib/api';
+import { useMutation } from '@tanstack/react-query';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function ConfirmAccount() {
   const router = useRouter();
 
   const params = useSearchParams();
-  const code = params.get("code");
+  const code = params.get('code');
 
   const { mutate, isPending } = useMutation({
     mutationFn: verifyEmailMutationFn,
@@ -21,9 +22,9 @@ export default function ConfirmAccount() {
     e.preventDefault();
     if (!code) {
       toast({
-        title: "Error",
-        description: "Confirmation token not found",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Confirmation token not found',
+        variant: 'destructive',
       });
       return;
     }
@@ -33,16 +34,16 @@ export default function ConfirmAccount() {
       {
         onSuccess: () => {
           toast({
-            title: "Success",
-            description: "Account confirmed successfully",
+            title: 'Success',
+            description: 'Account confirmed successfully',
           });
-          router.replace("/");
+          router.replace('/');
         },
         onError: (error) => {
           toast({
-            title: "Error",
-            description: error.message || "Something went wrong",
-            variant: "destructive",
+            title: 'Error',
+            description: error.message || 'Something went wrong',
+            variant: 'destructive',
           });
         },
       }
@@ -75,7 +76,7 @@ export default function ConfirmAccount() {
         </form>
 
         <p className="mt-6 text-sm text-muted-foreground dark:text-[#f1f7feb5] font-normal">
-          If you have any issue confirming your account please, contact{" "}
+          If you have any issue confirming your account please, contact{' '}
           <a
             className="outline-none transition duration-150 ease-in-out 
             focus-visible:ring-2 text-primary hover:underline focus-visible:ring-primary"

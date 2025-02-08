@@ -1,8 +1,8 @@
-import { UAParser } from "ua-parser-js";
-import { format, formatDistanceToNowStrict, isPast } from "date-fns";
-import { Laptop, LucideIcon, Smartphone } from "lucide-react";
+import type { LucideIcon } from 'lucide-react';
 
-type DeviceType = "desktop" | "mobile";
+import { UAParser } from 'ua-parser-js';
+import { Laptop, Smartphone } from 'lucide-react';
+import { format, isPast, formatDistanceToNowStrict } from 'date-fns';
 
 interface AgentType {
   deviceType: string;
@@ -12,22 +12,19 @@ interface AgentType {
   icon: LucideIcon;
 }
 
-export const parseUserAgent = (
-  userAgent: string,
-  createdAt: string
-): AgentType => {
+export const parseUserAgent = (userAgent: string, createdAt: string): AgentType => {
   const parser = new UAParser(userAgent);
   const result = parser.getResult();
 
-  const deviceType = result.device.type || "Desktop";
-  const browser = result.browser.name || "Web";
+  const deviceType = result.device.type || 'Desktop';
+  const browser = result.browser.name || 'Web';
   const os = `${result.os.name} ${result.os.version}`;
 
-  const icon = deviceType === "mobile" ? Smartphone : Laptop;
+  const icon = deviceType === 'mobile' ? Smartphone : Laptop;
 
   const formattedAt = isPast(new Date(createdAt))
     ? `${formatDistanceToNowStrict(new Date(createdAt))} ago`
-    : format(new Date(createdAt), "d MMM, yyyy");
+    : format(new Date(createdAt), 'd MMM, yyyy');
 
   return {
     deviceType,

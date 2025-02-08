@@ -1,38 +1,37 @@
-"use client";
-import React, { useCallback, useState } from "react";
-import { z } from "zod";
-import { Check, Copy, Loader } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { REGEXP_ONLY_DIGITS } from "input-otp";
-import { zodResolver } from "@hookform/resolvers/zod";
+'use client';
 
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
+import type { mfaType } from '@/lib/api';
+
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { toast } from '@/hooks/use-toast';
+import { REGEXP_ONLY_DIGITS } from 'input-otp';
+import { Button } from '@/components/ui/button';
+import { Copy, Check, Loader } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+import React, { useState, useCallback } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useAuthContext } from '@/context/auth-provider';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { mfaSetupQueryFn, verifyMFAMutationFn } from '@/lib/api';
+import { InputOTP, InputOTPSlot, InputOTPGroup } from '@/components/ui/input-otp';
 import {
   Form,
-  FormControl,
-  FormField,
   FormItem,
+  FormField,
   FormLabel,
+  FormControl,
   FormMessage,
-} from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { useAuthContext } from "@/context/auth-provider";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { mfaSetupQueryFn, mfaType, verifyMFAMutationFn } from "@/lib/api";
-import { Skeleton } from "@/components/ui/skeleton";
-import { toast } from "@/hooks/use-toast";
-import RevokeMfa from "./_common/RevokeMfa";
+} from '@/components/ui/form';
+import {
+  Dialog,
+  DialogTitle,
+  DialogHeader,
+  DialogContent,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+
+import RevokeMfa from './_common/RevokeMfa';
 
 const EnableMfa = () => {
   //const queryClient = useQueryClient();
@@ -42,7 +41,7 @@ const EnableMfa = () => {
   const [copied, setCopied] = useState(false);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["mfa-setup"],
+    queryKey: ['mfa-setup'],
     queryFn: mfaSetupQueryFn,
     enabled: isOpen,
     staleTime: Infinity,
@@ -56,14 +55,14 @@ const EnableMfa = () => {
 
   const FormSchema = z.object({
     pin: z.string().min(6, {
-      message: "Your one-time password must be 6 characters.",
+      message: 'Your one-time password must be 6 characters.',
     }),
   });
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      pin: "",
+      pin: '',
     },
   });
 
@@ -80,15 +79,15 @@ const EnableMfa = () => {
         refetch();
         setIsOpen(false);
         toast({
-          title: "Success",
+          title: 'Success',
           description: response.message,
         });
       },
       onError: (error) => {
         toast({
-          title: "Error",
+          title: 'Error',
           description: error.message,
-          variant: "destructive",
+          variant: 'destructive',
         });
       },
     });
@@ -139,7 +138,7 @@ const EnableMfa = () => {
                   Scan the QR code
                 </p>
                 <span className="text-sm text-[#0007149f] dark:text-inherit font-normal">
-                  Use an app like{" "}
+                  Use an app like{' '}
                   <a
                     className="!text-primary underline decoration-primary decoration-1 underline-offset-2 transition duration-200 ease-in-out hover:decoration-blue-11 dark:text-current dark:decoration-slate-9 dark:hover:decoration-current "
                     rel="noopener noreferrer"
@@ -147,8 +146,8 @@ const EnableMfa = () => {
                     href="https://support.1password.com/one-time-passwords/"
                   >
                     1Password
-                  </a>{" "}
-                  or{" "}
+                  </a>{' '}
+                  or{' '}
                   <a
                     className="!text-primary underline decoration-primary decoration-1 underline-offset-2 transition duration-200 ease-in-out hover:decoration-blue-11 dark:text-current dark:decoration-slate-9 dark:hover:decoration-current "
                     rel="noopener noreferrer"
@@ -156,7 +155,7 @@ const EnableMfa = () => {
                     href="https://safety.google/authentication/"
                   >
                     Google Authenticator
-                  </a>{" "}
+                  </a>{' '}
                   to scan the QR code below.
                 </span>
               </div>
@@ -183,15 +182,8 @@ const EnableMfa = () => {
                               text-sm text-[#0007149f] dark:text-muted-foreground font-normal"
                     >
                       <span>Copy setup key</span>
-                      <button
-                        disabled={copied}
-                        onClick={() => onCopy(mfaData?.qrImageUrl)}
-                      >
-                        {copied ? (
-                          <Check className="w-4 h-4" />
-                        ) : (
-                          <Copy className="w-4 h-4" />
-                        )}
+                      <button disabled={copied} onClick={() => onCopy(mfaData?.qrImageUrl)}>
+                        {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                       </button>
                     </div>
                     <p className="text-sm block truncate w-[200px] text-black dark:text-muted-foreground">
@@ -200,7 +192,7 @@ const EnableMfa = () => {
                   </div>
                 ) : (
                   <span className="text-sm text-[#0007149f] dark:text-muted-foreground font-normal">
-                    Can't scan the code?
+                    Can&apos;t scan the code?
                     <button
                       className="block text-primary transition duration-200 ease-in-out hover:underline
                    dark:text-white"
@@ -233,37 +225,19 @@ const EnableMfa = () => {
                               maxLength={6}
                               pattern={REGEXP_ONLY_DIGITS}
                               {...field}
-                              style={{ justifyContent: "center" }}
+                              style={{ justifyContent: 'center' }}
                             >
                               <InputOTPGroup>
-                                <InputOTPSlot
-                                  index={0}
-                                  className="!w-14 !h-12 !text-lg"
-                                />
-                                <InputOTPSlot
-                                  index={1}
-                                  className="!w-14 !h-12 !text-lg"
-                                />
+                                <InputOTPSlot index={0} className="!w-14 !h-12 !text-lg" />
+                                <InputOTPSlot index={1} className="!w-14 !h-12 !text-lg" />
                               </InputOTPGroup>
                               <InputOTPGroup>
-                                <InputOTPSlot
-                                  index={2}
-                                  className="!w-14 !h-12 !text-lg"
-                                />
-                                <InputOTPSlot
-                                  index={3}
-                                  className="!w-14 !h-12 !text-lg"
-                                />
+                                <InputOTPSlot index={2} className="!w-14 !h-12 !text-lg" />
+                                <InputOTPSlot index={3} className="!w-14 !h-12 !text-lg" />
                               </InputOTPGroup>
                               <InputOTPGroup>
-                                <InputOTPSlot
-                                  index={4}
-                                  className="!w-14 !h-12 !text-lg"
-                                />
-                                <InputOTPSlot
-                                  index={5}
-                                  className="!w-14 !h-12 !text-lg"
-                                />
+                                <InputOTPSlot index={4} className="!w-14 !h-12 !text-lg" />
+                                <InputOTPSlot index={5} className="!w-14 !h-12 !text-lg" />
                               </InputOTPGroup>
                             </InputOTP>
                           </FormControl>

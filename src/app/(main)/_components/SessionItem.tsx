@@ -1,7 +1,7 @@
-import React from "react";
-import { Loader, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { parseUserAgent } from "@/lib/parse-useragent";
+import React from 'react';
+import { Loader, Trash2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { parseUserAgent } from '@/lib/parse-useragent';
 
 const SessionItem = (props: {
   loading?: boolean;
@@ -54,17 +54,8 @@ const SessionItem = (props: {
         </div>
 
         {!isCurrent && (
-          <Button
-            disabled={loading}
-            variant="ghost"
-            size="icon"
-            onClick={handleRemove}
-          >
-            {loading ? (
-              <Loader className="w-4 h-4 animate-spin" />
-            ) : (
-              <Trash2 size="29px" />
-            )}
+          <Button disabled={loading} variant="ghost" size="icon" onClick={handleRemove}>
+            {loading ? <Loader className="w-4 h-4 animate-spin" /> : <Trash2 size="29px" />}
           </Button>
         )}
       </div>

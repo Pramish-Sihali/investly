@@ -1,10 +1,11 @@
-"use client";
-import React, { useCallback } from "react";
-import { Button } from "@/components/ui/button";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { revokeMFAMutationFn } from "@/lib/api";
-import { toast } from "@/hooks/use-toast";
-import { Loader } from "lucide-react";
+'use client';
+
+import { Loader } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import React, { useCallback } from 'react';
+import { Button } from '@/components/ui/button';
+import { revokeMFAMutationFn } from '@/lib/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const RevokeMfa = () => {
   const queryClient = useQueryClient();
@@ -13,18 +14,18 @@ const RevokeMfa = () => {
     mutationFn: revokeMFAMutationFn,
     onSuccess: (response: any) => {
       queryClient.invalidateQueries({
-        queryKey: ["authUser"],
+        queryKey: ['authUser'],
       });
       toast({
-        title: "Success",
+        title: 'Success',
         description: response.message,
       });
     },
     onError: (error: any) => {
       toast({
-        title: "Error",
+        title: 'Error',
         description: error.message,
-        variant: "destructive",
+        variant: 'destructive',
       });
     },
   });

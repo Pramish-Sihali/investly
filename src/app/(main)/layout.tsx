@@ -1,7 +1,8 @@
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
-import Asidebar from "./_components/Asidebar";
-import Header from "./_components/Header";
-import { AuthProvider } from "@/context/auth-provider";
+import { AuthProvider } from '@/context/auth-provider';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+
+import Header from './_components/Header';
+import Asidebar from './_components/Asidebar';
 
 export default function MainLayout({
   children,

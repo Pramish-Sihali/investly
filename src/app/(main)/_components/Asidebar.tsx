@@ -1,45 +1,45 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+
+import Link from 'next/link';
+import Logo from '@/components/logo';
+import { useTheme } from 'next-themes';
+import React, { useState } from 'react';
+import { useAuthContext } from '@/context/auth-provider';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
-  ChevronsUpDown,
-  EllipsisIcon,
   Home,
-  Loader,
   Lock,
-  LogOut,
-  MoonIcon,
-  MoonStarIcon,
-  Settings,
-  SunIcon,
   User,
-} from "lucide-react";
-import Link from "next/link";
-import {
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarGroupContent,
-  SidebarGroup,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarFooter,
-  SidebarRail,
-  useSidebar,
-} from "@/components/ui/sidebar";
+  Loader,
+  LogOut,
+  SunIcon,
+  Settings,
+  EllipsisIcon,
+  MoonStarIcon,
+} from 'lucide-react';
 import {
   DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuSeparator,
+  DropdownMenuGroup,
+  DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import Logo from "@/components/logo";
-import { useAuthContext } from "@/context/auth-provider";
-import LogoutDialog from "./_common/LogoutDialog";
-import { useTheme } from "next-themes";
+  DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
+import {
+  Sidebar,
+  useSidebar,
+  SidebarMenu,
+  SidebarRail,
+  SidebarGroup,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarContent,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarGroupContent,
+} from '@/components/ui/sidebar';
+
+import LogoutDialog from './_common/LogoutDialog';
 
 const Asidebar = () => {
   const { theme, setTheme } = useTheme();
@@ -50,24 +50,24 @@ const Asidebar = () => {
   const { open } = useSidebar();
   const items = [
     {
-      title: "Home",
-      url: "/home",
+      title: 'Home',
+      url: '/home',
       icon: Home,
     },
     {
-      title: "Sessions",
-      url: "/sessions",
+      title: 'Sessions',
+      url: '/sessions',
       icon: Lock,
     },
     {
-      title: "Account",
-      url: "#",
+      title: 'Account',
+      url: '#',
       icon: User,
     },
 
     {
-      title: "Settings",
-      url: "#",
+      title: 'Settings',
+      url: '#',
       icon: Settings,
     },
   ];
@@ -109,10 +109,7 @@ const Asidebar = () => {
           <SidebarMenu>
             <SidebarMenuItem>
               {isLoading ? (
-                <Loader
-                  size="24px"
-                  className="place-self-center self-center animate-spin"
-                />
+                <Loader size="24px" className="place-self-center self-center animate-spin" />
               ) : (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -122,14 +119,12 @@ const Asidebar = () => {
                     >
                       <Avatar className="h-8 w-8 rounded-lg">
                         <AvatarFallback className="rounded-lg">
-                          {user?.name?.split(" ")?.[0]?.charAt(0)}
-                          {user?.name?.split(" ")?.[1]?.charAt(0)}
+                          {user?.name?.split(' ')?.[0]?.charAt(0)}
+                          {user?.name?.split(' ')?.[1]?.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
                       <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-semibold">
-                          {user?.name}
-                        </span>
+                        <span className="truncate font-semibold">{user?.name}</span>
                         <span className="truncate text-xs">{user?.email}</span>
                       </div>
                       <EllipsisIcon className="ml-auto size-4" />
@@ -137,17 +132,15 @@ const Asidebar = () => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                    side={"bottom"}
+                    side="bottom"
                     align="start"
                     sideOffset={4}
                   >
                     <DropdownMenuGroup>
                       <DropdownMenuItem
-                        onClick={() =>
-                          setTheme(theme === "light" ? "dark" : "light")
-                        }
+                        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
                       >
-                        {theme === "light" ? <MoonStarIcon /> : <SunIcon />}
+                        {theme === 'light' ? <MoonStarIcon /> : <SunIcon />}
                         Toggle theme
                       </DropdownMenuItem>
                     </DropdownMenuGroup>

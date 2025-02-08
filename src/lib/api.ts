@@ -1,4 +1,4 @@
-import API from "./axios-client";
+import API from './axios-client';
 
 type forgotPasswordType = { email: string };
 type resetPasswordType = { password: string; verificationCode: string };
@@ -39,8 +39,7 @@ export type mfaType = {
   qrImageUrl: string;
 };
 
-export const loginMutationFn = async (data: LoginType) =>
-  await API.post("/auth/login", data);
+export const loginMutationFn = async (data: LoginType) => await API.post('/auth/login', data);
 
 export const registerMutationFn = async (data: registerType) =>
   await API.post(`/auth/register`, data);
@@ -76,5 +75,4 @@ export const sessionsQueryFn = async () => {
   return response.data;
 };
 
-export const sessionDelMutationFn = async (id: string) =>
-  await API.delete(`/session/${id}`);
+export const sessionDelMutationFn = async (id: string) => await API.delete(`/session/${id}`);

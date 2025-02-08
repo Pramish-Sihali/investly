@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import useAuth from "@/hooks/use-auth";
-import React, { createContext, useContext } from "react";
+import useAuth from '@/hooks/use-auth';
+import React, { useContext, createContext } from 'react';
 
 type UserType = {
   name: string;
@@ -24,16 +24,12 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { data, error, isLoading, isFetching, refetch } = useAuth();
   const user = data?.data?.user;
 
   return (
-    <AuthContext.Provider
-      value={{ user, error, isLoading, isFetching, refetch }}
-    >
+    <AuthContext.Provider value={{ user, error, isLoading, isFetching, refetch }}>
       {children}
     </AuthContext.Provider>
   );
@@ -42,7 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 export const useAuthContext = () => {
   const conext = useContext(AuthContext);
   if (!conext) {
-    throw new Error("useAuthContext must be used within a AuthProvider");
+    throw new Error('useAuthContext must be used within a AuthProvider');
   }
   return conext;
 };

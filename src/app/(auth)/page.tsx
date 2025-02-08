@@ -1,24 +1,25 @@
-"use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { ArrowRight, Loader } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
-import { z } from "zod";
-import Link from "next/link";
+'use client';
+
+import { z } from 'zod';
+import Link from 'next/link';
+import Logo from '@/components/logo';
+import { useForm } from 'react-hook-form';
+import { toast } from '@/hooks/use-toast';
+import { loginMutationFn } from '@/lib/api';
+import { useRouter } from 'next/navigation';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Loader, ArrowRight } from 'lucide-react';
+import { useMutation } from '@tanstack/react-query';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Form,
-  FormControl,
-  FormField,
   FormItem,
+  FormField,
   FormLabel,
+  FormControl,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Logo from "@/components/logo";
-import { loginMutationFn } from "@/lib/api";
-import { useRouter } from "next/navigation";
-import { toast } from "@/hooks/use-toast";
+} from '@/components/ui/form';
 
 export default function Login() {
   const router = useRouter();
@@ -28,18 +29,18 @@ export default function Login() {
 
   const formSchema = z.object({
     email: z.string().trim().email().min(1, {
-      message: "Email is required",
+      message: 'Email is required',
     }),
     password: z.string().trim().min(1, {
-      message: "Password is required",
+      message: 'Password is required',
     }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -54,9 +55,9 @@ export default function Login() {
       },
       onError: (error) => {
         toast({
-          title: "Error",
+          title: 'Error',
           description: error.message,
-          variant: "destructive",
+          variant: 'destructive',
         });
       },
     });
@@ -71,7 +72,7 @@ export default function Login() {
           Log in to Squeezy
         </h1>
         <p className="mb-8 text-center sm:text-left text-base dark:text-[#f1f7feb5] font-normal">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{' '}
           <Link className="text-primary" href="/signup">
             Sign up
           </Link>
@@ -85,9 +86,7 @@ export default function Login() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="dark:text-[#f1f7feb5] text-sm">
-                      Email
-                    </FormLabel>
+                    <FormLabel className="dark:text-[#f1f7feb5] text-sm">Email</FormLabel>
                     <FormControl>
                       <Input placeholder="subscribeto@channel.com" {...field} />
                     </FormControl>
@@ -102,9 +101,7 @@ export default function Login() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="dark:text-[#f1f7feb5] text-sm">
-                      Password
-                    </FormLabel>
+                    <FormLabel className="dark:text-[#f1f7feb5] text-sm">Password</FormLabel>
                     <FormControl>
                       <Input placeholder="••••••••••••" {...field} />
                     </FormControl>
@@ -122,7 +119,7 @@ export default function Login() {
               </Link>
             </div>
             <Button
-              className="w-full text-[15px] h-[40px] text-white font-semibold"
+              className="w-full text-[15px] h-[40px] text-white dark:bg-gray-900 dark:hover:bg-gray-800 dark:text-white font-semibold"
               disabled={isPending}
               type="submit"
             >
@@ -137,16 +134,14 @@ export default function Login() {
                 className="h-px w-full bg-[#eee] dark:bg-[#d6ebfd30]"
                 data-orientation="horizontal"
                 role="separator"
-              ></div>
-              <span className="mx-4 text-xs dark:text-[#f1f7feb5] font-normal">
-                OR
-              </span>
+              />
+              <span className="mx-4 text-xs dark:text-[#f1f7feb5] font-normal">OR</span>
               <div
                 aria-hidden="true"
                 className="h-px w-full bg-[#eee] dark:bg-[#d6ebfd30]"
                 data-orientation="horizontal"
                 role="separator"
-              ></div>
+              />
             </div>
           </form>
         </Form>
@@ -154,11 +149,11 @@ export default function Login() {
           Email magic link
         </Button>
         <p className="text-xs dark:text-slate- font-normal mt-7">
-          By signing in, you agree to our{" "}
+          By signing in, you agree to our{' '}
           <a className="text-primary hover:underline" href="#">
             Terms of Service
-          </a>{" "}
-          and{" "}
+          </a>{' '}
+          and{' '}
           <a className="text-primary hover:underline" href="#">
             Privacy Policy
           </a>

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const options = {
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -12,18 +12,16 @@ export const APIRefresh = axios.create(options);
 APIRefresh.interceptors.response.use((response) => response);
 
 API.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
   async (error) => {
     const { data, status } = error.response;
-    console.log(data, "data");
-    if (data.errorCode === "AUTH_TOKEN_NOT_FOUND" && status === 401) {
+    console.log(data, 'data');
+    if (data.errorCode === 'AUTH_TOKEN_NOT_FOUND' && status === 401) {
       try {
-        await APIRefresh.get("/auth/refresh");
+        await APIRefresh.get('/auth/refresh');
         return APIRefresh(error.config);
       } catch (error) {
-        window.location.href = "/";
+        window.location.href = '/';
       }
     }
     return Promise.reject({

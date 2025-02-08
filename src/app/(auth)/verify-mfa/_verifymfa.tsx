@@ -1,35 +1,31 @@
-"use client";
-import React from "react";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { REGEXP_ONLY_DIGITS } from "input-otp";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
+'use client';
+
+import { z } from 'zod';
+import React from 'react';
+import Logo from '@/components/logo';
+import { useForm } from 'react-hook-form';
+import { toast } from '@/hooks/use-toast';
+import { REGEXP_ONLY_DIGITS } from 'input-otp';
+import { Button } from '@/components/ui/button';
+import { Loader, ArrowRight } from 'lucide-react';
+import { useMutation } from '@tanstack/react-query';
+import { verifyMFALoginMutationFn } from '@/lib/api';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { InputOTP, InputOTPSlot, InputOTPGroup } from '@/components/ui/input-otp';
 import {
   Form,
-  FormControl,
-  FormField,
   FormItem,
+  FormField,
   FormLabel,
+  FormControl,
   FormMessage,
-} from "@/components/ui/form";
-
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Loader } from "lucide-react";
-import Logo from "@/components/logo";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
-import { verifyMFALoginMutationFn } from "@/lib/api";
-import { toast } from "@/hooks/use-toast";
+} from '@/components/ui/form';
 
 const VerifyMfa = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const email = params.get("email");
+  const email = params.get('email');
 
   const { mutate, isPending } = useMutation({
     mutationFn: verifyMFALoginMutationFn,
@@ -37,39 +33,39 @@ const VerifyMfa = () => {
 
   const FormSchema = z.object({
     pin: z.string().min(6, {
-      message: "Your one-time password must be 6 characters.",
+      message: 'Your one-time password must be 6 characters.',
     }),
   });
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      pin: "",
+      pin: '',
     },
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     if (!email) {
-      router.replace("/");
+      router.replace('/');
       return;
     }
     const data = {
       code: values.pin,
-      email: email,
+      email,
     };
     mutate(data, {
       onSuccess: (response) => {
-        router.replace("/home");
+        router.replace('/home');
         toast({
-          title: "Success",
+          title: 'Success',
           description: response?.data?.message,
         });
       },
       onError: (error) => {
         toast({
-          title: "Error",
+          title: 'Error',
           description: error.message,
-          variant: "destructive",
+          variant: 'destructive',
         });
       },
     });
@@ -101,46 +97,26 @@ const VerifyMfa = () => {
                 name="pin"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm mb-1 font-normal">
-                      One-time code
-                    </FormLabel>
+                    <FormLabel className="text-sm mb-1 font-normal">One-time code</FormLabel>
                     <FormControl>
                       <InputOTP
                         className="!text-lg flex items-center"
                         maxLength={6}
                         pattern={REGEXP_ONLY_DIGITS}
                         {...field}
-                        style={{ justifyContent: "center" }}
+                        style={{ justifyContent: 'center' }}
                       >
                         <InputOTPGroup>
-                          <InputOTPSlot
-                            index={0}
-                            className="!w-14 !h-12 !text-lg"
-                          />
-                          <InputOTPSlot
-                            index={1}
-                            className="!w-14 !h-12 !text-lg"
-                          />
+                          <InputOTPSlot index={0} className="!w-14 !h-12 !text-lg" />
+                          <InputOTPSlot index={1} className="!w-14 !h-12 !text-lg" />
                         </InputOTPGroup>
                         <InputOTPGroup>
-                          <InputOTPSlot
-                            index={2}
-                            className="!w-14 !h-12 !text-lg"
-                          />
-                          <InputOTPSlot
-                            index={3}
-                            className="!w-14 !h-12 !text-lg"
-                          />
+                          <InputOTPSlot index={2} className="!w-14 !h-12 !text-lg" />
+                          <InputOTPSlot index={3} className="!w-14 !h-12 !text-lg" />
                         </InputOTPGroup>
                         <InputOTPGroup>
-                          <InputOTPSlot
-                            index={4}
-                            className="!w-14 !h-12 !text-lg"
-                          />
-                          <InputOTPSlot
-                            index={5}
-                            className="!w-14 !h-12 !text-lg"
-                          />
+                          <InputOTPSlot index={4} className="!w-14 !h-12 !text-lg" />
+                          <InputOTPSlot index={5} className="!w-14 !h-12 !text-lg" />
                         </InputOTPGroup>
                       </InputOTP>
                     </FormControl>

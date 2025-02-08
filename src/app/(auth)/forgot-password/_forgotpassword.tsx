@@ -1,31 +1,31 @@
-"use client";
-import { useState } from "react";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, MailCheckIcon, Loader } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+'use client';
 
+import { z } from 'zod';
+import Link from 'next/link';
+import { useState } from 'react';
+import Logo from '@/components/logo';
+import { useForm } from 'react-hook-form';
+import { toast } from '@/hooks/use-toast';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { useSearchParams } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
+import { forgotPasswordMutationFn } from '@/lib/api';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader, ArrowRight, MailCheckIcon } from 'lucide-react';
 import {
   Form,
-  FormControl,
-  FormField,
   FormItem,
+  FormField,
   FormLabel,
+  FormControl,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Logo from "@/components/logo";
-import { forgotPasswordMutationFn } from "@/lib/api";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "@/hooks/use-toast";
-import Link from "next/link";
+} from '@/components/ui/form';
 
 export default function ForgotPassword() {
   const params = useSearchParams();
 
-  const email = params.get("email");
+  const email = params.get('email');
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -35,28 +35,28 @@ export default function ForgotPassword() {
 
   const formSchema = z.object({
     email: z.string().trim().email().min(1, {
-      message: "Email is required",
+      message: 'Email is required',
     }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: email || "",
+      email: email || '',
     },
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     mutate(values, {
-      onSuccess: (response: any) => {
+      onSuccess: () => {
         setIsSubmitted(true);
       },
       onError: (error) => {
         console.log(error);
         toast({
-          title: "Error",
+          title: 'Error',
           description: error.message,
-          variant: "destructive",
+          variant: 'destructive',
         });
       },
     });
@@ -75,23 +75,18 @@ export default function ForgotPassword() {
             Reset password
           </h1>
           <p className="mb-6 text-center sm:text-left text-base dark:text-[#f1f7feb5] font-normal">
-            Include the email address associated with your account and we’ll
-            send you an email with instructions to reset your password.
+            Include the email address associated with your account and we’ll send you an email with
+            instructions to reset your password.
           </p>
           <Form {...form}>
-            <form
-              className="flex flex-col gap-6"
-              onSubmit={form.handleSubmit(onSubmit)}
-            >
+            <form className="flex flex-col gap-6" onSubmit={form.handleSubmit(onSubmit)}>
               <div className="mb-0">
                 <FormField
                   control={form.control}
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="dark:text-[#f1f7feb5] text-sm">
-                        Email
-                      </FormLabel>
+                      <FormLabel className="dark:text-[#f1f7feb5] text-sm">Email</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="subscribeto@channel.com"

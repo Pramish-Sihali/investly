@@ -1,32 +1,32 @@
-"use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
-import { z } from "zod";
+'use client';
 
+import { z } from 'zod';
+import Link from 'next/link';
+import Logo from '@/components/logo';
+import { useForm } from 'react-hook-form';
+import { toast } from '@/hooks/use-toast';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { useMutation } from '@tanstack/react-query';
+import { resetPasswordMutationFn } from '@/lib/api';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Frown, Loader, ArrowLeft } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Form,
-  FormControl,
-  FormField,
   FormItem,
+  FormField,
   FormLabel,
+  FormControl,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Logo from "@/components/logo";
-import { ArrowLeft, Frown, Loader } from "lucide-react";
-import Link from "next/link";
-import { resetPasswordMutationFn } from "@/lib/api";
-import { toast } from "@/hooks/use-toast";
+} from '@/components/ui/form';
 
 export default function ResetPassword() {
   const router = useRouter();
 
   const params = useSearchParams();
-  const code = params.get("code");
-  const exp = Number(params.get("exp"));
+  const code = params.get('code');
+  const exp = Number(params.get('exp'));
   const now = Date.now();
 
   const isValid = code && exp && exp > now;
@@ -38,28 +38,28 @@ export default function ResetPassword() {
   const formSchema = z
     .object({
       password: z.string().trim().min(1, {
-        message: "Password is required",
+        message: 'Password is required',
       }),
       confirmPassword: z.string().trim().min(1, {
-        message: "Confirm password is required",
+        message: 'Confirm password is required',
       }),
     })
     .refine((data) => data.password === data.confirmPassword, {
-      message: "Password does not match",
-      path: ["confirmPassword"],
+      message: 'Password does not match',
+      path: ['confirmPassword'],
     });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      password: "",
-      confirmPassword: "",
+      password: '',
+      confirmPassword: '',
     },
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     if (!code) {
-      router.replace("/forgot-password?email=");
+      router.replace('/forgot-password?email=');
       return;
     }
     const data = {
@@ -69,17 +69,17 @@ export default function ResetPassword() {
     mutate(data, {
       onSuccess: () => {
         toast({
-          title: "Success",
-          description: "Password reset successfully",
+          title: 'Success',
+          description: 'Password reset successfully',
         });
-        router.replace("/");
+        router.replace('/');
       },
       onError: (error) => {
         console.log(error);
         toast({
-          title: "Error",
+          title: 'Error',
           description: error.message,
-          variant: "destructive",
+          variant: 'destructive',
         });
       },
     });
@@ -101,19 +101,14 @@ export default function ResetPassword() {
             Your password must be different from your previous one.
           </p>
           <Form {...form}>
-            <form
-              className="flex flex-col gap-6"
-              onSubmit={form.handleSubmit(onSubmit)}
-            >
+            <form className="flex flex-col gap-6" onSubmit={form.handleSubmit(onSubmit)}>
               <div className="mb-0">
                 <FormField
                   control={form.control}
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="dark:text-[#f1f7feb5] text-sm">
-                        New password
-                      </FormLabel>
+                      <FormLabel className="dark:text-[#f1f7feb5] text-sm">New password</FormLabel>
                       <FormControl>
                         <Input placeholder="Enter your password" {...field} />
                       </FormControl>
@@ -132,10 +127,7 @@ export default function ResetPassword() {
                         Confirm new password
                       </FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="Enter your password again"
-                          {...field}
-                        />
+                        <Input placeholder="Enter your password again" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

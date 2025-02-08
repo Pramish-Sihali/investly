@@ -1,14 +1,16 @@
-"use client";
-import React, { useCallback } from "react";
-import SessionItem from "./SessionItem";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { sessionDelMutationFn, sessionsQueryFn } from "@/lib/api";
-import { Loader } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
+'use client';
+
+import { Loader } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import React, { useCallback } from 'react';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { sessionsQueryFn, sessionDelMutationFn } from '@/lib/api';
+
+import SessionItem from './SessionItem';
 
 const Sessions = () => {
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ["sessions"],
+    queryKey: ['sessions'],
     queryFn: sessionsQueryFn,
     staleTime: Infinity,
   });
@@ -20,24 +22,22 @@ const Sessions = () => {
   const sessions = data?.sessions || [];
 
   const currentSession = sessions?.find((session) => session.isCurrent);
-  const otherSessions = sessions?.filter(
-    (session) => session.isCurrent !== true
-  );
+  const otherSessions = sessions?.filter((session) => session.isCurrent !== true);
 
   const handleDelete = useCallback((id: string) => {
     mutate(id, {
       onSuccess: () => {
         refetch();
         toast({
-          title: "Success",
-          description: "Session removed successfully",
+          title: 'Success',
+          description: 'Session removed successfully',
         });
       },
       onError: (error) => {
         toast({
-          title: "Error",
+          title: 'Error',
           description: error.message,
-          variant: "destructive",
+          variant: 'destructive',
         });
       },
     });
@@ -46,25 +46,19 @@ const Sessions = () => {
   return (
     <div className="via-root to-root rounded-xl bg-gradient-to-r p-0.5">
       <div className="rounded-[10px] p-6">
-        <h3 className="text-xl tracking-[-0.16px] text-slate-12 font-bold mb-1">
-          Sessions
-        </h3>
+        <h3 className="text-xl tracking-[-0.16px] text-slate-12 font-bold mb-1">Sessions</h3>
         <p className="mb-6 max-w-xl text-sm text-[#0007149f] dark:text-gray-100 font-normal">
-          Sessions are the devices you are using or that have used your Squeezy
-          These are the sessions where your account is currently logged in. You
-          can log out of each session.
+          Sessions are the devices you are using or that have used your Squeezy These are the
+          sessions where your account is currently logged in. You can log out of each session.
         </p>
         {isLoading ? (
           <Loader size="35px" className="animate-spin" />
         ) : (
           <div className="rounded-t-xl max-w-xl">
             <div>
-              <h5 className="text-base font-semibold">
-                Current active session
-              </h5>
+              <h5 className="text-base font-semibold">Current active session</h5>
               <p className="mb-6 text-sm text-[#0007149f] dark:text-gray-100">
-                You’re logged into this Squeezy account on this device and are
-                currently using it.
+                You’re logged into this Squeezy account on this device and are currently using it.
               </p>
             </div>
             <div className="w-full">
