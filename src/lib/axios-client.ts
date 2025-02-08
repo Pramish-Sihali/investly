@@ -20,7 +20,7 @@ API.interceptors.response.use(
       try {
         await APIRefresh.get('/auth/refresh');
         return APIRefresh(error.config);
-      } catch (error) {
+      } catch {
         window.location.href = '/';
       }
     }

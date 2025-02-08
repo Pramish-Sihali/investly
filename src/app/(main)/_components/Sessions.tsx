@@ -58,7 +58,8 @@ const Sessions = () => {
             <div>
               <h5 className="text-base font-semibold">Current active session</h5>
               <p className="mb-6 text-sm text-[#0007149f] dark:text-gray-100">
-                You’re logged into this Squeezy account on this device and are currently using it.
+                You&apos;re logged into this Squeezy account on this device and are currently using
+                it.
               </p>
             </div>
             <div className="w-full">
