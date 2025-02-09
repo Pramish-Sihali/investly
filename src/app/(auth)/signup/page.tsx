@@ -85,7 +85,7 @@ export default function SignUp() {
           </h1>
           <p className="mb-6 text-center sm:text-left text-base dark:text-[#f1f7feb5] font-normal">
             Already have an account?{' '}
-            <Link className="text-primary" href="/">
+            <Link className="text-primary underline" href="/">
               Sign in
             </Link>
             .
@@ -168,34 +168,15 @@ export default function SignUp() {
                 Create account
                 <ArrowRight />
               </Button>
-
-              <div className="mb-4 mt-4 flex items-center justify-center">
-                <div
-                  aria-hidden="true"
-                  className="h-px w-full bg-[#eee] dark:bg-[#d6ebfd30]"
-                  data-orientation="horizontal"
-                  role="separator"
-                />
-                <span className="mx-4 text-xs dark:text-[#f1f7feb5] font-normal">OR</span>
-                <div
-                  aria-hidden="true"
-                  className="h-px w-full bg-[#eee] dark:bg-[#d6ebfd30]"
-                  data-orientation="horizontal"
-                  role="separator"
-                />
-              </div>
             </form>
           </Form>
-          <Button variant="outline" className="w-full h-[40px]">
-            Email magic link
-          </Button>
           <p className="text-xs font-normal mt-4">
             By signing up, you agree to our{' '}
-            <a className="text-primary hover:underline" href="#">
+            <a className="text-primary underline" href="#">
               Terms of Service
             </a>{' '}
             and{' '}
-            <a className="text-primary hover:underline" href="#">
+            <a className="text-primary underline" href="#">
               Privacy Policy
             </a>
             .

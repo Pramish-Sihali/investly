@@ -2,12 +2,11 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 
-import { DM_Sans } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import QueryProvider from '@/context/query-provider';
-import { ThemeProvider } from '@/context/theme-provider';
+import { Bricolage_Grotesque } from 'next/font/google';
 
-const dm_sans = DM_Sans({ subsets: ['latin'] });
+const bricolage_grotesque = Bricolage_Grotesque({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Investly',
@@ -21,17 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bg-background ${dm_sans.className} antialiased`}>
+      <body className={`bg-background ${bricolage_grotesque.className} antialiased`}>
         <QueryProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem={false}
-            disableTransitionOnChange
-          >
-            {children}
-            <Toaster />
-          </ThemeProvider>
+          {children}
+          <Toaster />
         </QueryProvider>
       </body>
     </html>
