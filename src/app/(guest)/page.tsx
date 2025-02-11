@@ -1,12 +1,15 @@
 import { LineText } from '@/components/line-text';
+import FAQPage from '@/components/qna/qna'; 
+import TestimonialsApp from '@/components/testimonials/testimonials-view/testimonials';
+import ContactView from '@/components/contact-us/view/contact-view';
+import Hero from '@/components/hero/hero-view';
 
 const Guest = () => (
   <div>
-    <div className="flex flex-col gap-2 items-center justify-center">
-      <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold">
-        Hello this is <LineText>Guest</LineText> page
-      </h1>
-    </div>
+    <Hero />
+    <FAQPage />
+   <TestimonialsApp />
+   <ContactView />
   </div>
 );
 

@@ -83,9 +83,9 @@ export function Navbar() {
     {
       name: 'Company',
       children: [
-        { name: 'About Us', href: '/about', description: 'Our mission and team' },
-        { name: 'Careers', href: '/careers', description: 'Join our growing team' },
-        { name: 'Contact', href: '/contact', description: 'Get in touch with us' },
+        { name: 'About Us', href: '/about-us', description: 'Our mission and team' },
+        { name: 'Careers', href: '/career', description: 'Join our growing team' },
+        { name: 'Contact', href: '/contact-us', description: 'Get in touch with us' },
         { name: 'Press Kit', href: '/press', description: 'Media resources and news' },
       ],
     },

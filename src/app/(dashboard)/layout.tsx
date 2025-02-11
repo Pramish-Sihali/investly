@@ -16,6 +16,7 @@ export default function MainLayout({
         <SidebarInset>
           <main className="w-full">
             <Header />
+            
             {children}
           </main>
         </SidebarInset>
