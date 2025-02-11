@@ -1,15 +1,21 @@
-import { LineText } from '@/components/line-text';
+
 import FAQPage from '@/components/qna/qna'; 
 import TestimonialsApp from '@/components/testimonials/testimonials-view/testimonials';
-import ContactView from '@/components/contact-us/view/contact-view';
 import Hero from '@/components/hero/hero-view';
+import InvestPage from '@/components/layout/invest-card'; 
+import WhatWeOffer from '@/components/layout/wwo';
+import EventsAndAcademy from '@/components/layout/event';
+
 
 const Guest = () => (
   <div>
     <Hero />
+    <InvestPage />  
+    <WhatWeOffer />
+    <EventsAndAcademy />
     <FAQPage />
    <TestimonialsApp />
-   <ContactView />
+   
   </div>
 );
 

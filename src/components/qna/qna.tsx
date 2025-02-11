@@ -1,4 +1,10 @@
 import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/ui/tabs";
+import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
@@ -13,79 +19,118 @@ interface Faq {
   answer: string;
 }
 
-interface QnaProps {
+interface FAQCategory {
+  title: string;
   faqs: Faq[];
 }
 
-const FAQ = ({ faqs }: QnaProps) => {
+interface FAQProps {
+  categories: FAQCategory[];
+}
+
+const FAQ = ({ categories }: FAQProps) => {
   return (
     <ResponsiveContainer variant="narrow" paddingY="xl">
-      <div className="w-full max-w-4xl mx-auto px-6 sm:px-8 md:px-12">
+      <div className="w-full max-w-5xl mx-auto px-6 sm:px-8 md:px-12">
         <HeadingSection
           badge="FAQ"
-          title="Why Choose Investly?"
-          subtitle="Find answers to commonly asked questions about our services"
+          title="Frequently Asked Questions"
+          subtitle="Find quick answers to common queries."
         />
 
-        <div className="w-full border border-gray-200 rounded-lg shadow-sm bg-white px-4 sm:px-6">
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq) => (
-              <AccordionItem
-                key={faq.id}
-                value={`item-${faq.id}`}
-                className="border-b last:border-none"
+        <Tabs defaultValue={categories[0]?.title} className="mt-8">
+          <TabsList className="flex justify-center mb-6 border-b border-gray-300">
+            {categories.map((category) => (
+              <TabsTrigger
+                key={category.title}
+                value={category.title}
+                className="text-gray-700 font-medium px-6 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 hover:text-orange-500 hover:border-orange-500"
               >
-                <AccordionTrigger className="text-base sm:text-lg font-medium p-4 sm:p-6 md:p-8">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="p-4 sm:p-6 md:p-8 bg-gray-50 rounded-b-lg">
-                  <div
-                    className="text-gray-700 leading-relaxed text-sm sm:text-base"
-                    dangerouslySetInnerHTML={{ __html: faq.answer }}
-                  />
-                </AccordionContent>
-              </AccordionItem>
+                {category.title}
+              </TabsTrigger>
             ))}
-          </Accordion>
-        </div>
+          </TabsList>
+
+          {categories.map((category) => (
+            <TabsContent
+              key={category.title}
+              value={category.title}
+              className="mt-6"
+            >
+              <Accordion type="single" collapsible className="w-full">
+                {category.faqs.map((faq) => (
+                  <AccordionItem
+                    key={faq.id}
+                    value={`item-${faq.id}`}
+                    className="border-b border-gray-200 last:border-none"
+                  >
+                    <AccordionTrigger className="text-lg font-medium px-6 py-4 hover:bg-gray-100 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 py-4 bg-gray-50 rounded-b-lg">
+                      <p className="text-gray-600 leading-relaxed text-base">
+                        {faq.answer}
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </ResponsiveContainer>
   );
 };
 
-const staticFaqs: Faq[] = [
+const faqData: FAQCategory[] = [
   {
-    id: 1,
-    question: "What is Investly?",
-    answer:
-      "Investly is an online investment platform that allows users to invest in various financial products, including stocks, bonds, and mutual funds, with ease and convenience.",
+    title: "General",
+    faqs: [
+      {
+        id: 1,
+        question: "What is Investly?",
+        answer:
+          "Investly is an online investment platform that allows users to invest in various financial products, including stocks, bonds, and mutual funds, with ease and convenience.",
+      },
+      {
+        id: 2,
+        question: "How do I create an account?",
+        answer:
+          "To create an account on Investly, simply click on the 'Sign Up' button, fill in your personal details, and verify your email address. Once your account is activated, you can start investing.",
+      },
+    ],
   },
   {
-    id: 2,
-    question: "How do I create an account?",
-    answer:
-      "To create an account on Investly, simply click on the 'Sign Up' button, fill in your personal details, and verify your email address. Once your account is activated, you can start investing.",
+    title: "Startup",
+    faqs: [
+      {
+        id: 3,
+        question: "What types of investments can I make?",
+        answer:
+          "Investly offers a wide range of investment options, including individual stocks, bonds, exchange-traded funds (ETFs), and mutual funds. We also offer socially responsible investment options.",
+      },
+    ],
   },
   {
-    id: 3,
-    question: "What types of investments can I make?",
-    answer:
-      "Investly offers a wide range of investment options, including individual stocks, bonds, exchange-traded funds (ETFs), and mutual funds. We also offer socially responsible investment options.",
-  },
-  {
-    id: 4,
-    question: "Is Investly safe to use?",
-    answer:
-      "Yes, Investly takes security seriously. We use the latest encryption technologies to protect your personal data and investments. Additionally, we are regulated by financial authorities to ensure the highest standards of security.",
-  },
-  {
-    id: 5,
-    question: "How can I withdraw my investments?",
-    answer:
-      "To withdraw your investments, simply go to your account dashboard, select the investment you wish to withdraw from, and follow the instructions. Withdrawals are processed within 1-2 business days.",
+    title: "Investor",
+    faqs: [
+      {
+        id: 4,
+        question: "Is Investly safe to use?",
+        answer:
+          "Yes, Investly takes security seriously. We use the latest encryption technologies to protect your personal data and investments. Additionally, we are regulated by financial authorities to ensure the highest standards of security.",
+      },
+      {
+        id: 5,
+        question: "How can I withdraw my investments?",
+        answer:
+          "To withdraw your investments, simply go to your account dashboard, select the investment you wish to withdraw from, and follow the instructions. Withdrawals are processed within 1-2 business days.",
+      },
+    ],
   },
 ];
 
-const FAQPage = () => <FAQ faqs={staticFaqs} />;
+const FAQPage = () => <FAQ categories={faqData} />;
 
 export default FAQPage;

@@ -1,0 +1,45 @@
+import { BarChart3, Rocket, Briefcase } from "lucide-react"
+
+export default function WhatWeOffer() {
+  const features = [
+    {
+      icon: BarChart3,
+      title: "Everything in one place",
+      description: "No time wasted handling legal paperwork, and plenty of deals available for you to choose.",
+    },
+    {
+      icon: Rocket,
+      title: "Make a difference",
+      description: "Build a relationship with your startups, and add value from your experience and network.",
+    },
+    {
+      icon: Briefcase,
+      title: "Safe & Secure",
+      description: "Full secure payment environment, refund if the startup doesn't complete sufficient fundraising.",
+    },
+  ]
+
+  return (
+    <section className="py-16 px-4 md:py-24">
+      <div className="container mx-auto max-w-6xl">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">What we have to offer</h2>
+          <p className="text-lg text-muted-foreground">Leapfunder makes angel investing easy and convenient</p>
+        </div>
+
+        <div className="grid gap-12 md:grid-cols-3">
+          {features.map((feature, index) => (
+            <div key={index} className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-[#FF6B35] mb-6">
+                <feature.icon className="w-8 h-8 text-[#FF6B35]" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
