@@ -1,11 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { SignUpModal } from '@/components/signupModal';
+import Image from 'next/image';
+import { Sheet,SheetContent, SheetHeader, SheetTitle,  } from '@/components/ui/sheet';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -40,8 +43,10 @@ const ListItem = React.forwardRef<
 ListItem.displayName = 'ListItem';
 
 export function Navbar() {
+  const pathname = usePathname();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [modalType, setModalType] = useState<'investor' | 'startup' | 'mentor' | null>(null);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   const navLinks = [
     {
@@ -69,18 +74,26 @@ export function Navbar() {
         },
       ],
     },
-    { name: 'Startup Directory', href: '/startupDirectory' },
+    {
+      name: 'Artical',
+
+      children: [
+        { name: 'Academy', href: '/academy', description: 'It is a long established fact that a reader will' },
+        { name: 'News/Updates & Events', href: '/events', description: 'It is a long established fact that a reader will' },
+        { name: 'Blog', href: '/blog', description: 'It is a long established fact that a reader will' },
+      ],
+
+    },
+    { name: 'Startup Directory', href: '/startup-directory' },
     { name: 'Company', href: '/company' },
-    { name: 'Academy', href: '/academy' },
-    { name: 'News/Updates & Events', href: '/events' },
-    { name: 'Blog', href: '/blog' },
+   
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white shadow-lg">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="text-xl font-bold text-primary">
-          Investify
+          <Image src="/logo.png" alt="Investify Logo" width={100} height={100} />
         </Link>
 
         {/* Desktop Navigation */}
@@ -95,7 +108,12 @@ export function Navbar() {
                       <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                           {section.children.map((item) => (
-                            <ListItem key={item.name} title={item.name} href={item.href}>
+                            <ListItem
+                              key={item.name}
+                              title={item.name}
+                              href={item.href}
+                              className={pathname === item.href ? 'bg-gray-200 text-gray-900' : ''}
+                            >
                               {item.description}
                             </ListItem>
                           ))}
@@ -104,7 +122,15 @@ export function Navbar() {
                     </>
                   ) : (
                     <NavigationMenuLink asChild>
-                      <Link href={section.href} className="px-4 py-2 text-sm font-medium hover:bg-accent rounded-md">
+                      <Link
+                        href={section.href}
+                        className={cn(
+                          'px-4 py-2 text-sm font-medium rounded-md transition-colors',
+                          pathname === section.href
+                            ? ' text-primary' 
+                            : 'hover:bg-accent'
+                        )}
+                      >
                         {section.name}
                       </Link>
                     </NavigationMenuLink>
@@ -115,20 +141,20 @@ export function Navbar() {
           </NavigationMenu>
 
           {/* Desktop Sign Up Button */}
-          <div className="relative ">
-            <div className='flex gap-4'>
+          <div className="relative">
+            <div className="flex gap-4">
               <Link
-              href="/login"
-              className="px-5 py-2 border text-sm font-medium text-black bg-white rounded-md hover:bg-gray-800 hover:text-white"
-            >
-              Log In
-            </Link>
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="px-5 py-2 border text-sm font-medium text-white bg-gray-700 rounded-md hover:bg-gray-800"
-            >
-              Sign Up
-            </button>
+                href="/login"
+                className="px-5 py-2 border text-sm font-medium text-black bg-white rounded-md hover:bg-gray-800 hover:text-white"
+              >
+                Log In
+              </Link>
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="px-5 py-2 border text-sm font-medium text-white bg-primary rounded-md hover:bg-gray-800"
+              >
+                Sign Up
+              </button>
             </div>
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
@@ -157,10 +183,58 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         <div className="md:hidden">
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" onClick={() => setIsSheetOpen(true)}>
             <Menu className="h-6 w-6" />
           </Button>
         </div>
+
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Menu</SheetTitle>
+            </SheetHeader>
+            
+              <ul className="flex flex-col space-y-2">
+                {navLinks.map((section) => (
+                  <li key={section.name} className="text-gray-700">
+                    {section.children ? (
+                      <div>
+                        <span>{section.name}</span>
+                        <ul className="ml-4">
+                          {section.children.map((item) => (
+                            <li key={item.name}>
+                              <Link
+                                href={item.href}
+                                className={cn(
+                                  'block px-4 py-2',
+                                  pathname === item.href ? 'bg-gray-200' : 'hover:bg-gray-100'
+                                )}
+                                onClick={() => setIsSheetOpen(false)}
+                              >
+                                {item.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <Link
+                        href={section.href}
+                        className={cn(
+                          'block px-4 py-2',
+                          pathname === section.href ? 'bg-gray-200' : 'hover:bg-gray-100'
+                        )}
+                        onClick={() => setIsSheetOpen(false)}
+                      >
+                        {section.name}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            
+          </SheetContent>
+        </Sheet>
       </div>
 
       {modalType && <SignUpModal isOpen={!!modalType} onClose={() => setModalType(null)} type={modalType} />}

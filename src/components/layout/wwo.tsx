@@ -30,8 +30,8 @@ export default function WhatWeOffer() {
         <div className="grid gap-12 md:grid-cols-3">
           {features.map((feature, index) => (
             <div key={index} className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-[#FF6B35] mb-6">
-                <feature.icon className="w-8 h-8 text-[#FF6B35]" />
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-primary mb-6">
+                <feature.icon className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
               <p className="text-muted-foreground leading-relaxed">{feature.description}</p>

@@ -7,7 +7,7 @@ const startups = [
     country: "The Netherlands",
     description:
       "Buchung builds the e-commerce platform for tour and activity businesses. While online booking becomes more important, tour operators struggle with their digital presence.",
-    logo: "",
+    logo: "/startup1.png",
     images: [
       
     ],
@@ -20,10 +20,7 @@ const startups = [
     country: "The Netherlands",
     description:
       "Leapfunder helps startups to raise equity online from a pool of informal investors. Leapfunder provides the infrastructure for online fundraising and investor management.",
-    logo: "",
-    images: [
-      
-    ],
+    logo: "/startup.png",
     progress: 45,
     daysLeft: 18,
     raised: "€250,000",
@@ -33,7 +30,7 @@ const startups = [
     country: "The Netherlands",
     description:
       "Museum for cultural & educational shared VR experiences. In our first experience with the Amsterdam Museum, visitors travel back in time to experience the Dutch Golden Age.",
-    logo: "",
+    logo: "/startup2.png",
     images: [
       
     ],
@@ -45,7 +42,7 @@ const startups = [
     country: "The Netherlands",
     description:
       "Barter is a scalable SaaS marketplace that helps businesses save time, money, and effort in managing their digital assets and creator relationships.",
-    logo: "",
+    logo: "/image.png",
     images: [
       
     ],
@@ -67,7 +64,7 @@ export default function InvestPage() {
         </div>
 
         <div className="flex justify-center pt-4">
-          <Button size="lg" className="bg-[#F47B5D] hover:bg-[#F47B5D]/90 text-white px-8">
+          <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
             View all open rounds
           </Button>
         </div>

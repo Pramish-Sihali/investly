@@ -11,25 +11,25 @@ const InvestmentInStartups = () => {
       title: "Evaluating startups",
       description:
         "Every investor chooses whether to make an investment in their own way. Some investors scrutinize the quality of the team. If the plan is less convincing, a good team can always rewrite it. Other investors focus on the plan and the first product prototypes, since that is the core of the business. It is quite important that every investor realizes that early-stage startup investments are very risky.",
-      image: "/path-to-step1-image.png",
+      image: "/start.png",
     },
     {
       id: 2,
       title: "Pledging funds",
       description: "Details about pledging funds...",
-      image: "/path-to-step2-image.png",
+      image: "/start1.png",
     },
     {
       id: 3,
       title: "Successful round",
       description: "Details about successful rounds...",
-      image: "/path-to-step3-image.png",
+      image: "/start2.png",
     },
     {
       id: 4,
       title: "Conversion",
       description: "Details about conversion...",
-      image: "/path-to-step4-image.png",
+      image: "/startup.png",
     },
   ];
 
@@ -40,7 +40,7 @@ const InvestmentInStartups = () => {
         <div className="col-span-1">
           <div className="mb-4">
             <select
-              className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-orange-400"
+              className="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-primary"
               defaultValue="English"
             >
               <option>English</option>
@@ -59,7 +59,7 @@ const InvestmentInStartups = () => {
             <ul className="mt-4 space-y-2">
               {steps.map((step, index) => (
                 <li key={step.id} className="flex items-center gap-2">
-                  <span className="w-6 h-6 flex items-center justify-center rounded-full bg-orange-500 text-white text-sm">
+                  <span className="w-6 h-6 flex items-center justify-center rounded-full bg-primary text-white text-sm">
                     {index + 1}
                   </span>
                   <span className="text-gray-700 font-medium">{step.title}</span>
@@ -87,7 +87,7 @@ const InvestmentInStartups = () => {
                   />
                 </div>
                 <div className="w-full md:w-2/3">
-                  <h2 className="text-xl font-semibold text-orange-500 mb-2">
+                  <h2 className="text-xl font-semibold text-primary mb-2">
                     STEP {step.id}
                   </h2>
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -100,13 +100,7 @@ const InvestmentInStartups = () => {
           ))}
         </div>
       </div>
-
-      {/* Questions Button */}
-      <button
-        className="fixed bottom-4 right-4 bg-orange-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-300"
-      >
-        Questions?
-      </button>
+     
     </ResponsiveContainer>
   );
 };

@@ -1,19 +1,18 @@
-import Image from "next/image"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { Button } from "@/components/ui/button"
-import { ChevronRight } from "lucide-react"
+import Image from "next/image";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
 
 interface StartupCardProps {
-  name: string
-  country: string
-  description: string
-  logo: string
-  images: string[]
-  progress: number
-  daysLeft: number
-  raised?: string
-  tag?: string
+  name: string;
+  country: string;
+  description: string;
+  logo: string;
+  progress: number;
+  daysLeft: number;
+  raised?: string;
+  tag?: string;
 }
 
 export function StartupCard({
@@ -21,7 +20,6 @@ export function StartupCard({
   country,
   description,
   logo,
-  images,
   progress,
   daysLeft,
   raised,
@@ -30,44 +28,29 @@ export function StartupCard({
   return (
     <Card className="overflow-hidden transition-all hover:shadow-lg">
       <CardContent className="p-0">
-        {/* Image Grid */}
         <div className="relative aspect-[4/3] w-full">
-          <div className="grid grid-cols-3 grid-rows-2 gap-1 p-2">
-            {tag && (
-              <div className="absolute left-4 top-4 z-10">
-                <span className="rounded-md bg-green-500 px-3 py-1 text-sm font-medium text-white">{tag}</span>
-              </div>
-            )}
-            <div className="col-span-1 row-span-2 relative">
-              <div className="h-full w-full overflow-hidden rounded-lg bg-white p-4">
-                <div className="relative h-full w-full">
-                  <Image src={logo || "/placeholder.svg"} alt={`${name} logo`} fill className="object-contain" />
-                </div>
-              </div>
-            </div>
-            {images.slice(0, 4).map((image, index) => (
-              <div key={index} className="relative overflow-hidden rounded-lg bg-gray-100">
-                <div className="aspect-square relative">
-                  <Image
-                    src={image || "/placeholder.svg"}
-                    alt={`${name} image ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+  {tag && (
+    <div className="absolute left-4 top-4 z-10">
+      <span className="rounded-md bg-green-500 px-3 py-1 text-sm font-medium text-white">{tag}</span>
+    </div>
+  )}
+  <div className="relative h-full w-full overflow-hidden">
+    <Image
+      src={logo || "/placeholder.svg"}
+      alt={`${name} logo`}
+      fill
+      className="object-cover"
+      quality={95}
+    />
+  </div>
+</div>
 
         {/* Content */}
         <div className="space-y-4 p-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <h3 className="text-xl font-semibold">{name}</h3>
-              <div className="flex items-center gap-1">
-                <span className="text-sm text-muted-foreground">{country}</span>
-              </div>
+              <span className="text-sm text-muted-foreground">{country}</span>
             </div>
             <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
           </div>
@@ -81,6 +64,7 @@ export function StartupCard({
           </div>
         </div>
       </CardContent>
+
       <CardFooter className="p-6 pt-0">
         <Button variant="ghost" className="w-full justify-between hover:bg-transparent hover:text-primary">
           Find out more
@@ -88,6 +72,5 @@ export function StartupCard({
         </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
-

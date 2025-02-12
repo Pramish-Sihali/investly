@@ -25,7 +25,7 @@ export default function Home() {
               </h1>
               <p className="text-xl text-white/90">Straightforward angel investing in startups.</p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-[#F47B5D] hover:bg-[#F47B5D]/90 text-white">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
                   Sign up as investor
                 </Button>
                 <Button size="lg" variant="outline" className="text-white bg-white/10 border-white hover:bg-white/10">
@@ -40,7 +40,7 @@ export default function Home() {
                 <div className="text-center space-y-4">
                   <h3 className="text-xl font-semibold text-white">Interested in becoming an investor?</h3>
                   <p className="text-white/90">Book a free call with one of our experts</p>
-                  <Button className="bg-[#F47B5D] hover:bg-[#F47B5D]/90 text-white w-full">Book a Call</Button>
+                  <Button className="bg-primary hover:bg-primary/90 text-white w-full">Book a Call</Button>
                 </div>
               </Card>
             </div>

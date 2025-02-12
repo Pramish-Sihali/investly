@@ -7,11 +7,7 @@ import { Newsletter } from '@/components/layout/newsletter';
 export default function GuestLayout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <Navbar />
       {children}
-      <Newsletter/>
-      <ContactView />
-      <Footer />
     </div>
   );
 }

@@ -70,7 +70,7 @@ const EventCard = ({ event }: { event: Event }) => {
     <>
       <div className="flex items-start gap-4 p-6 bg-white shadow rounded-lg mb-8">
         <div className="flex-shrink-0 text-center">
-          <div className="bg-orange-500 text-white w-16 h-16 flex flex-col items-center justify-center rounded-md">
+          <div className="bg-primary-500 text-white w-16 h-16 flex flex-col items-center justify-center rounded-md">
             <span className="text-2xl font-bold">{event.date}</span>
             <span className="text-sm uppercase">{event.day}</span>
           </div>
@@ -89,7 +89,7 @@ const EventCard = ({ event }: { event: Event }) => {
                 className={`px-4 py-2 rounded-lg text-sm font-medium ${
                   index === 0
                     ? "bg-gray-100 text-gray-800 hover:bg-gray-200"
-                    : "bg-orange-500 text-white hover:bg-orange-600"
+                    : "bg-primary text-white hover:bg-primary"
                 }`}
               >
                 {button.text}
@@ -126,7 +126,7 @@ const EventCard = ({ event }: { event: Event }) => {
           <div className="flex flex-col gap-4">
             <Input type="email" placeholder="Email" required />
             <Input type="password" placeholder="Password" required />
-            <Button onClick={() => setOpenApply(false)} className="w-full bg-orange-500 text-white hover:bg-orange-600">
+            <Button onClick={() => setOpenApply(false)} className="w-full bg-primary text-white hover:bg-primary">
               Submit
             </Button>
           </div>

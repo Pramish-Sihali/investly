@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/accordion";
 import HeadingSection from "@/components/common/heading-section";
 import ResponsiveContainer from "@/components/common/responsive-container";
+import { Separator } from "../ui/separator";
 
 interface Faq {
   id: number;
@@ -39,17 +40,19 @@ const FAQ = ({ categories }: FAQProps) => {
         />
 
         <Tabs defaultValue={categories[0]?.title} className="mt-8">
-          <TabsList className="flex justify-center mb-6 border-b border-gray-300">
+          <TabsList className="flex rounded-none justify-center bg-transparent mb-6 ">
             {categories.map((category) => (
               <TabsTrigger
                 key={category.title}
                 value={category.title}
-                className="text-gray-700 font-medium px-6 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 hover:text-orange-500 hover:border-orange-500"
+                className="text-gray-700  border-gray-300 font-medium px-6 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 hover:text-primary-500 hover:border-primary-500"
               >
                 {category.title}
               </TabsTrigger>
             ))}
           </TabsList>
+
+          <Separator  />
 
           {categories.map((category) => (
             <TabsContent
@@ -64,7 +67,7 @@ const FAQ = ({ categories }: FAQProps) => {
                     value={`item-${faq.id}`}
                     className="border-b border-gray-200 last:border-none"
                   >
-                    <AccordionTrigger className="text-lg font-medium px-6 py-4 hover:bg-gray-100 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400">
+                    <AccordionTrigger className="text-lg font-medium px-6 py-4 hover:bg-gray-100 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400">
                       {faq.question}
                     </AccordionTrigger>
                     <AccordionContent className="px-6 py-4 bg-gray-50 rounded-b-lg">

@@ -5,7 +5,7 @@ const blogs = [
   {
     id: 1,
     slug: "elizabeth-kleinveld-startup-matchmaker",
-    image: "/images/blog1.jpg",
+    image: "/blog.png",
     date: "04/02/2025",
     title: "Elizabeth Kleinveld: Startup Matchmaker & Ecosystem Builder",
     content:
@@ -14,7 +14,7 @@ const blogs = [
   {
     id: 2,
     slug: "10-tips-for-first-time-founders",
-    image: "/images/blog2.jpg",
+    image: "/blog1.png",
     date: "01/25/2025",
     title: "10 Tips for First-Time Founders to Succeed in the Startup World",
     content:
@@ -23,7 +23,7 @@ const blogs = [
   {
     id: 3,
     slug: "future-of-fintech-trends-2025",
-    image: "/images/blog3.jpg",
+    image: "/blog2s.png",
     date: "12/15/2024",
     title: "The Future of FinTech: Trends to Watch in 2025",
     content:

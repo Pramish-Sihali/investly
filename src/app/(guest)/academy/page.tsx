@@ -83,13 +83,13 @@ export default function AcademyPage() {
           {readingLists.map((item, index) => (
             <Card key={index} className="transition-all duration-300 hover:shadow-lg border-gray-200">
               <CardContent className="p-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full border-2 border-[#FF6B35] flex items-center justify-center mb-6">
-                  <item.icon className="w-8 h-8 text-[#FF6B35]" />
+                <div className="w-16 h-16 rounded-full border-2 border-primary flex items-center justify-center mb-6">
+                  <item.icon className="w-8 h-8 text-primary" />
                 </div>
                 <h2 className="text-xl font-semibold mb-4">{item.title}</h2>
                 <Link
                   href={`/academy/${item.slug}`}
-                  className="text-[#FF6B35] hover:text-[#FF6B35]/80 font-medium inline-flex items-center gap-2"
+                  className="text-primary hover:text-primary/80 font-medium inline-flex items-center gap-2"
                 >
                   Read {item.articles} articles
                   <span className="text-lg">→</span>

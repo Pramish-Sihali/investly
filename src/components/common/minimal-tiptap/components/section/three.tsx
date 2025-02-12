@@ -30,7 +30,7 @@ const COLORS: ColorPalette[] = [
       { cssVar: 'var(--mt-accent-bold-blue)', label: 'Bold blue' },
       { cssVar: 'var(--mt-accent-bold-teal)', label: 'Bold teal' },
       { cssVar: 'var(--mt-accent-bold-green)', label: 'Bold green' },
-      { cssVar: 'var(--mt-accent-bold-orange)', label: 'Bold orange' },
+      { cssVar: 'var(--mt-accent-bold-primary)', label: 'Bold primary' },
       { cssVar: 'var(--mt-accent-bold-red)', label: 'Bold red' },
       { cssVar: 'var(--mt-accent-bold-purple)', label: 'Bold purple' }
     ]
@@ -43,7 +43,7 @@ const COLORS: ColorPalette[] = [
       { cssVar: 'var(--mt-accent-blue)', label: 'Blue' },
       { cssVar: 'var(--mt-accent-teal)', label: 'Teal' },
       { cssVar: 'var(--mt-accent-green)', label: 'Green' },
-      { cssVar: 'var(--mt-accent-orange)', label: 'Orange' },
+      { cssVar: 'var(--mt-accent-primary)', label: 'primary' },
       { cssVar: 'var(--mt-accent-red)', label: 'Red' },
       { cssVar: 'var(--mt-accent-purple)', label: 'Purple' }
     ]

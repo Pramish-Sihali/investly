@@ -9,7 +9,7 @@ const BlogPage = () => {
     {
       id: 1,
       slug: "elizabeth-kleinveld-startup-matchmaker",
-      image: "/images/blog1.jpg",
+      image: "/blog.png",
       date: "04/02/2025",
       title: "Elizabeth Kleinveld: Startup Matchmaker & Ecosystem Builder",
       description:
@@ -18,7 +18,7 @@ const BlogPage = () => {
     {
       id: 2,
       slug: "10-tips-for-first-time-founders",
-      image: "/images/blog2.jpg",
+      image: "/blog1.png",
       date: "01/25/2025",
       title: "10 Tips for First-Time Founders to Succeed in the Startup World",
       description:
@@ -27,7 +27,7 @@ const BlogPage = () => {
     {
       id: 3,
       slug: "future-of-fintech-trends-2025",
-      image: "/images/blog3.jpg",
+      image: "/blog2.png",
       date: "12/15/2024",
       title: "The Future of FinTech: Trends to Watch in 2025",
       description:
@@ -50,7 +50,7 @@ const BlogPage = () => {
                   {blog.description}
                 </p>
                 <Link href={`/blog/${blog.slug}`} passHref>
-                  <Button variant="link" className="text-orange-500 px-0">
+                  <Button variant="link" className="text-primary px-0">
                     Read more
                   </Button>
                 </Link>

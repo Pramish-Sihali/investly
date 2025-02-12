@@ -1,28 +1,29 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BarChart3, Rocket, Briefcase } from "lucide-react"
 
 const HowThePlatformWorks: React.FC = () => {
   const platformSteps = [
     {
       title: 'Create Your Account',
       description: 'Sign up easily using your email or LinkedIn. Join our community of forward-thinking investors.',
-      icon: '/icons/account-creation.svg'
+      icon: BarChart3
     },
     {
       title: 'Explore Investment Opportunities',
       description: 'Browse through carefully vetted startup investment opportunities across various sectors.',
-      icon: '/icons/explore-opportunities.svg'
+      icon: Rocket
     },
     {
       title: 'Due Diligence',
       description: 'Access comprehensive startup profiles, financial documents, and investor insights.',
-      icon: '/icons/due-diligence.svg'
+      icon: Briefcase
     },
     {
       title: 'Invest Securely',
       description: 'Make investments with confidence using our secure, transparent investment process.',
-      icon: '/icons/secure-investment.svg'
+      icon: BarChart3
     }
   ];
 
@@ -42,7 +43,7 @@ const HowThePlatformWorks: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <section className="text-center mb-16">
-        <h1 className="text-4xl font-bold mb-6">How Investly Works</h1>
+        <h1 className="text-4xl font-bold mb-6 text-primary">How Investly Works</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Democratizing startup investments by providing a transparent, user-friendly platform that connects passionate investors with innovative startups.
         </p>
@@ -54,13 +55,17 @@ const HowThePlatformWorks: React.FC = () => {
           {platformSteps.map((step, index) => (
             <div key={step.title} className="text-center">
               <div className="flex justify-center mb-6">
-                <Image 
-                  src={step.icon} 
-                  alt={step.title} 
-                  width={80} 
-                  height={80} 
-                  className="mb-4"
-                />
+                {typeof step.icon === 'string' ? (
+                  <Image 
+                    src={step.icon} 
+                    alt={step.title} 
+                    width={80} 
+                    height={80} 
+                    className="mb-4"
+                  />
+                ) : (
+                  <step.icon className="mb-4" width={80} height={80} />
+                )}
               </div>
               <h3 className="text-xl font-semibold mb-4">{`${index + 1}. ${step.title}`}</h3>
               <p className="text-gray-600">{step.description}</p>

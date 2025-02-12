@@ -1,28 +1,29 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BarChart3, Rocket, Briefcase } from "lucide-react"
 
 const InvestorMatchingProgram: React.FC = () => {
   const programStages = [
     {
       title: 'Initial Assessment',
       description: 'Our team conducts a comprehensive evaluation of your startup\'s potential, market fit, and investment readiness.',
-      icon: '/icons/assessment.svg'
+      icon: BarChart3
     },
     {
       title: 'Investor Profiling',
       description: 'We create a detailed investor profile matching your startup\'s unique needs with the right investor network.',
-      icon: '/icons/profiling.svg'
+      icon: Rocket
     },
     {
       title: 'Coaching & Preparation',
       description: 'Receive personalized coaching to refine your pitch, financial models, and investor presentation.',
-      icon: '/icons/coaching.svg'
+      icon: Briefcase
     },
     {
       title: 'Investor Introductions',
       description: 'Direct introductions to carefully selected investors who align with your startup\'s vision and growth potential.',
-      icon: '/icons/introductions.svg'
+      icon: BarChart3
     }
   ];
 
@@ -30,24 +31,24 @@ const InvestorMatchingProgram: React.FC = () => {
     {
       title: 'Targeted Matching',
       description: 'Precision-matched with investors who have expertise in your industry and investment thesis.',
-      icon: '/icons/target.svg'
+      icon: '/startup.png'
     },
     {
       title: 'Comprehensive Support',
       description: '30-90 days of dedicated support to prepare and position your startup for successful fundraising.',
-      icon: '/icons/support.svg'
+      icon: '/startup1.png'
     },
     {
       title: 'Network Expansion',
       description: 'Access to an exclusive network of angel investors, venture capitalists, and strategic partners.',
-      icon: '/icons/network.svg'
+      icon: '/startup2.png'
     }
   ];
 
   return (
     <div className="container mx-auto px-4 py-12">
       <section className="text-center mb-16">
-        <h1 className="text-4xl font-bold mb-6">Investly Investor Matching Program</h1>
+        <h1 className="text-4xl font-bold mb-6 text-primary">Investly Investor Matching Program</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Bridging innovative startups with the right investors through a comprehensive, personalized matching process.
         </p>
@@ -59,13 +60,7 @@ const InvestorMatchingProgram: React.FC = () => {
           {programStages.map((stage, index) => (
             <div key={stage.title} className="text-center">
               <div className="flex justify-center mb-6">
-                <Image 
-                  src={stage.icon} 
-                  alt={stage.title} 
-                  width={80} 
-                  height={80} 
-                  className="mb-4"
-                />
+                <stage.icon className="mb-4" width={80} height={80} />
               </div>
               <h3 className="text-xl font-semibold mb-4">{`${index + 1}. ${stage.title}`}</h3>
               <p className="text-gray-600">{stage.description}</p>
@@ -76,7 +71,7 @@ const InvestorMatchingProgram: React.FC = () => {
 
       <section className="bg-gray-50 py-16 rounded-lg">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-semibold text-center mb-12">Program Benefits</h2>
+          <h2 className="text-3xl font-semibold text-center mb-12 text-primary">Program Benefits</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {benefitsOfProgram.map((benefit) => (
               <div 

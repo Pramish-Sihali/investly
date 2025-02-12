@@ -181,7 +181,7 @@ export default function ContactForm({
           <div className="py-9">
             <Button
               type="submit"
-              className="w-full lg:w-auto py-5 text-base bg-gradient-to-r from-green-900 to-green-700 text-white font-semibold hover:opacity-90 transition-transform hover:scale-105"
+              className="w-full lg:w-auto py-5 text-base bg-gradient-to-r from-primary to-primary transition-transform hover:scale-105"
               disabled={loading} // Disable button while loading
             >
               {loading ? "Sending..." : "Send Message →"}{" "}

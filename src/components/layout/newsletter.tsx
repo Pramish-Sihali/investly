@@ -58,7 +58,7 @@ export function Newsletter() {
   };
 
   return (
-    <div className="container w-[90%] mx-auto rounded-xl overflow-hidden bg-gradient-to-r from-[#E0F7FF] to-[#968fcc] my-10">
+    <div className="container w-[90%] mx-auto rounded-xl overflow-hidden bg-gradient-to-r from-primary to-primary/70 my-10">
       <div className="flex flex-col lg:flex-row items-center justify-between px-8 py-12 gap-8">
         {/* Left Side */}
         <div className="w-full lg:w-1/2 space-y-6 md:text-center lg:text-left">
@@ -83,7 +83,7 @@ export function Newsletter() {
             />
             <button
               type="submit"
-              className="bg-gradient-to-r from-[#5C67F2] to-[#A77CFF] text-white font-bold text-xl w-14 h-12 flex items-center justify-center rounded-r-lg shadow-lg hover:scale-105 transition-transform"
+              className="bg-gradient-to-r from-primary to-primary/70 text-white font-bold text-xl w-14 h-12 flex items-center justify-center rounded-r-lg shadow-lg hover:scale-105 transition-transform"
               disabled={loading}
             >
               {loading ? "..." : "→"}

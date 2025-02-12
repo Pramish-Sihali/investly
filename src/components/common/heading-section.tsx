@@ -14,7 +14,7 @@ const HeadingSection = ({ badge, title, subtitle }: HeadingSectionProps) => {
             {badge}
           </span>
         )}
-        <h2 className="text-3xl md:text-5xl font-bold text-orange-500">
+        <h2 className="text-3xl md:text-5xl font-bold ">
           {title}
           {subtitle && (
             <span className="block text-primary/80 mt-4 text-lg md:text-xl font-normal">

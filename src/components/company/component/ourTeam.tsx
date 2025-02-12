@@ -8,14 +8,14 @@ const teamMembers = [
     description:
       "Jane has over 15 years of experience in fintech and is passionate about democratizing investment opportunities.",
     image:
-      "",
+      "/start.png",
   },
   {
     name: "Alex Johnson",
     role: "CTO",
     description: "Alex leads our tech team, ensuring our platform is secure, scalable, and user-friendly.",
     image:
-      "",
+      "/team2.png",
   },
   {
     name: "Maria Rodriguez",
@@ -23,28 +23,28 @@ const teamMembers = [
     description:
       "Maria builds and maintains relationships with our investor community, facilitating successful connections.",
     image:
-      "",
+      "/team3.png",
   },
   {
     name: "David Lee",
     role: "Lead Developer",
     description: "David is the backbone of our development team, constantly innovating and improving our platform.",
     image:
-      "",
+      "/team4.png",
   },
   {
     name: "Sarah Thompson",
     role: "Marketing Director",
     description: "Sarah crafts our brand strategy and ensures our message reaches the right audience.",
     image:
-      "",
+      "/team5.png",
   },
   {
     name: "Michael Brown",
     role: "Financial Advisor",
     description: "Michael brings his wealth of experience in finance to guide both our company and our users.",
     image:
-      "",
+      "/team6.png",
   },
 ]
 
@@ -75,7 +75,7 @@ export default function OurTeam() {
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-[#FF6B35] font-medium mb-3">{member.role}</p>
+                  <p className="text-primary font-medium mb-3">{member.role}</p>
                   <p className="text-gray-600">{member.description}</p>
                 </div>
               </CardContent>

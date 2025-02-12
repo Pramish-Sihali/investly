@@ -12,8 +12,8 @@ export default function ContactDetails() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
         {/* Address Section */}
         <div className="flex flex-col items-center text-center group">
-          <div className="bg-blue-50 p-4 rounded-full mb-4 group-hover:bg-blue-100 transition-colors">
-            <MapPin className="text-blue-500 w-10 h-10" />
+          <div className="bg-primary p-4 rounded-full mb-4 group-hover:bg-primary transition-colors">
+            <MapPin className="text-white w-10 h-10" />
           </div>
           <div>
             <h3 className="font-semibold text-lg mb-2">Address</h3>
@@ -23,7 +23,7 @@ export default function ContactDetails() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-blue-500 text-sm transition-colors"
+              className="hover:text-primary text-sm transition-colors"
             >
               <p>{address.address}</p>
               <p>{address.street}</p>
@@ -33,8 +33,8 @@ export default function ContactDetails() {
 
         {/* Phone Section */}
         <div className="flex flex-col items-center text-center group">
-          <div className="bg-blue-50 p-4 rounded-full mb-4 group-hover:bg-blue-100 transition-colors">
-            <Phone className="text-blue-500 w-10 h-10" />
+          <div className="bg-primary p-4 rounded-full mb-4 group-hover:bg-primary transition-colors">
+            <Phone className="text-white w-10 h-10" />
           </div>
           <h3 className="font-semibold text-lg mb-2">Contact Number</h3>
           <div className="space-y-1">
@@ -53,7 +53,7 @@ export default function ContactDetails() {
         {/* Email Section */}
         <div className="flex flex-col items-center text-center group">
           <div className="bg-blue-50 p-4 rounded-full mb-4 group-hover:bg-blue-100 transition-colors">
-            <Mail className="text-blue-500 w-10 h-10" />
+            <Mail className="text-primary w-10 h-10" />  
           </div>
           <div>
             <h3 className="font-semibold text-lg mb-2">Email</h3>
@@ -61,7 +61,7 @@ export default function ContactDetails() {
               {address.email_1 && (
                 <a
                   href={`mailto:${address.email_1}`}
-                  className="block text-sm hover:text-blue-500 transition-colors"
+                  className="block text-sm hover:text-primary transition-colors"
                 >
                   {address.email_1}
                 </a>
@@ -69,7 +69,7 @@ export default function ContactDetails() {
               {address.email_2 && (
                 <a
                   href={`mailto:${address.email_2}`}
-                  className="block text-sm hover:text-blue-500 transition-colors"
+                  className="block text-sm hover:text-primary transition-colors"
                 >
                   {address.email_2}
                 </a>

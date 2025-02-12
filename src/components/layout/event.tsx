@@ -18,7 +18,7 @@ export default function EventsAndAcademy() {
   ]
 
   return (
-    <section className="bg-slate-900 min-h-screen">
+    <section className="bg-gray-900 min-h-screen">
       <div className="container mx-auto max-w-[1400px] px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-16">
           {/* Left Section - Events */}
@@ -67,7 +67,7 @@ export default function EventsAndAcademy() {
                   <p className="text-gray-600 mb-6">
                     Our Startup Survival Guide blog series helps you find investors & t...
                   </p>
-                  <Button className="w-full bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white">Read 43 articles</Button>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white">Read 43 articles</Button>
                 </CardContent>
               </Card>
 

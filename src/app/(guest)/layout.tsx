@@ -2,6 +2,7 @@ import { Footer } from '@/components/layout/footer';
 import { Navbar } from '@/components/layout/navbar';
 import ContactView from '@/components/contact-us/view/contact-view';
 import { Newsletter } from '@/components/layout/newsletter';
+import QuestionButton from '@/components/layout/question';
 
 
 export default function GuestLayout({ children }: { children: React.ReactNode }) {
@@ -12,6 +13,7 @@ export default function GuestLayout({ children }: { children: React.ReactNode })
       <Newsletter/>
       <ContactView />
       <Footer />
+      <QuestionButton />
     </div>
   );
 }

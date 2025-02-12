@@ -40,7 +40,7 @@ type TestimonialsProps = {
                 >
                   <div className="h-full p-6">
                     <div className="bg-white rounded-xl p-6 shadow-lg h-full flex flex-col">
-                      <QuoteIcon className="h-8 w-8 text-blue-500 mb-4" />
+                      <QuoteIcon className="h-8 w-8 text-primary mb-4" />
                       <blockquote className="flex-grow">
                         <div
                           className="text-gray-700 text-lg leading-relaxed mb-4"
@@ -95,14 +95,20 @@ const staticTestimonials: Testimonial[] = [
     id: 1,
     name: "John Doe",
     testimonial: "Investly has made investing so much easier for me. The platform is user-friendly, and their customer service is top-notch!",
-    image: "https://via.placeholder.com/150", // Placeholder image
-    source: "Verified User",
+    image: "/startup1.png",
   },
   {
     id: 2,
     name: "Jane Smith",
     testimonial: "I was able to diversify my portfolio easily with Investly's wide range of investment options. Highly recommended!",
-    image: "https://via.placeholder.com/150", // Placeholder image
+    image: "/startup2.png", // Placeholder image
+    source: "Happy Client",
+  },
+  {
+    id: 3,
+    name: "Jane Smith",
+    testimonial: "I was able to diversify my portfolio easily with Investly's wide range of investment options. Highly recommended!",
+    image: "/start.png", // Placeholder image
     source: "Happy Client",
   },
 ];
