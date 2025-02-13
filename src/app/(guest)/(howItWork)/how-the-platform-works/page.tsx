@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import {  Rocket,BarChart3, Briefcase } from "lucide-react"
+import { Rocket, BarChart3, Briefcase } from "lucide-react";
 
 const HowThePlatformWorks: React.FC = () => {
   const platformSteps = [
@@ -51,7 +51,7 @@ const HowThePlatformWorks: React.FC = () => {
 
       <section className="mb-16">
         <h2 className="text-3xl font-semibold text-center mb-12">Investment Process</h2>
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {platformSteps.map((step, index) => (
             <div key={step.title} className="text-center">
               <div className="flex justify-center mb-6">
@@ -77,7 +77,7 @@ const HowThePlatformWorks: React.FC = () => {
       <section className="bg-gray-50 py-16 rounded-lg">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-semibold text-center mb-12">Community Events</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {communityEvents.map((event) => (
               <div 
                 key={event.title} 
@@ -102,7 +102,7 @@ const HowThePlatformWorks: React.FC = () => {
         <p className="text-xl text-gray-600 mb-8">
           Join thousands of investors discovering and supporting the next generation of innovative startups.
         </p>
-        <div className="flex justify-center space-x-4">
+        <div className="flex flex-wrap justify-center gap-4">
           <Link 
             href="/signup" 
             className="bg-primary text-white px-8 py-4 rounded-full text-lg hover:bg-primary-dark transition-colors"

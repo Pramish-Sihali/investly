@@ -69,8 +69,8 @@ const EventCard = ({ event }: { event: Event }) => {
 
   return (
     <>
-      <div className="flex items-start gap-4 p-6 bg-white shadow rounded-lg mb-8">
-        <div className="flex-shrink-0 text-center">
+      <div className="flex flex-col sm:flex-row items-start gap-4 p-6 bg-white shadow rounded-lg mb-8">
+        <div className="flex-shrink-0 text-center mb-4 sm:mb-0">
           <div className="bg-primary-500 text-white w-16 h-16 flex flex-col items-center justify-center rounded-md">
             <span className="text-2xl font-bold">{event.date}</span>
             <span className="text-sm uppercase">{event.day}</span>
@@ -79,7 +79,7 @@ const EventCard = ({ event }: { event: Event }) => {
         <div className="flex-1">
           <p className="text-sm text-gray-500 mb-2">Monday, February {event.date}, 2025, 03:00 PM</p>
           <h3 className="text-xl font-semibold text-gray-800 mb-2">{event.title}</h3>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             {event.buttons.map((button, index) => (
               <button
                 key={index}
@@ -138,20 +138,20 @@ const EventCard = ({ event }: { event: Event }) => {
 };
 
 const EventPage = () => (
-    <ResponsiveContainer variant="wide" paddingY="xl">
-      <div className="w-full max-w-6xl mx-auto px-6 sm:px-8 md:px-12">
-        <HeadingSection
-          title="Be part of the community by joining our events"
-          subtitle="Our events are a regular opportunity for investors and startups to meet informally."
-        />
+  <ResponsiveContainer variant="wide" paddingY="xl">
+    <div className="w-full max-w-6xl mx-auto px-6 sm:px-8 md:px-12">
+      <HeadingSection
+        title="Be part of the community by joining our events"
+        subtitle="Our events are a regular opportunity for investors and startups to meet informally."
+      />
 
-        <div className="mt-12">
-          {events.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
-        </div>
+      <div className="mt-12">
+        {events.map((event) => (
+          <EventCard key={event.id} event={event} />
+        ))}
       </div>
-    </ResponsiveContainer>
-  );
+    </div>
+  </ResponsiveContainer>
+);
 
 export default EventPage;

@@ -3,7 +3,7 @@
 import { z } from 'zod';
 import axios from 'axios';
 import Link from 'next/link';
-import Logo from '@/components/logo';
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
@@ -21,7 +21,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-// Login API function
+
 const loginMutationFn = async (data: { email: string; password: string }) => {
   const response = await axios.post('http://139.59.26.218/api/login/', data, {
     headers: { 'Content-Type': 'application/json' },
@@ -52,41 +52,65 @@ export default function Login() {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    mutate(values, {
-      onSuccess: (response) => {
-        if (response?.token) {
-          // Store token in localStorage or cookies (change as needed)
-          localStorage.setItem('authToken', response.token);
+const onSubmit = (values: z.infer<typeof formSchema>) => {
+  mutate(values, {
+    onSuccess: (response) => {
+      if (!response?.is_active) {
+        toast({
+          title: 'Verify your email',
+          description: 'Your account is inactive. Please check your email for verification.',
+          variant: 'destructive',
+        });
+      }
 
-          // Redirect to dashboard
-          router.replace('/dashboard');
-        } else {
-          toast({
-            title: 'Login failed',
-            description: 'Invalid credentials or unexpected response',
-            variant: 'destructive',
-          });
-        }
-      },
-      onError: (error) => {
-    const message = (error as any).response?.data?.message || 'Something went wrong';
-    toast({
+      if (response?.access) {
+        // Store tokens in localStorage
+        localStorage.setItem('authToken', response.access);
+        localStorage.setItem('refreshToken', response.refresh);
+
+        toast({
+          title: 'Login Successful',
+          description: 'Welcome back! You have successfully logged in.',
+          variant: 'default',
+        });
+
+        router.replace('/');
+      } else {
+        toast({
+          title: 'Login failed',
+          description: 'Invalid credentials or unexpected response',
+          variant: 'destructive',
+        });
+      }
+    },
+    onError: (error) => {
+      const message = (error as any).response?.data?.message || 'Something went wrong';
+      toast({
         title: 'Error',
         description: message,
         variant: 'destructive',
-    });
-},
-    });
-  };
+      });
+    },
+  });
+};
+
+
+
 
   return (
     <main className="w-full min-h-[590px] h-auto max-w-full pt-10">
       <div className="w-full h-full p-5 rounded-md">
-        <Logo />
+        <div className="w-full flex justify-center">
+          <Image
+            src="/logo.png"
+            alt="logo"
+            width={100}
+            height={100}
+          />
+        </div>
 
         <h1 className="text-xl tracking-[-0.16px] dark:text-[#fcfdffef] font-bold mb-1.5 mt-8 text-center sm:text-left">
-          Log in to Squeezy
+          Log in to Investly
         </h1>
         <p className="mb-8 text-center sm:text-left text-base dark:text-[#f1f7feb5] font-normal">
           Don&apos;t have an account?{' '}
@@ -152,19 +176,9 @@ export default function Login() {
                 data-orientation="horizontal"
                 role="separator"
               />
-              <span className="mx-4 text-xs dark:text-[#f1f7feb5] font-normal">OR</span>
-              <div
-                aria-hidden="true"
-                className="h-px w-full bg-[#eee] dark:bg-[#d6ebfd30]"
-                data-orientation="horizontal"
-                role="separator"
-              />
             </div>
           </form>
         </Form>
-        <Button variant="outline" className="w-full h-[40px]">
-          Email magic link
-        </Button>
         <p className="text-xs dark:text-slate- font-normal mt-7">
           By signing in, you agree to our{' '}
           <a className="text-primary hover:underline" href="#">

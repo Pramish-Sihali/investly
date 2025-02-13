@@ -34,9 +34,8 @@ const InvestmentInStartups = () => {
 
   return (
     <ResponsiveContainer>
-    
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Left Section */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+        
         <div className="col-span-1">
           <div className="mb-4">
             <select
@@ -83,7 +82,7 @@ const InvestmentInStartups = () => {
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="rounded-lg w-full h-auto object-cover"
+                    className="rounded-lg w-full h-auto object-cover mb-4 md:mb-0"
                   />
                 </div>
                 <div className="w-full md:w-2/3">
@@ -101,8 +100,6 @@ const InvestmentInStartups = () => {
         </div>
       </div>
     </ResponsiveContainer>
-     
-    
   );
 };
 

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
 import React, { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import {usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetTitle, SheetHeader, SheetContent } from '@/components/ui/sheet';
 import {
@@ -17,77 +17,33 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 
-
-
-const ListItem = React.forwardRef<
-  React.ElementRef<'a'>,
-  React.ComponentPropsWithoutRef<'a'>
->(({ className, title, children, ...props }, ref) => (
-  <li>
-    <NavigationMenuLink asChild>
-      <a
-        ref={ref}
-        className={cn(
-          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-          className
-        )}
-        {...props}
-      >
-        <div className="text-sm font-medium leading-none">{title}</div>
-        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-          {children}
-        </p>
-      </a>
-    </NavigationMenuLink>
-  </li>
-));
-ListItem.displayName = 'ListItem';
-
 export function Navbar() {
   const pathname = usePathname();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [modalType, setModalType] = useState<'investor' | 'startup' | 'mentor' | null>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   const navLinks = [
     {
       name: 'How It Works',
       children: [
-        {
-          name: 'For Investors',
-          href: '/for-investor',
-          description: 'It is a long established fact that a reader will',
-        },
-        {
-          name: 'For Startups',
-          href: '/for-startup',
-          description: 'It is for startups that are looking to grow',
-        },
-        {
-          name: 'How The Platform Works',
-          href: '/how-the-platform-works',
-          description: 'It is a platform that helps you find the right investor for your business',
-        },
-        {
-          name: 'Investor Matching Program',
-          href: '/investor-matching-program',
-          description: 'It is a program that matches startups with investors',
-        },
+        { name: 'For Investors', href: '/for-investor' },
+        { name: 'For Startups', href: '/for-startup' },
+        { name: 'How The Platform Works', href: '/how-the-platform-works' },
+        { name: 'Investor Matching Program', href: '/investor-matching-program' },
       ],
     },
     {
-      name: 'Article',
-
+      name: 'Articles',
       children: [
-        { name: 'Academy', href: '/academy', description: 'It is a long established fact that a reader will' },
-        { name: 'News/Updates & Events', href: '/events', description: 'It is a long established fact that a reader will' },
-        { name: 'Blog', href: '/blog', description: 'It is a long established fact that a reader will' },
+        { name: 'Academy', href: '/academy' },
+        { name: 'News/Updates & Events', href: '/events' },
+        { name: 'Blog', href: '/blog' },
       ],
-
     },
     { name: 'Startup Directory', href: '/startup-directory' },
     { name: 'Company', href: '/company' },
   ];
+
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-lg">
@@ -108,14 +64,19 @@ export function Navbar() {
                       <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                           {section.children.map((item) => (
-                            <ListItem
-                              key={item.name}
-                              title={item.name}
-                              href={item.href}
-                              className={pathname === item.href ? 'bg-gray-200 text-gray-900' : ''}
-                            >
-                              {item.description}
-                            </ListItem>
+                            <li key={item.name}>
+                              <NavigationMenuLink asChild>
+                                <Link
+                                  href={item.href}
+                                  className={cn(
+                                    'block px-4 py-2 text-sm',
+                                    pathname === item.href ? 'bg-gray-200' : 'hover:bg-gray-100'
+                                  )}
+                                >
+                                  {item.name}
+                                </Link>
+                              </NavigationMenuLink>
+                            </li>
                           ))}
                         </ul>
                       </NavigationMenuContent>
@@ -126,9 +87,7 @@ export function Navbar() {
                         href={section.href}
                         className={cn(
                           'px-4 py-2 text-sm font-medium rounded-md transition-colors',
-                          pathname === section.href
-                            ? ' text-primary' 
-                            : 'hover:bg-accent'
+                          pathname === section.href ? ' text-primary' : 'hover:bg-accent'
                         )}
                       >
                         {section.name}
@@ -140,40 +99,58 @@ export function Navbar() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          {/* Desktop Sign Up Button */}
+          {/* Sign Up & Log In Buttons */}
           <div className="relative">
             <div className="flex gap-4">
-              <Link href="/login">
-                <Button variant="outline" className="mt-3">Login</Button>
+              <Link
+                href="/login"
+                className="px-5 py-2 border text-sm font-medium text-black bg-white rounded-md hover:bg-gray-800 hover:text-white"
+              >
+                Log In
               </Link>
-
-              <div className="container mx-auto flex h-16 items-center justify-between px-4">
-                <div className="relative">
-                 <Link href="/signup">
-                  <Button>Sign Up</Button>
-                 </Link>
-
-                  {isDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
-                      {['investor', 'startup', 'mentor'].map((role) => (
-                        <button
-                          key={role}
-                          onClick={() => {
-                            setModalType(role as 'investor' | 'startup' | 'mentor');
-                            setIsDropdownOpen(false);
-                          }}
-                          className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-                        >
-                          Sign Up As {role.charAt(0).toUpperCase() + role.slice(1)}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              
+              <button
+  onClick={(e) => {
+    e.stopPropagation(); // Prevents unintended behavior
+    setIsDropdownOpen(!isDropdownOpen);
+  }}
+  className="px-5 py-2 border text-sm font-medium text-white bg-primary rounded-md hover:bg-gray-800"
+>
+  Sign Up
+</button>
             </div>
+
+            {/* Sign Up Dropdown */}
+            {isDropdownOpen && (
+  <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
+    <button
+      onClick={() => {
+        setIsDropdownOpen(false);
+        window.location.href = '/signup/?usertype=Investor';
+      }}
+      className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
+    >
+      Sign Up As Investor
+    </button>
+    <button
+      onClick={() => {
+        setIsDropdownOpen(false);
+        window.location.href = '/signup/?usertype=Startup';
+      }}
+      className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
+    >
+      Sign Up As Startup
+    </button>
+    <button
+      onClick={() => {
+        setIsDropdownOpen(false);
+        window.location.href = '/signup/?usertype=Mentor';
+      }}
+      className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
+    >
+      Sign Up As Mentor
+    </button>
+  </div>
+)}
           </div>
         </div>
 
@@ -189,7 +166,6 @@ export function Navbar() {
             <SheetHeader>
               <SheetTitle>Menu</SheetTitle>
             </SheetHeader>
-
             <ul className="flex flex-col space-y-2">
               {navLinks.map((section) => (
                 <li key={section.name} className="text-gray-700">
@@ -227,7 +203,8 @@ export function Navbar() {
                   )}
                 </li>
               ))}
-            </ul>          </SheetContent>
+            </ul>
+          </SheetContent>
         </Sheet>
       </div>
     </nav>

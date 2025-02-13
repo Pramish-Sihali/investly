@@ -56,7 +56,7 @@ const InvestorMatchingProgram: React.FC = () => {
 
       <section className="mb-16">
         <h2 className="text-3xl font-semibold text-center mb-12">Our Matching Process</h2>
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {programStages.map((stage, index) => (
             <div key={stage.title} className="text-center">
               <div className="flex justify-center mb-6">
@@ -72,7 +72,7 @@ const InvestorMatchingProgram: React.FC = () => {
       <section className="bg-gray-50 py-16 rounded-lg">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-semibold text-center mb-12 text-primary">Program Benefits</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {benefitsOfProgram.map((benefit) => (
               <div 
                 key={benefit.title} 
