@@ -1,15 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import SignUp from '@/app/(auth)/signup/page';
-import Login from '@/app/(auth)/login/page';
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Sheet, SheetTitle, SheetHeader, SheetContent } from '@/components/ui/sheet';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -18,12 +16,7 @@ import {
   NavigationMenuContent,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { X } from 'lucide-react';
 
-interface NavbarProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
 
 
 const ListItem = React.forwardRef<
@@ -50,44 +43,11 @@ const ListItem = React.forwardRef<
 ));
 ListItem.displayName = 'ListItem';
 
-function SignUpModal({ isOpen, onClose, type }: { isOpen: boolean; onClose: () => void; type: string | null }) {
-  if (!isOpen || !type) return null;
-
-  function LoginNew({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-    if (!isOpen) return null;
-
-    return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative">
-                <button onClick={onClose} className="absolute top-2 right-2 text-gray-500 hover:text-gray-800">
-                    <X size={20} />
-                </button>
-                <h2 className="text-lg font-semibold mb-4">Log In</h2>
-                <Login />
-            </div>
-        </div>
-    );
-}
-
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative">
-        <button onClick={onClose} className="absolute top-2 right-2 text-gray-500 hover:text-gray-800">
-          <X size={20} />
-        </button>
-        <h2 className="text-lg font-semibold mb-4">Sign Up as {type.charAt(0).toUpperCase() + type.slice(1)}</h2>
-        <SignUp userType={type} />
-      </div>
-    </div>
-  );
-}
-
-export function Navbar({ isOpen, onClose }: NavbarProps) {
+export function Navbar() {
   const pathname = usePathname();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [modalType, setModalType] = useState<'investor' | 'startup' | 'mentor' | null>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   const navLinks = [
     {
@@ -116,7 +76,7 @@ export function Navbar({ isOpen, onClose }: NavbarProps) {
       ],
     },
     {
-      name: 'Artical',
+      name: 'Article',
 
       children: [
         { name: 'Academy', href: '/academy', description: 'It is a long established fact that a reader will' },
@@ -183,22 +143,15 @@ export function Navbar({ isOpen, onClose }: NavbarProps) {
           {/* Desktop Sign Up Button */}
           <div className="relative">
             <div className="flex gap-4">
-              <Button
-                onClick={() => setIsLoginOpen(true)}
-                variant="outline"
-                className="px-5 py-2 text-sm font-medium"
-              >
-                Log In
-              </Button>
+              <Link href="/login">
+                <Button variant="outline" className="mt-3">Login</Button>
+              </Link>
 
               <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 <div className="relative">
-                  <button
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="px-5 py-2 border text-sm font-medium text-white bg-primary rounded-md hover:bg-gray-800"
-                  >
-                    Sign Up
-                  </button>
+                 <Link href="/signup">
+                  <Button>Sign Up</Button>
+                 </Link>
 
                   {isDropdownOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
@@ -219,7 +172,7 @@ export function Navbar({ isOpen, onClose }: NavbarProps) {
                 </div>
               </div>
 
-              {modalType && <SignUpModal isOpen={!!modalType} onClose={() => setModalType(null)} type={modalType} />}
+              
             </div>
           </div>
         </div>
@@ -277,9 +230,6 @@ export function Navbar({ isOpen, onClose }: NavbarProps) {
             </ul>          </SheetContent>
         </Sheet>
       </div>
-
-      {modalType && <SignUpModal isOpen={!!modalType} onClose={() => setModalType(null)} type={modalType} />}
-      {isLoginOpen && <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />}
     </nav>
   );
 }

@@ -1,10 +1,10 @@
 "use client"
+
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Dialog, DialogTitle, DialogHeader, DialogContent, DialogDescription } from "@/components/ui/dialog"
 
 interface SignUpModalProps {
   isOpen: boolean

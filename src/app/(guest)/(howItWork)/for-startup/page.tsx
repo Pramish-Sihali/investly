@@ -2,8 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-const StartupPage = () => {
-  return (
+const StartupPage = () => (
     <div className="flex flex-col items-center py-12 px-4 sm:px-8 md:px-16">
       <div className="w-full max-w-7xl">
         {/* Header Section */}
@@ -76,6 +75,5 @@ const StartupPage = () => {
       </div>
     </div>
   );
-};
 
 export default StartupPage;

@@ -1,7 +1,7 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { BarChart3, Rocket, Briefcase } from "lucide-react"
+import Image from 'next/image';
+import { Rocket, BarChart3, Briefcase } from "lucide-react"
 
 const InvestorMatchingProgram: React.FC = () => {
   const programStages = [
@@ -119,7 +119,7 @@ const InvestorMatchingProgram: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-semibold mb-6">Our Commitment</h2>
           <p className="text-xl text-gray-700">
-            We don't just match startups with investors. We provide a holistic support system that prepares your startup 
+            We don&apos;t just match startups with investors. We provide a holistic support system that prepares your startup 
             for successful fundraising, helping you build compelling narratives and robust investment strategies.
           </p>
         </div>

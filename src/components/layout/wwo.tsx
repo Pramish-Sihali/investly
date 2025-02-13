@@ -1,4 +1,4 @@
-import { BarChart3, Rocket, Briefcase } from "lucide-react"
+import { Rocket, BarChart3, Briefcase } from "lucide-react"
 
 export default function WhatWeOffer() {
   const features = [

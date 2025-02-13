@@ -20,9 +20,6 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-interface SignUpProps {
-  userType?: string;
-}
 
 const registerMutationFn = async (data: any) => {
   try {
@@ -52,7 +49,7 @@ const registerMutationFn = async (data: any) => {
   }
 };
 
-export default function SignUp({ }: SignUpProps) {
+export default function SignUp() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { mutate, isPending } = useMutation({

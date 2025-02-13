@@ -1,15 +1,16 @@
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import type { Testimonial } from "@/types/testimonials";
+
 import { QuoteIcon } from "lucide-react";
-import { Testimonial } from "@/types/testimonials";
+import DOMPurify from "isomorphic-dompurify";
 import HeadingSection from "@/components/common/heading-section";
 import ResponsiveContainer from "@/components/common/responsive-container";
-import DOMPurify from "isomorphic-dompurify";
+import {
+  Carousel,
+  CarouselItem,
+  CarouselNext,
+  CarouselContent,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 type TestimonialsProps = {
   testimonials: Testimonial[];

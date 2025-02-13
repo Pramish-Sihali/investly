@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import ResponsiveContainer from "@/components/common/responsive-container";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import ResponsiveContainer from "@/components/common/responsive-container";
 
 const BlogPage = () => {
   const blogs = [

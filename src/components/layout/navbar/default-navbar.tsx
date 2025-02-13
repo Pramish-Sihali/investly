@@ -1,14 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import { Menu } from 'lucide-react';
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { SignUpModal } from '@/components/signupModal';
 import Image from 'next/image';
-import { Sheet,SheetContent, SheetHeader, SheetTitle,  } from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
+import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { Sheet,SheetTitle, SheetHeader, SheetContent  } from '@/components/ui/sheet';
 import {
   NavigationMenu,
   NavigationMenuItem,

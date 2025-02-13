@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { StartupCard } from "@/components/starup-card"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { StartupCard } from "@/components/starup-card"
+import { Dialog, DialogTitle, DialogHeader, DialogContent } from "@/components/ui/dialog"
+import { Table, TableRow, TableBody, TableCell, TableHead, TableHeader } from "@/components/ui/table"
 
 const startups = [
   {
