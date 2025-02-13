@@ -1,11 +1,11 @@
 'use client';
 
 import { z } from 'zod';
+import axios from 'axios';
 import Link from 'next/link';
 import Logo from '@/components/logo';
 import { useForm } from 'react-hook-form';
 import { toast } from '@/hooks/use-toast';
-import { loginMutationFn } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -20,6 +20,14 @@ import {
   FormControl,
   FormMessage,
 } from '@/components/ui/form';
+
+// Login API function
+const loginMutationFn = async (data: { email: string; password: string }) => {
+  const response = await axios.post('http://139.59.26.218/api/login/', data, {
+    headers: { 'Content-Type': 'application/json' },
+  });
+  return response.data;
+};
 
 export default function Login() {
   const router = useRouter();
@@ -47,19 +55,28 @@ export default function Login() {
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     mutate(values, {
       onSuccess: (response) => {
-        if (response.data.mfaRequired) {
-          router.replace(`/verify-mfa?email=${values.email}`);
-          return;
+        if (response?.token) {
+          // Store token in localStorage or cookies (change as needed)
+          localStorage.setItem('authToken', response.token);
+
+          // Redirect to dashboard
+          router.replace('/dashboard');
+        } else {
+          toast({
+            title: 'Login failed',
+            description: 'Invalid credentials or unexpected response',
+            variant: 'destructive',
+          });
         }
-        router.replace(`/home`);
       },
       onError: (error) => {
-        toast({
-          title: 'Error',
-          description: error.message,
-          variant: 'destructive',
-        });
-      },
+    const message = (error as any).response?.data?.message || 'Something went wrong';
+    toast({
+        title: 'Error',
+        description: message,
+        variant: 'destructive',
+    });
+},
     });
   };
 
@@ -103,7 +120,7 @@ export default function Login() {
                   <FormItem>
                     <FormLabel className="dark:text-[#f1f7feb5] text-sm">Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="••••••••••••" {...field} />
+                      <Input type="password" placeholder="••••••••••••" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
