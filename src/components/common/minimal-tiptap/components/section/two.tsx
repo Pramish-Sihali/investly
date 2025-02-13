@@ -1,18 +1,21 @@
-import * as React from 'react'
 import type { Editor } from '@tiptap/react'
-import type { FormatAction } from '../../types'
 import type { toggleVariants } from '@/components/ui/toggle'
 import type { VariantProps } from 'class-variance-authority'
+
+import * as React from 'react'
 import {
   CodeIcon,
-  DotsHorizontalIcon,
   FontBoldIcon,
+  TextNoneIcon,
+  UnderlineIcon,
   FontItalicIcon,
   StrikethroughIcon,
-  TextNoneIcon,
-  UnderlineIcon
+  DotsHorizontalIcon
 } from '@radix-ui/react-icons'
+
 import { ToolbarSection } from '../toolbar-section'
+
+import type { FormatAction } from '../../types'
 
 type TextStyleAction = 'bold' | 'italic' | 'underline' | 'strikethrough' | 'code' | 'clearFormatting'
 
@@ -89,8 +92,7 @@ export const SectionTwo: React.FC<SectionTwoProps> = ({
   mainActionCount = 2,
   size,
   variant
-}) => {
-  return (
+}) => (
     <ToolbarSection
       editor={editor}
       actions={formatActions}
@@ -103,7 +105,6 @@ export const SectionTwo: React.FC<SectionTwoProps> = ({
       variant={variant}
     />
   )
-}
 
 SectionTwo.displayName = 'SectionTwo'
 

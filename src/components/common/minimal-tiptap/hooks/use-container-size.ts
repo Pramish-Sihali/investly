@@ -42,6 +42,7 @@ export function useContainerSize(element: HTMLElement | null): DOMRect {
     window.addEventListener('click', handleResize)
     window.addEventListener('resize', handleResize)
 
+    // eslint-disable-next-line consistent-return
     return () => {
       resizeObserver.disconnect()
       window.removeEventListener('click', handleResize)

@@ -1,38 +1,39 @@
 "use client";
 
+import type { Testimonial } from "@/types/testimonials";
+import type {
+  TestimonialFormSchema} from "@/schemas/testimonial-form-schema";
+
 import { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { showSuccess, showError } from "@/lib/alerts";
 import { useForm } from "react-hook-form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { showError, showSuccess } from "@/lib/alerts";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { X, Paperclip, CloudUpload } from "lucide-react";
 import {
-  TestimonialFormSchema,
   testimonialFormSchema,
 } from "@/schemas/testimonial-form-schema";
-import type { Testimonial } from "@/types/testimonials";
-import { MinimalTiptapEditor } from "@/components/common/minimal-tiptap";
+import {
+  Dialog,
+  DialogTitle,
+  DialogHeader,
+  DialogContent,
+} from "@/components/ui/dialog";
+import {
+  Form,
+  FormItem,
+  FormField,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
 import {
   FileInput,
   FileUploader,
-  FileUploaderContent,
   FileUploaderItem,
+  FileUploaderContent,
 } from "@/components/ui/file-upload";
-import { CloudUpload, Paperclip, X } from "lucide-react";
 
 interface EditTestimonialDialogProps {
   open: boolean;
@@ -129,28 +130,6 @@ export function EditTestimonialDialog({
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="testimonial"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Testimonial</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <MinimalTiptapEditor
-                        value={field.value}
-                        onChange={field.onChange}
-                        className="min-h-[200px] sm:min-h-[250px] bg-white dark:bg-gray-900 overflow-y-auto"
-                        editorContentClassName="p-3 sm:p-4"
-                        output="html"
-                        placeholder="Enter testimonial content..."
-                      />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
 
             <FormField
               control={form.control}

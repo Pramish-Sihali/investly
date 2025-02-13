@@ -1,32 +1,34 @@
 "use client";
 
-import * as React from "react";
-import {
+import type {
   ColumnDef,
-  ColumnFiltersState,
   SortingState,
   VisibilityState,
-  flexRender,
-  getCoreRowModel,
-  getFacetedRowModel,
-  getFacetedUniqueValues,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-  TableMeta as BaseTableMeta,
-} from "@tanstack/react-table";
+  ColumnFiltersState,
+  TableMeta as BaseTableMeta} from "@tanstack/react-table";
 
+import * as React from "react";
 import {
   Table,
+  TableRow,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
 } from "@/components/ui/table";
-import { DataTablePagination } from "./testimonials-data-table-pagination";
+import {
+  flexRender,
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  getFacetedRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getFacetedUniqueValues
+} from "@tanstack/react-table";
+
 import { DataTableToolbar } from "./testimonials-data-table-toolbar";
+import { DataTablePagination } from "./testimonials-data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -114,8 +116,7 @@ export function DataTable<TData, TValue>({
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
+                {headerGroup.headers.map((header) => (
                     <TableHead key={header.id} colSpan={header.colSpan}>
                       {header.isPlaceholder
                         ? null
@@ -124,8 +125,7 @@ export function DataTable<TData, TValue>({
                             header.getContext()
                           )}
                     </TableHead>
-                  );
-                })}
+                  ))}
               </TableRow>
             ))}
           </TableHeader>

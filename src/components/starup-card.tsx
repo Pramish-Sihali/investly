@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Card, CardFooter, CardContent } from "@/components/ui/card";
 
 interface StartupCardProps {
   name: string;

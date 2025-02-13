@@ -1,17 +1,19 @@
-import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog"
+import type React from "react" // Added import for React
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
+import {
+  Dialog,
+  DialogTitle,
+  DialogHeader,
+  DialogFooter,
+  DialogContent,
+  DialogDescription,
+} from "@/components/ui/dialog"
+
 import type { Job } from "../../../types/career"
-import type React from "react" // Added import for React
 
 interface JobModalProps {
   job: Job | null
@@ -34,7 +36,7 @@ export function JobModal({ job, onClose }: JobModalProps) {
         <DialogHeader>
           <DialogTitle>Apply for {job.title}</DialogTitle>
           <DialogDescription>
-            Fill out the form below to apply for this position. We'll get back to you soon!
+            Fill out the form below to apply for this position. We&apos;ll get back to you soon!
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>

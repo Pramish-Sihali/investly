@@ -1,11 +1,12 @@
 import type { Metadata } from "next"
+
 import Image from "next/image"
-import { BarChart2, Shield, Users } from "lucide-react"
+import { Users, Shield, BarChart2 } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "About Investly | Our Mission & Values",
   description:
-    "Learn about Investly's commitment to revolutionizing investing through AI-driven strategies and user-centric services",
+    "Learn about Investlys commitment to revolutionizing investing through AI-driven strategies and user-centric services",
 }
 
 export default function AboutUsPage() {
@@ -34,7 +35,7 @@ export default function AboutUsPage() {
         <div className="space-y-6">
           <h2 className="text-3xl font-semibold">Revolutionizing Investment Strategies</h2>
           <p className="text-muted-foreground">
-            At Investly, we're dedicated to transforming the investment landscape through cutting-edge AI technology and
+           At Investly, we&apos;re dedicated to transforming the investment landscape through cutting-edge AI technology and
             data-driven insights. Our platform empowers both novice and experienced investors to make informed decisions
             and achieve their financial goals.
           </p>

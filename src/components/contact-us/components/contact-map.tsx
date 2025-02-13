@@ -10,7 +10,7 @@ export default function ContactMap() {
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
+       />
     </div>
   );
 }

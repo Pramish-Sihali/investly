@@ -4,8 +4,7 @@ interface HeadingSectionProps {
   subtitle?: string;
 }
 
-const HeadingSection = ({ badge, title, subtitle }: HeadingSectionProps) => {
-  return (
+const HeadingSection = ({ badge, title, subtitle }: HeadingSectionProps) => (
     <div className="max-w-3xl mx-auto mb-12 md:mb-16">
       {/* Section Header */}
       <div className="space-y-4 text-center">
@@ -23,13 +22,12 @@ const HeadingSection = ({ badge, title, subtitle }: HeadingSectionProps) => {
           )}
         </h2>
         <div className="flex items-center justify-center gap-2 pt-4">
-          <div className="w-8 md:w-12 h-1 bg-primary/20 rounded-full"></div>
-          <div className="w-2 md:w-3 h-2 md:h-3 bg-primary/30 rounded-full"></div>
-          <div className="w-8 md:w-12 h-1 bg-primary/20 rounded-full"></div>
+          <div className="w-8 md:w-12 h-1 bg-primary/20 rounded-full" />
+          <div className="w-2 md:w-3 h-2 md:h-3 bg-primary/30 rounded-full" />
+          <div className="w-8 md:w-12 h-1 bg-primary/20 rounded-full" />
         </div>
       </div>
     </div>
   );
-};
 
 export default HeadingSection;

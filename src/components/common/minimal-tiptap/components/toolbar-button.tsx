@@ -1,8 +1,9 @@
-import * as React from 'react'
 import type { TooltipContentProps } from '@radix-ui/react-tooltip'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { Toggle } from '@/components/ui/toggle'
+
+import * as React from 'react'
 import { cn } from '@/lib/utils'
+import { Toggle } from '@/components/ui/toggle'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 interface ToolbarButtonProps extends React.ComponentPropsWithoutRef<typeof Toggle> {
   isActive?: boolean

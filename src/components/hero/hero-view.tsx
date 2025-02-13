@@ -1,6 +1,6 @@
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 export default function Home() {
   return (
@@ -72,7 +72,7 @@ export default function Home() {
       <section className="bg-white py-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center gap-8">
-            <p className="text-gray-500">VC's in our network:</p>
+            <p className="text-gray-500">VC&apos;s in our network:</p>
             <div className="flex flex-wrap items-center gap-8">
               <Image src="/image.png" alt="" width={200} height={100} />
               <Image src="/image.png" alt="" width={200} height={100} />

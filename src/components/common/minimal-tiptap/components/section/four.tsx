@@ -1,10 +1,13 @@
-import * as React from 'react'
 import type { Editor } from '@tiptap/react'
-import type { FormatAction } from '../../types'
 import type { toggleVariants } from '@/components/ui/toggle'
 import type { VariantProps } from 'class-variance-authority'
+
+import * as React from 'react'
 import { CaretDownIcon, ListBulletIcon } from '@radix-ui/react-icons'
+
 import { ToolbarSection } from '../toolbar-section'
+
+import type { FormatAction } from '../../types'
 
 type ListItemAction = 'orderedList' | 'bulletList'
 interface ListItem extends FormatAction {
@@ -48,8 +51,7 @@ export const SectionFour: React.FC<SectionFourProps> = ({
   mainActionCount = 0,
   size,
   variant
-}) => {
-  return (
+}) => (
     <ToolbarSection
       editor={editor}
       actions={formatActions}
@@ -66,7 +68,6 @@ export const SectionFour: React.FC<SectionFourProps> = ({
       variant={variant}
     />
   )
-}
 
 SectionFour.displayName = 'SectionFour'
 

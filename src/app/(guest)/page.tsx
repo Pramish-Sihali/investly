@@ -1,11 +1,10 @@
 
 import FAQPage from '@/components/qna/qna'; 
-import TestimonialsApp from '@/components/testimonials/testimonials-view/testimonials';
 import Hero from '@/components/hero/hero-view';
-import InvestPage from '@/components/layout/invest-card'; 
 import WhatWeOffer from '@/components/layout/wwo';
+import InvestPage from '@/components/layout/invest-card'; 
 import EventsAndAcademy from '@/components/layout/event';
-import QuestionButton from '@/components/layout/question';
+import TestimonialsApp from '@/components/testimonials/testimonials-view/testimonials';
 
 
 const Guest = () => (
@@ -15,9 +14,7 @@ const Guest = () => (
     <WhatWeOffer />
     <EventsAndAcademy />
     <FAQPage />
-   <TestimonialsApp />
-  
-   
+    <TestimonialsApp />
   </div>
 );
 

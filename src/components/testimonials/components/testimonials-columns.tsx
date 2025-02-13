@@ -1,11 +1,14 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
-import { Testimonial } from "@/types/testimonials";
+import type { ColumnDef } from "@tanstack/react-table";
+import type { Testimonial } from "@/types/testimonials";
+
 import Image from "next/image";
-import { DataTableColumnHeader } from "./testimonials-data-table-column-header";
+
 import { DataTableRowActions } from "./testimonials-data-table-row-actions";
-import { TableMeta } from "./testimonials-data-table";
+import { DataTableColumnHeader } from "./testimonials-data-table-column-header";
+
+import type { TableMeta } from "./testimonials-data-table";
 
 export const columns: ColumnDef<Testimonial>[] = [
   {
@@ -34,41 +37,35 @@ export const columns: ColumnDef<Testimonial>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" />
     ),
-    cell: ({ row }) => {
-      return (
+    cell: ({ row }) => (
         <div className="flex max-w-[500px] items-center">
           <span className="truncate font-medium">{row.getValue("name")}</span>
         </div>
-      );
-    },
+      ),
   },
   {
     accessorKey: "testimonial",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Testimonial" />
     ),
-    cell: ({ row }) => {
-      return (
+    cell: ({ row }) => (
         <div className="max-w-[500px] truncate prose dark:prose-invert prose-sm">
           <div
             dangerouslySetInnerHTML={{ __html: row.getValue("testimonial") }}
           />
         </div>
-      );
-    },
+      ),
   },
   {
     accessorKey: "source",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Source" />
     ),
-    cell: ({ row }) => {
-      return (
+    cell: ({ row }) => (
         <div className="max-w-[200px] truncate">
           {row.getValue("source") || "-"}
         </div>
-      );
-    },
+      ),
   },
   {
     id: "actions",

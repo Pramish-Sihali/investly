@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 type ResizeDirection = 'left' | 'right'
 export type ElementDimensions = { width: number; height: number }
@@ -118,6 +118,7 @@ export function useDragResize({
     [maxWidth, widthConstraint, dimensions.width, dimensions.height, minWidth, minHeight]
   )
 
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (resizeDirection) {
       document.addEventListener('keydown', handleKeydown)

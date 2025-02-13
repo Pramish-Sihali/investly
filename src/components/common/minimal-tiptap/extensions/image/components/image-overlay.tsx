@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { Spinner } from '../../../components/spinner'
 import { cn } from '@/lib/utils'
 
-export const ImageOverlay = React.memo(() => {
-  return (
+import { Spinner } from '../../../components/spinner'
+
+export const ImageOverlay = React.memo(() => (
     <div
       className={cn(
         'flex flex-row items-center justify-center',
@@ -12,7 +12,6 @@ export const ImageOverlay = React.memo(() => {
     >
       <Spinner className="size-7" />
     </div>
-  )
-})
+  ))
 
 ImageOverlay.displayName = 'ImageOverlay'

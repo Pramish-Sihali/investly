@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
-import { toast } from "sonner";
+
 import { z } from "zod";
+import { toast } from "sonner";
+import React, { useState } from "react";
 
 const emailSchema = z.object({
   email: z.string().email("Invalid email address"),

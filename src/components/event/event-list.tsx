@@ -1,10 +1,11 @@
 "use client";
-import HeadingSection from "@/components/common/heading-section";
-import ResponsiveContainer from "@/components/common/responsive-container";
+
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import HeadingSection from "@/components/common/heading-section";
+import ResponsiveContainer from "@/components/common/responsive-container";
+import { Dialog, DialogTitle, DialogHeader, DialogContent } from "@/components/ui/dialog";
 
 interface Event {
   id: number;
@@ -108,7 +109,7 @@ const EventCard = ({ event }: { event: Event }) => {
           <p className="text-gray-600 mb-4">{event.description}</p>
           {event.review && (
             <p className="text-sm italic text-gray-500 border-l-2 border-gray-300 pl-4 mb-4">
-              Founder review: "{event.review}"
+              Founder review: {event.review}
             </p>
           )}
           <Button onClick={() => setOpenDetails(false)} className="w-full bg-gray-200 text-gray-800 hover:bg-gray-300">
@@ -136,8 +137,7 @@ const EventCard = ({ event }: { event: Event }) => {
   );
 };
 
-const EventPage = () => {
-  return (
+const EventPage = () => (
     <ResponsiveContainer variant="wide" paddingY="xl">
       <div className="w-full max-w-6xl mx-auto px-6 sm:px-8 md:px-12">
         <HeadingSection
@@ -153,6 +153,5 @@ const EventPage = () => {
       </div>
     </ResponsiveContainer>
   );
-};
 
 export default EventPage;

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import ResponsiveContainer from "@/components/common/responsive-container";
 
 const InvestmentInStartups = () => {
   const steps = [
@@ -32,6 +33,7 @@ const InvestmentInStartups = () => {
   ];
 
   return (
+    <ResponsiveContainer>
     
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left Section */}
@@ -98,6 +100,7 @@ const InvestmentInStartups = () => {
           ))}
         </div>
       </div>
+    </ResponsiveContainer>
      
     
   );

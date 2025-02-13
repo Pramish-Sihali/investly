@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { TestimonialsResponse } from "@/types/testimonials";
+import type { TestimonialsResponse } from "@/types/testimonials";
+
+import axios from "axios";
+import { Plus } from "lucide-react";
+import { showError } from "@/lib/alerts";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+
 import { columns } from "./components/testimonials-columns";
 import { DataTable } from "./components/testimonials-data-table";
-import axios from "axios";
-import { showError } from "@/lib/alerts";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 import { EditTestimonialDialog } from "./components/testimonials-edit-dialog";
 
 export default function TestimonialsPage() {

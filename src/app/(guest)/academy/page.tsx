@@ -1,17 +1,17 @@
+import Link from "next/link";
 // app/academy/page.tsx
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Flag,
   Users,
-  UserCircle,
-  MessageCircle,
   Sprout,
   BookOpen,
-  GraduationCap,
-  HandCoins,
   BarChart,
+  HandCoins,
+  UserCircle,
+  MessageCircle,
+  GraduationCap,
 } from "lucide-react";
-import Link from "next/link";
 
 const readingLists = [
   {

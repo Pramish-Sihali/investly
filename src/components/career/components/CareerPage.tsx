@@ -1,9 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { JobListing } from "./JobListing"
+
 import { JobModal } from "./JobModal"
 import { jobs } from "../utils/jobData"
+import { JobListing } from "./JobListing"
+
 import type { Job } from "../../../types/career"
 
 export default function CareerPage() {

@@ -1,10 +1,12 @@
-import type { ImageOptions } from '@tiptap/extension-image'
-import { Image as TiptapImage } from '@tiptap/extension-image'
 import type { Editor } from '@tiptap/react'
 import type { Node } from '@tiptap/pm/model'
+import type { ImageOptions } from '@tiptap/extension-image'
+
 import { ReactNodeViewRenderer } from '@tiptap/react'
+import { Image as TiptapImage } from '@tiptap/extension-image'
+
 import { ImageViewBlock } from './components/image-view-block'
-import { filterFiles, randomId, type FileError, type FileValidationOptions } from '../../utils'
+import { randomId, filterFiles, type FileError, type FileValidationOptions } from '../../utils'
 
 type ImageAction = 'download' | 'copyImage' | 'copyLink'
 
@@ -87,9 +89,7 @@ const handleImageUrl = async (src: string): Promise<{ blob: Blob; extension: str
   return { blob, extension }
 }
 
-const fetchImageBlob = async (src: string): Promise<{ blob: Blob; extension: string }> => {
-  return src.startsWith('data:') ? handleDataUrl(src) : handleImageUrl(src)
-}
+const fetchImageBlob = async (src: string): Promise<{ blob: Blob; extension: string }> => src.startsWith('data:') ? handleDataUrl(src) : handleImageUrl(src)
 
 const saveImage = async (blob: Blob, name: string, extension: string): Promise<void> => {
   const imageURL = URL.createObjectURL(blob)

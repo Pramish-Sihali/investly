@@ -1,5 +1,5 @@
 import { address } from "@/@constants/address";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import ResponsiveContainer from "@/components/common/responsive-container";
 
 export default function ContactDetails() {

@@ -1,8 +1,8 @@
-import { mergeAttributes } from '@tiptap/react'
-import TiptapLink from '@tiptap/extension-link'
 import type { EditorView } from '@tiptap/pm/view'
-import { getMarkRange } from '@tiptap/react'
+
+import TiptapLink from '@tiptap/extension-link'
 import { Plugin, TextSelection } from '@tiptap/pm/state'
+import { getMarkRange , mergeAttributes } from '@tiptap/react'
 
 export const Link = TiptapLink.extend({
   /*

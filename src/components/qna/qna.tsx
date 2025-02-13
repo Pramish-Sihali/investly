@@ -1,3 +1,5 @@
+import HeadingSection from "@/components/common/heading-section";
+import ResponsiveContainer from "@/components/common/responsive-container";
 import {
   Tabs,
   TabsList,
@@ -10,8 +12,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import HeadingSection from "@/components/common/heading-section";
-import ResponsiveContainer from "@/components/common/responsive-container";
+
 import { Separator } from "../ui/separator";
 
 interface Faq {
@@ -29,8 +30,7 @@ interface FAQProps {
   categories: FAQCategory[];
 }
 
-const FAQ = ({ categories }: FAQProps) => {
-  return (
+const FAQ = ({ categories }: FAQProps) => (
     <ResponsiveContainer variant="narrow" paddingY="xl">
       <div className="w-full max-w-5xl mx-auto px-6 sm:px-8 md:px-12">
         <HeadingSection
@@ -84,7 +84,6 @@ const FAQ = ({ categories }: FAQProps) => {
       </div>
     </ResponsiveContainer>
   );
-};
 
 const faqData: FAQCategory[] = [
   {

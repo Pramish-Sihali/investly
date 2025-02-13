@@ -1,4 +1,5 @@
 import type { Editor } from '@tiptap/react'
+
 import type { MinimalTiptapProps } from './minimal-tiptap'
 
 type ShortcutKeyResult = {
@@ -105,8 +106,7 @@ export const blobUrlToBase64 = async (blobUrl: string): Promise<string> => {
 
 export const randomId = (): string => Math.random().toString(36).slice(2, 11)
 
-export const fileToBase64 = (file: File | Blob): Promise<string> => {
-  return new Promise((resolve, reject) => {
+export const fileToBase64 = (file: File | Blob): Promise<string> => new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.onloadend = () => {
       if (typeof reader.result === 'string') {
@@ -118,7 +118,6 @@ export const fileToBase64 = (file: File | Blob): Promise<string> => {
     reader.onerror = reject
     reader.readAsDataURL(file)
   })
-}
 
 const validateFileOrBase64 = <T extends FileInput>(
   input: File | string,

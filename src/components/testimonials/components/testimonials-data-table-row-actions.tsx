@@ -1,12 +1,14 @@
 "use client";
 
-import { Row } from "@tanstack/react-table";
+import type { Row } from "@tanstack/react-table";
+import type { Testimonial } from "@/types/testimonials";
+
+import { useState } from "react";
 import { Pen, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { DeleteTestimonialDialog } from "./testimonials-delete-dialog";
+
 import { EditTestimonialDialog } from "./testimonials-edit-dialog";
-import { Testimonial } from "@/types/testimonials";
+import { DeleteTestimonialDialog } from "./testimonials-delete-dialog";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;

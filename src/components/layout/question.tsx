@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
 const QuestionButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +47,7 @@ const QuestionButton: React.FC = () => {
               placeholder="Type your question..."
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-            ></textarea>
+             />
 
             <button
               className="bg-primary text-white px-4 py-2 rounded-md mt-2"
