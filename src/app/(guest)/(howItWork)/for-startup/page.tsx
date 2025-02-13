@@ -22,9 +22,7 @@ const StartupPage = () => {
           <div className="flex items-center gap-4">
             <img src="/start.png" alt="English" className="w-6 h-6 rounded-full" />
             <span className="text-gray-800 font-medium">English</span>
-          </div>
-
-          {/* Toggle Buttons */}
+          </div>    
           <div className="flex items-center gap-4">
             <Button className="px-6 py-2 bg-primary text-white rounded-lg">Convertible</Button>
             <Button className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg">Equity</Button>

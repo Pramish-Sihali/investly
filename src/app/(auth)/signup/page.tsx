@@ -7,7 +7,6 @@ import Logo from '@/components/logo';
 import { useForm } from 'react-hook-form';
 import { toast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
-import { registerMutationFn } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { useMutation } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -21,7 +20,39 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-export default function SignUp() {
+interface SignUpProps {
+  userType?: string;
+}
+
+const registerMutationFn = async (data: any) => {
+  try {
+    const response = await fetch('http://139.59.26.218/api/register/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        full_name: data.name,
+        email: data.email,
+        password: data.password,
+        confirm_password: data.confirmPassword, // Add confirm_password field
+        role: data.role,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Registration failed');
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw new Error('Failed to connect to the server. Please try again later.');
+  }
+};
+
+export default function SignUp({ }: SignUpProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { mutate, isPending } = useMutation({
@@ -42,6 +73,9 @@ export default function SignUp() {
       confirmPassword: z.string().min(1, {
         message: 'Confirm Password is required',
       }),
+      role: z.string().min(1, {
+        message: 'Role is required',
+      }),
     })
     .refine((val) => val.password === val.confirmPassword, {
       message: 'Password does not match',
@@ -55,6 +89,7 @@ export default function SignUp() {
       email: '',
       password: '',
       confirmPassword: '',
+      role: '',
     },
   });
 
@@ -153,6 +188,26 @@ export default function SignUp() {
                       </FormLabel>
                       <FormControl>
                         <Input type="password" placeholder="••••••••••••" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="mb-4">
+                <FormField
+                  control={form.control}
+                  name="role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="dark:text-[#f1f7feb5] text-sm">Role</FormLabel>
+                      <FormControl>
+                        <select {...field} className="w-full p-2 border rounded-md">
+                          <option value="">Select a role</option>
+                          <option value="Investor">Investor</option>
+                          <option value="Mentor">Mentor</option>
+                          <option value="Startup">Startup</option>
+                        </select>
                       </FormControl>
                       <FormMessage />
                     </FormItem>

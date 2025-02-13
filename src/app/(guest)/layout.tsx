@@ -1,5 +1,5 @@
 import { Footer } from '@/components/layout/footer';
-import { Navbar } from '@/components/layout/navbar';
+import { Navbar } from '@/components/layout/navbar/guest-navbar';
 import ContactView from '@/components/contact-us/view/contact-view';
 import { Newsletter } from '@/components/layout/newsletter';
 import QuestionButton from '@/components/layout/question';

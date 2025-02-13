@@ -1,7 +1,5 @@
 import React from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
-import ResponsiveContainer from "@/components/common/responsive-container";
 import { Button } from "@/components/ui/button";
 
 const InvestmentInStartups = () => {
@@ -34,7 +32,7 @@ const InvestmentInStartups = () => {
   ];
 
   return (
-    <ResponsiveContainer variant="narrow" paddingY="xl">
+    
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left Section */}
         <div className="col-span-1">
@@ -101,7 +99,7 @@ const InvestmentInStartups = () => {
         </div>
       </div>
      
-    </ResponsiveContainer>
+    
   );
 };
 

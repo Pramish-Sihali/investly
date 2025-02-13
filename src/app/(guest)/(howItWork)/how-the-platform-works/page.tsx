@@ -1,7 +1,7 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { BarChart3, Rocket, Briefcase } from "lucide-react"
+import Image from 'next/image';
+import {  Rocket,BarChart3, Briefcase } from "lucide-react"
 
 const HowThePlatformWorks: React.FC = () => {
   const platformSteps = [
