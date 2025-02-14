@@ -1,39 +1,52 @@
+import type { BlogPost } from "@/types/blog"; // Import the BlogPost type
+
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import ResponsiveContainer from "@/components/common/responsive-container";
 
-const BlogPage = () => {
-  const blogs = [
-    {
-      id: 1,
-      slug: "elizabeth-kleinveld-startup-matchmaker",
-      image: "/blog.png",
-      date: "04/02/2025",
-      title: "Elizabeth Kleinveld: Startup Matchmaker & Ecosystem Builder",
-      description:
-        "Elizabeth Kleinveld is the host of Breaking Banks Europe, the world’s #1 FinTech podcast and radio show...",
-    },
-    {
-      id: 2,
-      slug: "10-tips-for-first-time-founders",
-      image: "/blog1.png",
-      date: "01/25/2025",
-      title: "10 Tips for First-Time Founders to Succeed in the Startup World",
-      description:
-        "Starting a company can be overwhelming. From securing funding to building a team, the challenges can be daunting...",
-    },
-    {
-      id: 3,
-      slug: "future-of-fintech-trends-2025",
-      image: "/blog2.png",
-      date: "12/15/2024",
-      title: "The Future of FinTech: Trends to Watch in 2025",
-      description:
-        "As we head into 2025, FinTech continues to revolutionize how we manage money...",
-    },
-  ];
+const fetchBlogs = async (): Promise<BlogPost[]> => {
+  const query = `
+    query MyQuery {
+      allPosts {
+        id
+        title
+        slug
+        created_at
+        thumbnail_image
+        content
+        thumbnail_image_alt_description
+      }
+    }
+  `;
+
+  try {
+    const response = await fetch("http://139.59.26.218/api/blog/graphql/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query }),
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error("Error response body:", errorBody);
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const json = await response.json();
+    return json.data.allPosts as BlogPost[]; 
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+    return [];
+  }
+};
+
+const BlogPage = async () => {
+  const blogs: BlogPost[] = await fetchBlogs();
 
   return (
     <ResponsiveContainer variant="wide" paddingY="xl">
@@ -42,12 +55,23 @@ const BlogPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogs.map((blog) => (
             <Card key={blog.id} className="rounded-2xl shadow-md overflow-hidden">
-              <img src={blog.image} alt={blog.title} className="w-full h-48 object-cover" />
+              <img 
+                src={blog.thumbnail_image} 
+                alt={blog.thumbnail_image_alt_description || blog.title}
+                className="w-full h-48 object-cover"
+              />
               <CardContent className="p-6">
-                <p className="text-sm text-gray-500 mb-2">{blog.date}</p>
+                <p className="text-sm text-gray-500 mb-2">
+                  {new Date(blog.created_at).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                  })}
+                </p>
                 <h2 className="text-xl font-semibold text-gray-800 mb-4">{blog.title}</h2>
                 <p className="text-gray-600 text-base leading-relaxed mb-6">
-                  {blog.description}
+                  {blog.content?.substring(0, 150)}
+                  {blog.content?.length > 150 ? "..." : ""}
                 </p>
                 <Link href={`/blog/${blog.slug}`} passHref>
                   <Button variant="link" className="text-primary px-0">

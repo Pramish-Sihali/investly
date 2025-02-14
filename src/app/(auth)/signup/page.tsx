@@ -52,7 +52,7 @@ const registerMutationFn = async (data: any) => {
 export default function SignUp() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const searchParams = useSearchParams();
-  const userType = searchParams.get('usertype') || '';
+  const userType = searchParams?.get('usertype') ?? '';
 
   const { mutate, isPending } = useMutation({
     mutationFn: registerMutationFn,
