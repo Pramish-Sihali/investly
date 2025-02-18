@@ -1,30 +1,36 @@
-import { Rocket, BarChart3, Briefcase } from "lucide-react"
+import { Rocket, BarChart3, Briefcase } from 'lucide-react';
+import HeadingSection from '@/components/common/heading-section';
 
 export default function WhatWeOffer() {
   const features = [
     {
       icon: BarChart3,
-      title: "Everything in one place",
-      description: "No time wasted handling legal paperwork, and plenty of deals available for you to choose.",
+      title: 'Everything in one place',
+      description:
+        'No time wasted handling legal paperwork, and plenty of deals available for you to choose.',
     },
     {
       icon: Rocket,
-      title: "Make a difference",
-      description: "Build a relationship with your startups, and add value from your experience and network.",
+      title: 'Make a difference',
+      description:
+        'Build a relationship with your startups, and add value from your experience and network.',
     },
     {
       icon: Briefcase,
-      title: "Safe & Secure",
-      description: "Full secure payment environment, refund if the startup doesn't complete sufficient fundraising.",
+      title: 'Safe & Secure',
+      description:
+        "Full secure payment environment, refund if the startup doesn't complete sufficient fundraising.",
     },
-  ]
+  ];
 
   return (
     <section className="py-16 px-4 md:py-24">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What we have to offer</h2>
-          <p className="text-lg text-muted-foreground">Leapfunder makes angel investing easy and convenient</p>
+          <HeadingSection
+            title="What we have to offer"
+            subtitle="Investly makes angel investing easy and convenient"
+          />
         </div>
 
         <div className="grid gap-12 md:grid-cols-3">
@@ -40,6 +46,5 @@ export default function WhatWeOffer() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

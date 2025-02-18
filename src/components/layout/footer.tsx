@@ -10,12 +10,12 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-50 border-t">
+    <footer className="bg-gray-50 border-t mt-10">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-primary">Investify</h3>
+            <h3 className="text-xl font-bold text-primary">Investly</h3>
             <p className="text-sm text-gray-600">
               Empowering startups, mentors, and investors to connect and grow together.
             </p>

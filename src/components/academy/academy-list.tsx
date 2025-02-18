@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { Card, CardContent } from "@/components/ui/card"
+import Link from 'next/link';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Flag,
   Users,
@@ -10,55 +10,55 @@ import {
   UserCircle,
   MessageCircle,
   GraduationCap,
-} from "lucide-react"
+} from 'lucide-react';
 
 const readingLists = [
   {
     icon: Flag,
-    title: "Basic Financial Instruments: Shares/Loans/Convertibles",
+    title: 'Basic Financial Instruments: Shares/Loans/Convertibles',
     articles: 13,
   },
   {
     icon: Users,
-    title: "Startup Survival Guide",
+    title: 'Startup Survival Guide',
     articles: 43,
   },
   {
     icon: UserCircle,
-    title: "Investor Survival Guide",
+    title: 'Investor Survival Guide',
     articles: 30,
   },
   {
     icon: Sprout,
-    title: "Startups who Raised Funding on Leapfunder",
+    title: 'Startups who Raised Funding on Investly',
     articles: 59,
   },
   {
     icon: MessageCircle,
-    title: "Opinions From Startup Changemakers",
+    title: 'Opinions From Startup Changemakers',
     articles: 119,
   },
   {
     icon: BookOpen,
-    title: "All About Leapfunder",
+    title: 'All About Investly',
     articles: 13,
   },
   {
     icon: GraduationCap,
-    title: "User Manuals for Leapfunder Startups",
+    title: 'User Manuals for Investly Startups',
     articles: 25,
   },
   {
     icon: HandCoins,
-    title: "User Manuals for Leapfunder Investors",
+    title: 'User Manuals for Investly Investors',
     articles: 20,
   },
   {
     icon: BarChart,
-    title: "State of the Startup Market Reports",
+    title: 'State of the Startup Market Reports',
     articles: 15,
   },
-]
+];
 
 export default function AcademyPage() {
   return (
@@ -71,7 +71,10 @@ export default function AcademyPage() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {readingLists.map((item, index) => (
-            <Card key={index} className="transition-all duration-300 hover:shadow-lg border-gray-200">
+            <Card
+              key={index}
+              className="transition-all duration-300 hover:shadow-lg border-gray-200"
+            >
               <CardContent className="p-8 flex flex-col items-center text-center">
                 <div className="w-16 h-16 rounded-full border-2 border-[#FF6B35] flex items-center justify-center mb-6">
                   <item.icon className="w-8 h-8 text-[#FF6B35]" />
@@ -90,6 +93,5 @@ export default function AcademyPage() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

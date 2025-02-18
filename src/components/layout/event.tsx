@@ -1,21 +1,22 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function EventsAndAcademy() {
   const events = [
     {
-      date: "17",
-      month: "FEB",
-      title: "Investor Readiness Session (Online Workshop for Startup Founders)",
-      time: "03:00 PM",
+      date: '17',
+      month: 'FEB',
+      title: 'Investor Readiness Session (Online Workshop for Startup Founders)',
+      time: '03:00 PM',
     },
     {
-      date: "19",
-      month: "FEB",
-      title: "Round Table Session - One Hour Version (Online Event for Investors and Startups)",
-      time: "03:00 PM",
+      date: '19',
+      month: 'FEB',
+      title: 'Round Table Session - One Hour Version (Online Event for Investors and Startups)',
+      time: '03:00 PM',
     },
-  ]
+  ];
 
   return (
     <section className="bg-gray-900 min-h-screen py-16">
@@ -23,7 +24,7 @@ export default function EventsAndAcademy() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-24">
           {/* Left Section - Events */}
           <div>
-            <h2 className="text-3xl font-bold text-white mb-12">Leapfunder events</h2>
+            <h2 className="text-3xl font-bold text-white mb-12">Investly events</h2>
 
             <div className="space-y-4 mb-12">
               {events.map((event, index) => (
@@ -44,14 +45,19 @@ export default function EventsAndAcademy() {
 
             <div className="space-y-8">
               <p className="text-gray-400 max-w-lg">
-                No time spent networking with startups outside of your interests, and no time wasted handling the
-                paperwork.
+                No time spent networking with startups outside of your interests, and no time wasted
+                handling the paperwork.
               </p>
 
               <div>
-                <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
-                  View events
-                </Button>
+                <Link href="/events">
+                  <Button
+                    variant="outline"
+                    className="bg-transparent text-white border-white hover:bg-white/10"
+                  >
+                    View events
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -67,28 +73,37 @@ export default function EventsAndAcademy() {
                   <p className="text-gray-600 mb-6">
                     Our Startup Survival Guide blog series helps you find investors & t...
                   </p>
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-white">Read 43 articles</Button>
+                  <Link href="/academy">
+                    <Button className="w-full bg-primary hover:bg-primary/90 text-white">
+                      Read 43 articles
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
 
               {/* Decorative cards */}
-              
             </div>
 
             <div className="space-y-8">
               <p className="text-gray-400 max-w-lg">
-                Learn handling investment and funding and utilizing the platform of leapfunder to its full potential.
+                Learn handling investment and funding and utilizing the platform of Investly to its
+                full potential.
               </p>
 
               <div>
-                <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
-                  Visit academy
-                </Button>
+                <Link href="/academy">
+                  <Button
+                    variant="outline"
+                    className="bg-transparent text-white border-white hover:bg-white/10"
+                  >
+                    Visit academy
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

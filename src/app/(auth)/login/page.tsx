@@ -109,16 +109,10 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
           />
         </div>
 
-        <h1 className="text-xl tracking-[-0.16px] dark:text-[#fcfdffef] font-bold mb-1.5 mt-8 text-center sm:text-left">
+        <h1 className="text-xl tracking-[-0.16px] dark:text-[#fcfdffef] flex justify-center font-bold mb-1.5 mt-8  sm:text-left">
           Log in to Investly
         </h1>
-        <p className="mb-8 text-center sm:text-left text-base dark:text-[#f1f7feb5] font-normal">
-          Don&apos;t have an account?{' '}
-          <Link className="text-primary" href="/signup">
-            Sign up
-          </Link>
-          .
-        </p>
+
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="mb-4">
