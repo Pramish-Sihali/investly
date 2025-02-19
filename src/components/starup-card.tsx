@@ -13,6 +13,7 @@ interface StartupCardProps {
   daysLeft: number;
   raised?: string;
   tag?: string;
+  featured?: boolean;
 }
 
 export function StartupCard({
@@ -24,6 +25,7 @@ export function StartupCard({
   daysLeft,
   raised,
   tag,
+  featured,
 }: StartupCardProps) {
   return (
     <Card className="overflow-hidden transition-all hover:shadow-lg">
@@ -36,7 +38,7 @@ export function StartupCard({
   )}
   <div className="relative h-full w-full overflow-hidden">
     <Image
-      src={logo || "/placeholder.svg"}
+      src={`${process.env.NEXT_PUBLIC_API_URL}${logo}`}
       alt={`${name} logo`}
       fill
       className="object-cover"
