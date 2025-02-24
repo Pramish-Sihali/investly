@@ -16,15 +16,13 @@ const HeadingSection = ({ badge, title, subtitle }: HeadingSectionProps) => (
       <h2 className="text-3xl md:text-5xl font-bold ">
         {title}
         {subtitle && (
-          <span className="block text-primary/70 mt-4 text-lg md:text-xl font-normal">
-            {subtitle}
-          </span>
+          <span className="block text-primary mt-4 text-lg md:text-xl font-normal">{subtitle}</span>
         )}
       </h2>
       <div className="flex items-center justify-center gap-2 pt-4">
-        <div className="w-8 md:w-12 h-1 bg-primary/20 rounded-full" />
-        <div className="w-2 md:w-3 h-2 md:h-3 bg-primary/30 rounded-full" />
-        <div className="w-8 md:w-12 h-1 bg-primary/20 rounded-full" />
+        <div className="w-8 md:w-12 h-1 bg-primary/70 rounded-full" />
+        <div className="w-2 md:w-3 h-2 md:h-3 bg-primary/70 rounded-full" />
+        <div className="w-8 md:w-12 h-1 bg-primary/70 rounded-full" />
       </div>
     </div>
   </div>

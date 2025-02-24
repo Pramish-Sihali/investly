@@ -1,18 +1,15 @@
-"use client";
+'use client';
 
-import type {
-  ContactFormSchema} from "@/schemas/contact-form-schemas";
+import type { ContactFormSchema } from '@/schemas/contact-form-schemas';
 
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { showError, showSuccess } from "@/lib/alerts";
-import {
-  contactFormSchema,
-} from "@/schemas/contact-form-schemas";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { showError, showSuccess } from '@/lib/alerts';
+import { contactFormSchema } from '@/schemas/contact-form-schemas';
 import {
   Form,
   FormItem,
@@ -20,64 +17,60 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 
 type ContactFormProps = {
   propertyId?: string;
-  inquiryType?: "General Inquiry" | "Specific Property";
+  inquiryType?: 'General Inquiry' | 'Specific Property';
 };
 
 export default function ContactForm({
   propertyId,
-  inquiryType = "General Inquiry",
+  inquiryType = 'General Inquiry',
 }: ContactFormProps) {
   const [loading, setLoading] = useState(false); // State for tracking loading status
   const form = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
-      first_name: "",
-      last_name: "",
-      phone_number: "",
-      email: "",
-      message: "",
-      property: propertyId || "",
+      first_name: '',
+      last_name: '',
+      phone_number: '',
+      email: '',
+      message: '',
+      property: propertyId || '',
     },
   });
 
   const onSubmit = async (data: ContactFormSchema) => {
     setLoading(true); // Start loading
     try {
-      const response = await fetch(
-        "https://yetipm.baliyoventures.com/api/inquiries/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...data,
-            inquiry_type: inquiryType,
-            property: propertyId ? parseInt(propertyId) : null,
-          }),
-        }
-      );
+      const response = await fetch('https://yetipm.baliyoventures.com/api/inquiries/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          inquiry_type: inquiryType,
+          property: propertyId ? parseInt(propertyId) : null,
+        }),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
         const errorMessage =
-          errorData.phone_number?.[0] ||
-          "Failed to send the message. Please try again.";
+          errorData.phone_number?.[0] || 'Failed to send the message. Please try again.';
         showError(errorMessage, {
           timer: 3000,
         });
       } else {
-        showSuccess("Message sent successfully!", {
+        showSuccess('Message sent successfully!', {
           timer: 3000,
         });
         form.reset(); // Clear the form fields
       }
     } catch {
-      showError("An error occurred while sending the message.", {
+      showError('An error occurred while sending the message.', {
         timer: 3000,
       });
     } finally {
@@ -97,11 +90,7 @@ export default function ContactForm({
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Enter your first name"
-                      className="p-5"
-                      {...field}
-                    />
+                    <Input placeholder="Enter your first name" className="p-5" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -115,11 +104,7 @@ export default function ContactForm({
                 <FormItem>
                   <FormLabel>Last Name</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Enter your first name"
-                      className="p-5"
-                      {...field}
-                    />
+                    <Input placeholder="Enter your first name" className="p-5" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -134,11 +119,7 @@ export default function ContactForm({
               <FormItem>
                 <FormLabel>Phone Number</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Enter your phone number"
-                    className="p-5"
-                    {...field}
-                  />
+                  <Input placeholder="Enter your phone number" className="p-5" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -152,11 +133,7 @@ export default function ContactForm({
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Enter your email"
-                    className="p-5"
-                    {...field}
-                  />
+                  <Input placeholder="Enter your email" className="p-5" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -170,11 +147,7 @@ export default function ContactForm({
               <FormItem>
                 <FormLabel>Message</FormLabel>
                 <FormControl>
-                  <Textarea
-                    placeholder="Enter your message"
-                    rows={4}
-                    {...field}
-                  />
+                  <Textarea placeholder="Enter your message" rows={4} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -184,10 +157,10 @@ export default function ContactForm({
           <div className="py-9">
             <Button
               type="submit"
-              className="w-full lg:w-auto py-5 text-base bg-gradient-to-r from-primary to-primary transition-transform hover:scale-105"
+              className="w-full lg:w-auto py-5 text-base bg-gradient-to-r from-primary/80 to-primary transition-transform hover:scale-105"
               disabled={loading} // Disable button while loading
             >
-              {loading ? "Sending..." : "Send Message →"}{" "}
+              {loading ? 'Sending...' : 'Send Message →'}{' '}
             </Button>
           </div>
         </form>

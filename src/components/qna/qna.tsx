@@ -27,7 +27,7 @@ interface FAQProps {
 
 const FAQ = ({ categories }: FAQProps) => (
   <ResponsiveContainer variant="narrow" paddingY="xl">
-    <div className="w-full max-w-5xl mx-auto px-6 sm:px-8 md:px-12">
+    <div className="w-full max-w-5xl mx-auto px-6 sm:px-8 md:px-12 mt-12">
       <HeadingSection
         badge="FAQ"
         title="Frequently Asked Questions"

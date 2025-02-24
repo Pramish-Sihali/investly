@@ -4,8 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Hero Section */}
+    <div className="flex min-h-screen flex-col mx-auto">
       <section className="relative overflow-hidden bg-white">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="flex min-h-[80vh] flex-col lg:flex-row lg:items-center lg:gap-12">
@@ -70,25 +69,48 @@ export default function Home() {
       </section>
 
       {/* Companies Section */}
-      <section className="bg-[#F5F5F5] py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold text-gray-900 lg:text-4xl">
-            Top YC companies
-          </h2>
-          <div className="mt-12 grid grid-cols-2 items-center gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8">
-            {companies.map((company, index) => (
-              <div key={index} className="flex items-center justify-center px-4 py-2">
-                <div className="relative h-8 w-full">
-                  <Image
-                    src={`/${company.logo}`} // Updated to use actual images
-                    alt={company.name}
-                    width={company.width}
-                    height={32}
-                    className="object-contain opacity-70 transition-opacity hover:opacity-100"
-                  />
-                </div>
+      <section className="py-10 bg-gray-100 sm:py-16 lg:py-24">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="grid items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 sm:gap-x-12 gap-y-12">
+            {/* Left Column */}
+            <div className="lg:col-span-2">
+              <h2 className="text-3xl font-bold leading-tight text-gray-800 sm:text-4xl lg:text-5xl lg:leading-tight">
+                Top YC
+                <br />
+                Companies
+                <br />
+                We Work With
+                <br />
+              </h2>
+              <p className="mt-6 text-base text-gray-600">
+                Join our platform to connect with leading YC companies and be part of the next big
+                thing in the startup ecosystem.
+              </p>
+            </div>
+
+            {/* Right Column with Company Logos */}
+            <div className="lg:col-span-3 xl:col-span-4">
+              <div className="grid items-center max-w-4xl grid-cols-2 mx-auto lg:grid-cols-4 gap-x-10 gap-y-16">
+                {companies.map((company, index) => (
+                  <div key={index} className={`${index >= 4 ? 'hidden lg:block' : ''}`}>
+                    <Image
+                      src={`/${company.logo}`}
+                      alt={company.name}
+                      width={company.width}
+                      height={32}
+                      className="object-contain w-full h-8 mx-auto opacity-70 transition-opacity hover:opacity-100"
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
+
+              {/* Mobile Navigation Dots */}
+              <div className="flex items-center justify-start mt-10 space-x-3 lg:hidden">
+                <div className="w-2.5 h-2.5 rounded-full bg-primary block" />
+                <div className="w-2.5 h-2.5 rounded-full bg-gray-300 block" />
+                <div className="w-2.5 h-2.5 rounded-full bg-gray-300 block" />
+              </div>
+            </div>
           </div>
         </div>
       </section>

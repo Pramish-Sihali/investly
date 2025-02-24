@@ -5,10 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { gql } from '@apollo/client';
 import client from '@/lib/apollo-client';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import HeadingSection from '@/components/common/heading-section';
-import ResponsiveContainer from '@/components/common/responsive-container';
 
 const fetchBlogs = async (): Promise<BlogPost[]> => {
   try {
@@ -41,47 +37,64 @@ const BlogPage = async () => {
   const blogs: BlogPost[] = await fetchBlogs();
 
   return (
-    <ResponsiveContainer variant="wide" paddingY="xl">
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
-        <HeadingSection
-          title="Our Blog"
-          subtitle="Stay up to date with the latest news and updates from Investly."
-        />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section className="py-10 bg-white sm:py-16 lg:py-24">
+      <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        {/* Header Section */}
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
+            Latest from blog
+          </h2>
+          <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">
+            Stay up to date with the latest news and updates from Investly.
+          </p>
+        </div>
+
+        {/* Blog Grid */}
+        <div className="grid max-w-md grid-cols-1 mx-auto mt-12 lg:max-w-full lg:mt-16 lg:grid-cols-3 gap-x-16 gap-y-12">
           {blogs.map((blog) => (
-            <Card key={blog.id} className="rounded-2xl shadow-md overflow-hidden">
-              <Image
-                src={`${process.env.NEXT_PUBLIC_API_URL}${blog.thumbnailImage}`} 
-                alt={blog.thumbnailImageAltDescription || blog.title}
-                width={500}
-                height={200}
-                objectFit="cover"
-                className="object-cover"
-              />
-              <CardContent className="p-6">
-                <p className="text-sm text-gray-500 mb-2">
-                  {new Date(blog.createdAt).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                  })}
-                </p>
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">{blog.title}</h2>
-                <p className="text-gray-600 text-base leading-relaxed mb-6">
-                  {blog.content?.substring(0, 150)}
-                  {blog.content?.length > 150 ? '...' : ''}
-                </p>
-                <Link href={`/blog/${blog.slug}`} passHref>
-                  <Button variant="link" className="text-primary px-0">
-                    Read more
-                  </Button>
+            <div key={blog.id}>
+              <Link href={`/blog/${blog.slug}`} className="block aspect-w-4 aspect-h-3">
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${blog.thumbnailImage}`}
+                  alt={blog.thumbnailImageAltDescription || blog.title}
+                  width={500}
+                  height={300}
+                  className="object-cover w-full h-full rounded-lg"
+                />
+              </Link>
+
+              <span className="inline-flex px-4 py-2 text-xs font-semibold tracking-widest uppercase rounded-full text-primary bg-primary/10 mt-9">
+                Technology
+              </span>
+
+              <p className="mt-6 text-xl font-semibold">
+                <Link
+                  href={`/blog/${blog.slug}`}
+                  className="text-black hover:text-primary transition-colors line-clamp-2"
+                >
+                  {blog.title}
                 </Link>
-              </CardContent>
-            </Card>
+              </p>
+
+              <p className="mt-4 text-gray-600">
+                {blog.content?.substring(0, 150)}
+                {blog.content?.length > 150 ? '...' : ''}
+              </p>
+
+              <div className="h-0 mt-6 mb-4 border-t-2 border-gray-200 border-dashed" />
+
+              <span className="block text-sm font-bold tracking-widest text-gray-500 uppercase">
+                {new Date(blog.createdAt).toLocaleDateString('en-US', {
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric',
+                })}
+              </span>
+            </div>
           ))}
         </div>
       </div>
-    </ResponsiveContainer>
+    </section>
   );
 };
 

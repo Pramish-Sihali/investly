@@ -19,7 +19,7 @@ export default function EventsAndAcademy() {
   ];
 
   return (
-    <section className="bg-gray-900 min-h-screen py-16">
+    <section className="bg-gray-900 py-20">
       <div className="container mx-auto max-w-[1400px] px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-24">
           {/* Left Section - Events */}
@@ -43,7 +43,7 @@ export default function EventsAndAcademy() {
               ))}
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-4">
               <p className="text-gray-400 max-w-lg">
                 No time spent networking with startups outside of your interests, and no time wasted
                 handling the paperwork.
@@ -66,15 +66,17 @@ export default function EventsAndAcademy() {
           <div>
             <h2 className="text-3xl font-bold text-white mb-12">Visit our Academy</h2>
 
-            <div className="relative mb-12">
+            <div className="relative">
               <Card className="bg-white">
                 <CardContent className="p-8 text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Startup Survival Guide</h3>
-                  <p className="text-gray-600 mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 mt-5">
+                    Startup Survival Guide
+                  </h3>
+                  <p className="text-gray-600 mb-6 mt-5">
                     Our Startup Survival Guide blog series helps you find investors & t...
                   </p>
                   <Link href="/academy">
-                    <Button className="w-full bg-primary hover:bg-primary/90 text-white">
+                    <Button className="w-full bg-primary hover:bg-primary/90 mt-5 text-white">
                       Read 43 articles
                     </Button>
                   </Link>
@@ -84,7 +86,7 @@ export default function EventsAndAcademy() {
               {/* Decorative cards */}
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-4 mt-12">
               <p className="text-gray-400 max-w-lg">
                 Learn handling investment and funding and utilizing the platform of Investly to its
                 full potential.

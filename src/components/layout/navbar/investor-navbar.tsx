@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { Menu } from 'lucide-react';
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Menu, Bell, MessageCircle, User } from 'lucide-react';
 import { Sheet, SheetTitle, SheetHeader, SheetContent } from '@/components/ui/sheet';
 import {
   NavigationMenu,
@@ -17,10 +18,10 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 
-export function Navbar() {
+export function InvestorNavbar() {
   const pathname = usePathname();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const navLinks = [
     {
@@ -33,26 +34,36 @@ export function Navbar() {
       ],
     },
     {
+      name: 'Find Investor',
+      href: '/investors/find-investor',
+    },
+    {
       name: 'Articles',
       children: [
         { name: 'Academy', href: '/academy' },
         { name: 'News/Updates & Events', href: '/events' },
         { name: 'Blog', href: '/blog' },
-        { name: 'Why Investly', href: '/why-investly' },
       ],
     },
-    { name: 'Mentor', href: '/mentor' },
-
     { name: 'Startup Directory', href: '/startup-directory' },
-    { name: 'Company', href: '/company' },
   ];
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-lg">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="text-xl font-bold text-primary">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4">
+        {/* Logo */}
+        <Link href="/" className="text-xl font-bold text-primary flex items-center">
           <Image src="/logo.png" alt="Investify Logo" width={100} height={100} />
         </Link>
+
+        {/* Search Bar */}
+        <div className="hidden md:flex flex-1 max-w-md mx-4 rounded-lg">
+          <Input
+            type="text"
+            placeholder="Search..."
+            className="w-full px-4 py-2 border rounded-lg"
+          />
+        </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
@@ -64,7 +75,7 @@ export function Navbar() {
                     <>
                       <NavigationMenuTrigger>{section.name}</NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                           {section.children.map((item) => (
                             <li key={item.name}>
                               <NavigationMenuLink asChild>
@@ -88,7 +99,7 @@ export function Navbar() {
                       <Link
                         href={section.href}
                         className={cn(
-                          'px-4 py-2 text-sm font-medium rounded-md transition-colors',
+                          'px-4 py-2 text-sm font-medium rounded-md transition-colors hover:text-primary',
                           pathname === section.href ? ' text-primary' : 'hover:bg-accent'
                         )}
                       >
@@ -101,57 +112,46 @@ export function Navbar() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <div className="relative">
-            <div className="flex gap-4">
-              <Link
-                href="/login"
-                className="px-5 py-2 border text-sm font-medium text-black bg-white rounded-md hover:bg-gray-800 hover:text-white"
-              >
-                Log In
-              </Link>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevents unintended behavior
-                  setIsDropdownOpen(!isDropdownOpen);
-                }}
-                className="px-5 py-2 border text-sm font-medium text-white bg-primary rounded-md hover:bg-gray-800"
-              >
-                Sign Up
-              </button>
-            </div>
+          {/* Icons Section */}
+          <div className="flex items-center space-x-4">
+            {/* Message Icon */}
+            <Button variant="ghost" size="icon">
+              <MessageCircle className="h-7 w-7 text-gray-600 hover:text-primary" />
+            </Button>
 
-            {/* Sign Up Dropdown */}
-            {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
-                <button
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    window.location.href = '/signup/?usertype=Investor';
-                  }}
-                  className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-                >
-                  Sign Up As Investor
-                </button>
-                <button
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    window.location.href = '/signup/?usertype=Startup';
-                  }}
-                  className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-                >
-                  Sign Up As Startup
-                </button>
-                <button
-                  onClick={() => {
-                    setIsDropdownOpen(false);
-                    window.location.href = '/signup/?usertype=Mentor';
-                  }}
-                  className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-                >
-                  Sign Up As Mentor
-                </button>
-              </div>
-            )}
+            {/* Notification Icon */}
+            <Button variant="ghost" size="icon">
+              <Bell className="h-7 w-7 text-gray-600 hover:text-primary" />
+            </Button>
+
+            {/* Profile Dropdown */}
+            <div className="relative">
+              <Button variant="ghost" size="icon" onClick={() => setIsProfileOpen(!isProfileOpen)}>
+                <User className="h-7 w-7 text-gray-600 hover:text-primary" />
+              </Button>
+              {isProfileOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
+                  <Link
+                    href="/investors/profile"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 rounded-md"
+                  >
+                    My Profile
+                  </Link>
+                  <Link
+                    href="/settings"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 rounded-md"
+                  >
+                    Settings
+                  </Link>
+                  <Link
+                    href="/"
+                    className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
+                  >
+                    Log Out
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -162,6 +162,7 @@ export function Navbar() {
           </Button>
         </div>
 
+        {/* Mobile Sidebar Menu */}
         <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetContent>
             <SheetHeader>

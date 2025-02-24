@@ -1,6 +1,6 @@
-import { address } from "@/@constants/address";
-import { Mail, Phone, MapPin } from "lucide-react";
-import ResponsiveContainer from "@/components/common/responsive-container";
+import { address } from '@/@constants/address';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import ResponsiveContainer from '@/components/common/responsive-container';
 
 export default function ContactDetails() {
   return (
@@ -46,14 +46,13 @@ export default function ContactDetails() {
                 {address.landline_1}
               </a>
             )}
-           
           </div>
         </div>
 
         {/* Email Section */}
         <div className="flex flex-col items-center text-center group">
-          <div className="bg-blue-50 p-4 rounded-full mb-4 group-hover:bg-blue-100 transition-colors">
-            <Mail className="text-primary w-10 h-10" />  
+          <div className="bg-primary  p-4 rounded-full mb-4 group-hover:bg-primary transition-colors">
+            <Mail className="text-white w-10 h-10" />
           </div>
           <div>
             <h3 className="font-semibold text-lg mb-2">Email</h3>

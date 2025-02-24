@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Card, CardFooter, CardContent } from "@/components/ui/card";
+import Image from 'next/image';
+import { ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import { Card, CardFooter, CardContent } from '@/components/ui/card';
 
 interface StartupCardProps {
   name: string;
@@ -31,21 +31,23 @@ export function StartupCard({
     <Card className="overflow-hidden transition-all hover:shadow-lg">
       <CardContent className="p-0">
         <div className="relative aspect-[4/3] w-full">
-  {tag && (
-    <div className="absolute left-4 top-4 z-10">
-      <span className="rounded-md bg-green-500 px-3 py-1 text-sm font-medium text-white">{tag}</span>
-    </div>
-  )}
-  <div className="relative h-full w-full overflow-hidden">
-    <Image
-      src={`${process.env.NEXT_PUBLIC_API_URL}${logo}`}
-      alt={`${name} logo`}
-      fill
-      className="object-cover"
-      quality={95}
-    />
-  </div>
-</div>
+          {tag && (
+            <div className="absolute left-4 top-4 z-10">
+              <span className="rounded-md bg-green-500 px-3 py-1 text-sm font-medium text-white">
+                {tag}
+              </span>
+            </div>
+          )}
+          <div className="relative h-full w-full overflow-hidden">
+            <Image
+              src={`${process.env.NEXT_PUBLIC_API_URL}${logo}`}
+              alt={`${name} logo`}
+              fill
+              className="object-cover"
+              quality={95}
+            />
+          </div>
+        </div>
 
         {/* Content */}
         <div className="space-y-4 p-6">
@@ -68,7 +70,10 @@ export function StartupCard({
       </CardContent>
 
       <CardFooter className="p-6 pt-0">
-        <Button variant="ghost" className="w-full justify-between hover:bg-transparent hover:text-primary">
+        <Button
+          variant="ghost"
+          className="w-full justify-between hover:bg-transparent hover:text-primary"
+        >
           Find out more
           <ChevronRight className="h-4 w-4" />
         </Button>

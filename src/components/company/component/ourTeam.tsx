@@ -38,32 +38,60 @@ const OurTeam = async () => {
   const teamMembers: TeamMember[] = await fetchTeamMembers();
 
   return (
-    <ResponsiveContainer variant="wide" paddingY="xl">
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
+    <section className="py-12 bg-white sm:py-16 lg:py-20 xl:py-24">
+      <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <HeadingSection
           title="Our Team"
           subtitle="Meet the dedicated professionals behind Investly, working tirelessly to make angel investing accessible and rewarding."
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           {teamMembers.map((member) => (
-            <Card key={member.id} className="rounded-2xl shadow-md overflow-hidden">
-              <div className="aspect-w-16 aspect-h-9 relative">
-                <img
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${member.profilePicture}`} // Use the base URL from .env and concatenate with the image path
-                  alt={member.profilePictureAltDescription || member.name}
-                  className="w-full h-full object-cover"
-                />
+            <div key={member.id} className="flex flex-col sm:flex-row sm:items-center">
+              <img
+                src={`${process.env.NEXT_PUBLIC_API_URL}${member.profilePicture}`}
+                alt={member.profilePictureAltDescription || member.name}
+                className="object-cover w-48 rounded-2xl -rotate-2"
+              />
+
+              <div className="mt-8 sm:mt-0 sm:ml-10">
+                <p className="text-4xl font-semibold tracking-tight text-gray-900">{member.name}</p>
+                <p className="mt-3 text-xs font-semibold tracking-widest text-gray-900 uppercase">
+                  {member.role}
+                </p>
+                {member.description && (
+                  <p
+                    className="mt-8 text-base font-normal text-gray-600 text-justify"
+                    dangerouslySetInnerHTML={{ __html: member.description }}
+                  />
+                )}
+                <div className="mt-8">
+                  {member.email && (
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="inline-flex items-center text-sm font-semibold text-blue-600 transition-all duration-200 group hover:text-blue-800 hover:underline"
+                    >
+                      Contact via Email
+                      <svg
+                        className="w-5 h-5 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <line x1="7" y1="17" x2="17" y2="7" />
+                        <polyline points="7 7 17 7 17 17" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                <p className="text-primary font-medium mb-3">{member.role}</p>
-                {member.description && <p className="text-gray-600 text-justify" dangerouslySetInnerHTML={{ __html: member.description }} />}
-              </CardContent>
-            </Card>
+            </div>
           ))}
         </div>
       </div>
-    </ResponsiveContainer>
+    </section>
   );
 };
 

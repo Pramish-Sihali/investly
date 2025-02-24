@@ -8,7 +8,7 @@ const startups = [
     country: 'The Netherlands',
     description:
       'Buchung builds the e-commerce platform for tour and activity businesses. While online booking becomes more important, tour operators struggle with their digital presence.',
-    logo: '/startup1.png',
+    logo: '/image.png',
     images: [],
     progress: 65,
     daysLeft: 23,

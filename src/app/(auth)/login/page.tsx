@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
+import { useMemo, useCallback } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Loader, ArrowRight } from 'lucide-react';
@@ -21,9 +22,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-
 const loginMutationFn = async (data: { email: string; password: string }) => {
-  const response = await axios.post('http://139.59.26.218/api/login/', data, {
+  const response = await axios.post('https://investly.baliyoventures.com/api/login/', data, {
     headers: { 'Content-Type': 'application/json' },
   });
   return response.data;
@@ -31,18 +31,83 @@ const loginMutationFn = async (data: { email: string; password: string }) => {
 
 export default function Login() {
   const router = useRouter();
+
+  // Memoize the mutation to prevent unnecessary re-renders
   const { mutate, isPending } = useMutation({
     mutationFn: loginMutationFn,
+    // Add mutationKey to help with caching
+    mutationKey: ['login'],
   });
 
-  const formSchema = z.object({
-    email: z.string().trim().email().min(1, {
-      message: 'Email is required',
-    }),
-    password: z.string().trim().min(1, {
-      message: 'Password is required',
-    }),
-  });
+  // Memoize the form schema
+  const formSchema = useMemo(
+    () =>
+      z.object({
+        email: z.string().trim().email().min(1, {
+          message: 'Email is required',
+        }),
+        password: z.string().trim().min(1, {
+          message: 'Password is required',
+        }),
+      }),
+    []
+  );
+
+  // Memoize the onSubmit handler
+  const onSubmit = useCallback(
+    (values: z.infer<typeof formSchema>) => {
+      mutate(values, {
+        onSuccess: (response) => {
+          if (response?.access) {
+            // Batch localStorage operations
+            const updates = {
+              authToken: response.access,
+              refreshToken: response.refresh,
+              userData: JSON.stringify(response.user),
+            };
+            Object.entries(updates).forEach(([key, value]) => localStorage.setItem(key, value));
+
+            if (!response?.is_active) {
+              toast({
+                title: 'Email Verification Required',
+                description: 'Please check your email to verify your account for full access.',
+                variant: 'destructive',
+              });
+            } else {
+              toast({
+                title: 'Login Successful',
+                description: 'Welcome back! You have successfully logged in.',
+                variant: 'default',
+              });
+            }
+            const roleRoutes: { [key: string]: string } = {
+              Investor: '/investors',
+              Startup: '/startups',
+              Mentor: '/mentors',
+            };
+
+            const redirectPath = roleRoutes[response.user.role] || '/';
+            router.replace(redirectPath);
+          } else {
+            toast({
+              title: 'Login failed',
+              description: 'Invalid credentials or unexpected response',
+              variant: 'destructive',
+            });
+          }
+        },
+        onError: (error) => {
+          const message = (error as any).response?.data?.message || 'Something went wrong';
+          toast({
+            title: 'Error',
+            description: message,
+            variant: 'destructive',
+          });
+        },
+      });
+    },
+    [mutate, router]
+  );
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,70 +117,20 @@ export default function Login() {
     },
   });
 
-const onSubmit = (values: z.infer<typeof formSchema>) => {
-  mutate(values, {
-    onSuccess: (response) => {
-      if (!response?.is_active) {
-        toast({
-          title: 'Verify your email',
-          description: 'Your account is inactive. Please check your email for verification.',
-          variant: 'destructive',
-        });
-      }
-
-      if (response?.access) {
-        // Store tokens in localStorage
-        localStorage.setItem('authToken', response.access);
-        localStorage.setItem('refreshToken', response.refresh);
-
-        toast({
-          title: 'Login Successful',
-          description: 'Welcome back! You have successfully logged in.',
-          variant: 'default',
-        });
-
-        router.replace('/');
-      } else {
-        toast({
-          title: 'Login failed',
-          description: 'Invalid credentials or unexpected response',
-          variant: 'destructive',
-        });
-      }
-    },
-    onError: (error) => {
-      const message = (error as any).response?.data?.message || 'Something went wrong';
-      toast({
-        title: 'Error',
-        description: message,
-        variant: 'destructive',
-      });
-    },
-  });
-};
-
-
-
-
   return (
-    <main className="w-full min-h-[590px] h-auto max-w-full pt-10">
-      <div className="w-full h-full p-5 rounded-md">
-        <div className="w-full flex justify-center">
-          <Image
-            src="/logo.png"
-            alt="logo"
-            width={100}
-            height={100}
-          />
+    <main className="w-full min-h-screen flex items-center justify-center  py-10">
+      <div className="w-full max-w-md mx-auto h-full p-8 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+        <div className="w-full flex justify-center mb-8">
+          <Image src="/logo.png" alt="logo" width={100} height={100} />
         </div>
 
-        <h1 className="text-xl tracking-[-0.16px] dark:text-[#fcfdffef] flex justify-center font-bold mb-1.5 mt-8  sm:text-left">
+        <h1 className="text-2xl text-center font-bold mb-6 dark:text-[#fcfdffef]">
           Log in to Investly
         </h1>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="mb-4">
+            <div className="space-y-4">
               <FormField
                 control={form.control}
                 name="email"
@@ -123,14 +138,17 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
                   <FormItem>
                     <FormLabel className="dark:text-[#f1f7feb5] text-sm">Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="subscribeto@channel.com" {...field} />
+                      <Input
+                        className="dark:bg-gray-800"
+                        placeholder="subscribeto@channel.com"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-            </div>
-            <div className="mb-4">
+
               <FormField
                 control={form.control}
                 name="password"
@@ -138,42 +156,58 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
                   <FormItem>
                     <FormLabel className="dark:text-[#f1f7feb5] text-sm">Password</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="••••••••••••" {...field} />
+                      <Input
+                        className="dark:bg-gray-800"
+                        type="password"
+                        placeholder="••••••••••••"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-            </div>
-            <div className="mb-4 flex w-full items-center justify-end">
-              <Link
-                className="text-sm dark:text-white"
-                href={`/forgot-password?email=${form.getValues().email}`}
-              >
-                Forgot your password?
-              </Link>
-            </div>
-            <Button
-              className="w-full text-[15px] h-[40px] text-white dark:bg-gray-900 dark:hover:bg-gray-800 dark:text-white font-semibold"
-              disabled={isPending}
-              type="submit"
-            >
-              {isPending && <Loader className="animate-spin" />}
-              Sign in
-              <ArrowRight />
-            </Button>
 
-            <div className="mb-6 mt-6 flex items-center justify-center">
+              <div className="flex w-full items-center justify-end">
+                <Link
+                  className="text-sm text-primary hover:underline dark:text-white"
+                  href={`/forgot-password?email=${form.getValues().email}`}
+                >
+                  Forgot your password?
+                </Link>
+              </div>
+
+              <Button
+                className="w-full h-11 text-[15px] bg-primary hover:bg-primary/90 text-white dark:bg-gray-800 dark:hover:bg-gray-700 font-semibold"
+                disabled={isPending}
+                type="submit"
+              >
+                {isPending ? (
+                  <>
+                    <Loader className="mr-2 h-4 w-4 animate-spin" />
+                    Signing in...
+                  </>
+                ) : (
+                  <>
+                    Sign in
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </>
+                )}
+              </Button>
+            </div>
+
+            <div className="my-6 flex items-center justify-center">
               <div
                 aria-hidden="true"
-                className="h-px w-full bg-[#eee] dark:bg-[#d6ebfd30]"
+                className="h-px w-full bg-gray-200 dark:bg-gray-700"
                 data-orientation="horizontal"
                 role="separator"
               />
             </div>
           </form>
         </Form>
-        <p className="text-xs dark:text-slate- font-normal mt-7">
+
+        <p className="text-sm text-center text-gray-600 dark:text-gray-400">
           By signing in, you agree to our{' '}
           <a className="text-primary hover:underline" href="#">
             Terms of Service

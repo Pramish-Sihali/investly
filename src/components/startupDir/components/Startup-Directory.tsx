@@ -1,9 +1,16 @@
-import { gql } from "@apollo/client"
-import client from "@/lib/apollo-client"
-import { Button } from "@/components/ui/button"
-import { StartupCard } from "@/components/starup-card"
-import HeadingSection from "@/components/common/heading-section"
-import { Table, TableRow, TableBody, TableCell, TableHead, TableHeader } from "@/components/ui/table"
+import { gql } from '@apollo/client';
+import client from '@/lib/apollo-client';
+import { Button } from '@/components/ui/button';
+import { StartupCard } from '@/components/starup-card';
+import HeadingSection from '@/components/common/heading-section';
+import {
+  Table,
+  TableRow,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+} from '@/components/ui/table';
 
 const FETCH_STARTUPS = gql`
   query FetchStartups {
@@ -19,26 +26,26 @@ const FETCH_STARTUPS = gql`
       }
     }
   }
-`
+`;
 
 async function fetchStartups() {
   try {
     const { data } = await client.query({
       query: FETCH_STARTUPS,
-      fetchPolicy: "no-cache",
-    })
-    return data.companies.results
+      fetchPolicy: 'no-cache',
+    });
+    return data.companies.results;
   } catch (error) {
-    console.error("Error fetching startups:", error)
-    return []
+    console.error('Error fetching startups:', error);
+    return [];
   }
 }
 
 export default async function StartupDirectoryPage() {
-  const startups = await fetchStartups()
+  const startups = await fetchStartups();
 
-  const featuredStartups = startups.filter((startup: any) => startup.featured)
-  const otherStartups = startups.filter((startup: any) => !startup.featured)
+  const featuredStartups = startups.filter((startup: any) => startup.featured);
+  const otherStartups = startups.filter((startup: any) => !startup.featured);
 
   return (
     <main className="container mx-auto px-4 py-12">
@@ -58,7 +65,7 @@ export default async function StartupDirectoryPage() {
               description={startup.companyDescription}
               logo={startup.logo}
               progress={50} // You might want to add this field to your GraphQL query
-              daysLeft={30} // You might want to add this field to your GraphQL query
+              daysLeft={30}
               raised={startup.amountRaising}
               featured={startup.featured}
             />
@@ -93,6 +100,5 @@ export default async function StartupDirectoryPage() {
         </div>
       </div>
     </main>
-  )
+  );
 }
-
