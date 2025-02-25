@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Menu, Bell, MessageCircle, User } from 'lucide-react';
+import { Menu, Bell, User, MessageCircle } from 'lucide-react';
 import { Sheet, SheetTitle, SheetHeader, SheetContent } from '@/components/ui/sheet';
 import {
   NavigationMenu,
