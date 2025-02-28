@@ -25,7 +25,7 @@ export default function AuthChecker({ children }: AuthCheckerProps) {
         const userData = JSON.parse(userDataStr);
         const roleRoutes = {
           Investor: '/investors',
-          Startup: '/startups',
+          Startup: '/',
           Mentor: '/mentors',
         };
 

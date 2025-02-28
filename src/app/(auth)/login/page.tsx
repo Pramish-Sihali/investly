@@ -55,7 +55,7 @@ export default function Login() {
       mutate(values, {
         onSuccess: (response) => {
           if (response?.access) {
-            // Batch localStorage operations
+            // Batch localStorage operationss
             const updates = {
               authToken: response.access,
               refreshToken: response.refresh,
@@ -78,7 +78,7 @@ export default function Login() {
             }
             const roleRoutes: { [key: string]: string } = {
               Investor: '/investors',
-              Startup: '/startups',
+              Startup: '/',
               Mentor: '/mentors',
             };
 
