@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Logo from '@/components/logo';
 import React, { useState } from 'react';
-import { useAuthContext } from '@/context/auth-provider';
+import { useAuth } from '@/context/auth-provider';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Home, Lock, User, Loader, LogOut, Settings, EllipsisIcon } from 'lucide-react';
 import {
@@ -29,7 +29,7 @@ import {
 import LogoutDialog from './_common/LogoutDialog';
 
 const Asidebar = () => {
-  const { isLoading, user } = useAuthContext();
+  const { isLoggedIn, login, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   const { open } = useSidebar();
@@ -93,9 +93,7 @@ const Asidebar = () => {
         <SidebarFooter className="dark:bg-background">
           <SidebarMenu>
             <SidebarMenuItem>
-              {isLoading ? (
-                <Loader size="24px" className="place-self-center self-center animate-spin" />
-              ) : (
+              {isLoggedIn ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <SidebarMenuButton
@@ -104,13 +102,12 @@ const Asidebar = () => {
                     >
                       <Avatar className="h-8 w-8 rounded-lg">
                         <AvatarFallback className="rounded-lg">
-                          {user?.name?.split(' ')?.[0]?.charAt(0)}
-                          {user?.name?.split(' ')?.[1]?.charAt(0)}
+                          {User?.name?.split(' ')?.[0]?.charAt(0)}
+                          {User?.name?.split(' ')?.[1]?.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
                       <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-semibold">{user?.name}</span>
-                        <span className="truncate text-xs">{user?.email}</span>
+                        <span className="truncate font-semibold">{User?.name}</span>
                       </div>
                       <EllipsisIcon className="ml-auto size-4" />
                     </SidebarMenuButton>
@@ -127,6 +124,8 @@ const Asidebar = () => {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
+              ) : (
+                <Loader size="24px" className="place-self-center self-center animate-spin" />
               )}
             </SidebarMenuItem>
           </SidebarMenu>

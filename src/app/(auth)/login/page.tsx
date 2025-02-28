@@ -34,7 +34,7 @@ export default function Login() {
   // Memoize the mutation to prevent unnecessary re-renders
   const { mutate, isPending } = useMutation({
     mutationFn: loginMutationFn,
-    // Add mutationKey to help with caching
+
     mutationKey: ['login'],
   });
 
@@ -63,23 +63,15 @@ export default function Login() {
             };
             Object.entries(updates).forEach(([key, value]) => localStorage.setItem(key, value));
 
-            if (!response?.is_active) {
-              toast({
-                title: 'Email Verification Required',
-                description: 'Please check your email to verify your account for full access.',
-                variant: 'destructive',
-              });
-            } else {
-              toast({
-                title: 'Login Successful',
-                description: 'Welcome back! You have successfully logged in.',
-                variant: 'default',
-              });
-            }
+            toast({
+              title: 'Login Successful',
+              description: 'Welcome back! You have successfully logged in.',
+              variant: 'default',
+            });
             const roleRoutes: { [key: string]: string } = {
               Investor: '/investors',
               Startup: '/',
-              Mentor: '/mentors',
+              Mentor: '/',
             };
 
             const redirectPath = roleRoutes[response.user.role] || '/';

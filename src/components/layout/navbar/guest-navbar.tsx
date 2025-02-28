@@ -6,7 +6,8 @@ import { cn } from '@/lib/utils';
 import { Menu, User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import React, { useState, useEffect, useRef } from 'react';
+import { useAuth } from '@/context/auth-provider';
+import React, { useRef, useState, useEffect } from 'react';
 import { Sheet, SheetTitle, SheetHeader, SheetContent } from '@/components/ui/sheet';
 import {
   NavigationMenu,
@@ -22,17 +23,10 @@ export function Navbar() {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isSignInDropdownOpen, setIsSignInDropdownOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [reload, setReload] = useState(false);
+  const { isLoggedIn, logout } = useAuth();
 
   const profileDropdownRef = useRef<HTMLDivElement | null>(null);
   const signInDropdownRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    setIsLoggedIn(!!token); // Convert to boolean
-    setReload((prev) => !prev); // Trigger a re-render
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -187,8 +181,7 @@ export function Navbar() {
                       </Link>
                       <button
                         onClick={() => {
-                          localStorage.removeItem('authToken');
-                          setIsLoggedIn(false);
+                          logout();
                           window.location.href = '/login';
                         }}
                         className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"

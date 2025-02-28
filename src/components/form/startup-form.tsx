@@ -5,8 +5,8 @@ import type React from 'react';
 import { z } from 'zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
-import { Toast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { useMutation } from '@tanstack/react-query';
@@ -81,6 +81,7 @@ const registerMutationFn = async (data: FormValues) => {
 
 export default function UserRegistrationForm() {
   const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -97,20 +98,22 @@ export default function UserRegistrationForm() {
   const { mutate } = useMutation({
     mutationFn: registerMutationFn,
     onSuccess: () => {
-      Toast({
+      toast({
         title: 'Form submitted successfully',
       });
-      Toast({
+      form.reset();
+      setFile(null);
+      toast({
         title: 'Check your email for activation instructions.',
         variant: 'default',
       });
-      Toast({
-        title: 'Now you can activate your account via the email sent to you.',
+      toast({
+        title: 'Please activate your account via the email sent to you.',
         variant: 'default',
       });
     },
     onError: (error) => {
-      Toast({
+      toast({
         title: 'Error',
         variant: 'destructive',
       });
@@ -118,7 +121,7 @@ export default function UserRegistrationForm() {
   });
 
   function onSubmit(values: FormValues) {
-    // Include the file in the form data
+    setLoading(true);
     const formData = new FormData();
     Object.entries(values).forEach(([key, value]) => {
       if (value !== undefined && key !== 'document') {
@@ -130,8 +133,11 @@ export default function UserRegistrationForm() {
       formData.append('document', file);
     }
 
-    // Call the mutate function with the form values
-    mutate(values);
+    mutate(values, {
+      onSettled: () => {
+        setLoading(false);
+      },
+    });
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -147,8 +153,8 @@ export default function UserRegistrationForm() {
         <CardContent>
           <div className="flex flex-col items-center justify-center mt-10">
             <HeadingSection
-              title="Welcome to User Registration"
-              subtitle="Please fill in the details below"
+              title="Startups Registration"
+              subtitle="Please fill in the details below if you are a startup"
             />
           </div>
           <Form {...form}>
@@ -224,8 +230,6 @@ export default function UserRegistrationForm() {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="Investor">Investor</SelectItem>
-                            <SelectItem value="Mentor">Mentor</SelectItem>
                             <SelectItem value="Startup">Startup</SelectItem>
                           </SelectContent>
                         </Select>
@@ -280,8 +284,8 @@ export default function UserRegistrationForm() {
               </div>
 
               <div className="flex justify-center mt-6">
-                <Button type="submit" className="w-full max-w-xs">
-                  Submit Form
+                <Button type="submit" className="w-full max-w-xs" disabled={loading}>
+                  {loading ? 'Submitting...' : 'Submit Form'}
                 </Button>
               </div>
             </form>

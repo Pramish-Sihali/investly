@@ -3,9 +3,9 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 import { Toaster } from '@/components/ui/toaster';
-import AuthChecker from '@/app/(auth)/authChecker';
 import { Footer } from '@/components/layout/footer';
 import QueryProvider from '@/context/query-provider';
+import { AuthProvider } from '@/context/auth-provider';
 import { Bricolage_Grotesque } from 'next/font/google';
 import { Newsletter } from '@/components/layout/newsletter';
 import { Navbar } from '@/components/layout/navbar/guest-navbar';
@@ -26,14 +26,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-background ${bricolage_grotesque.className} antialiased`}>
-        <QueryProvider>
-          <Navbar />
-          {children}
-          <Toaster />
-          <Newsletter />
-          <ContactView />
-          <Footer />
-        </QueryProvider>
+        <AuthProvider>
+          <QueryProvider>
+            <Navbar />
+            {children}
+            <Toaster />
+            <Newsletter />
+            <ContactView />
+            <Footer />
+          </QueryProvider>
+        </AuthProvider>
       </body>
     </html>
   );
