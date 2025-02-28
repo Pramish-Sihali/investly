@@ -1,8 +1,18 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 
 export default function Home() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const authToken = localStorage.getItem('authToken');
+    setIsAuthenticated(!!authToken);
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col mx-auto">
       <section className="relative overflow-hidden bg-white">
@@ -16,25 +26,27 @@ export default function Home() {
               <p className="mt-3 text-2xl text-gray-900 sm:text-3xl lg:text-[2rem]">
                 Nepal leading Angel Platform
               </p>
-              <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mt-5">
-                <Link href="/signup/?usertype=Investor">
-                  <Button
-                    size="lg"
-                    className="bg-primary hover:bg-primary/90 text-white w-full sm:w-auto"
-                  >
-                    Sign up as investor
-                  </Button>
-                </Link>
-                <Link href="/signup/?usertype=Startup">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="text-black bg-white/10 border-white hover:bg-white/10 w-full sm:w-auto border-gray "
-                  >
-                    Sign up as startup
-                  </Button>
-                </Link>
-              </div>
+              {!isAuthenticated && (
+                <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mt-5">
+                  <Link href="/signup/?usertype=Investor">
+                    <Button
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-white w-full sm:w-auto"
+                    >
+                      Sign up as investor
+                    </Button>
+                  </Link>
+                  <Link href="/signup/?usertype=Startup">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="text-black bg-white/10 border-white hover:bg-white/10 w-full sm:w-auto border-gray "
+                    >
+                      Sign up as startup
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </div>
 
             {/* Right Column with Image and Stats (Hidden on mobile) */}
@@ -75,15 +87,15 @@ export default function Home() {
             {/* Left Column */}
             <div className="lg:col-span-2">
               <h2 className="text-3xl font-bold leading-tight text-gray-800 sm:text-4xl lg:text-5xl lg:leading-tight">
-                Top YC
+                Partner
                 <br />
                 Companies
                 <br />
                 We Work With
                 <br />
               </h2>
-              <p className="mt-6 text-base text-gray-600">
-                Join our platform to connect with leading YC companies and be part of the next big
+              <p className="mt-6 text-base text-gray-600 text-justify">
+                Join our platform to connect with leading companies and be part of the next big
                 thing in the startup ecosystem.
               </p>
             </div>

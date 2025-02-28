@@ -53,7 +53,7 @@ export function Newsletter() {
   };
 
   return (
-    <div className="container w-[90%] border border-collapse mx-auto rounded-xl overflow-hidden bg-gradient-to-r from-primary/40 to-primary/30 my-10">
+    <div className="container w-[90%] border border-collapse mx-auto rounded-xl overflow-hidden bg-gradient-to-r from-primary/10 to-primary/30 my-10">
       <div className="flex flex-col lg:flex-row items-center justify-between px-8 py-12 gap-8">
         {/* Left Side */}
         <div className="w-full lg:w-1/2 space-y-6 md:text-center lg:text-left">

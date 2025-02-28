@@ -23,18 +23,12 @@ import {
 
 const registerMutationFn = async (data: any) => {
   try {
-    const response = await fetch('https://investly.baliyoventures.com/api/register/', {
+    const response = await fetch('https://investly.baliyoventures.com/api/users/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        full_name: data.name,
-        email: data.email,
-        password: data.password,
-        confirm_password: data.confirmPassword,
-        role: data.role,
-      }),
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
@@ -58,27 +52,26 @@ export default function SignUp() {
     mutationFn: registerMutationFn,
   });
 
-  const formSchema = z
-    .object({
-      name: z.string().trim().min(1, { message: 'Name is required' }),
-      email: z.string().trim().email().min(1, { message: 'Email is required' }),
-      password: z.string().trim().min(1, { message: 'Password is required' }),
-      confirmPassword: z.string().min(1, { message: 'Confirm Password is required' }),
-      role: z.string().min(1, { message: 'Role is required' }),
-    })
-    .refine((val) => val.password === val.confirmPassword, {
-      message: 'Password does not match',
-      path: ['confirmPassword'],
-    });
+  const formSchema = z.object({
+    full_name: z.string().trim().min(1, { message: 'Name is required' }),
+    organization_name: z.string().trim().min(1, { message: 'Organization Name is required' }),
+    email: z.string().trim().email().min(1, { message: 'Email is required' }),
+    contact_number: z.string().trim().min(1, { message: 'Contact Number is required' }),
+    role: z.string().min(1, { message: 'Role is required' }),
+    about_you: z.string().optional(),
+    website_link: z.string().url().optional(),
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
+      full_name: '',
+      organization_name: '',
       email: '',
-      password: '',
-      confirmPassword: '',
+      contact_number: '',
       role: userType,
+      about_you: '',
+      website_link: '',
     },
   });
 
@@ -87,7 +80,17 @@ export default function SignUp() {
   }, [userType, form]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    mutate(values, {
+    const submissionData = {
+      full_name: values.full_name,
+      organization_name: values.organization_name,
+      email: values.email,
+      contact_number: values.contact_number,
+      role: values.role,
+      description: values.about_you,
+      website_link: values.website_link,
+    };
+
+    mutate(submissionData, {
       onSuccess: () => {
         setIsSubmitted(true);
       },
@@ -124,13 +127,31 @@ export default function SignUp() {
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
                   control={form.control}
-                  name="name"
+                  name="full_name"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="dark:text-gray-200">Name</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="John Doe"
+                          {...field}
+                          className="dark:bg-gray-700 dark:text-white"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="organization_name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="dark:text-gray-200">Organization Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Your Organization"
                           {...field}
                           className="dark:bg-gray-700 dark:text-white"
                         />
@@ -161,33 +182,13 @@ export default function SignUp() {
 
                 <FormField
                   control={form.control}
-                  name="password"
+                  name="contact_number"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="dark:text-gray-200">Password</FormLabel>
+                      <FormLabel className="dark:text-gray-200">Contact Number</FormLabel>
                       <FormControl>
                         <Input
-                          type="password"
-                          placeholder="••••••••••••"
-                          {...field}
-                          className="dark:bg-gray-700 dark:text-white"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="dark:text-gray-200">Confirm Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="••••••••••••"
+                          placeholder="123-456-7890"
                           {...field}
                           className="dark:bg-gray-700 dark:text-white"
                         />
@@ -209,7 +210,43 @@ export default function SignUp() {
                           {...field}
                           value={userType}
                           readOnly
-                          className="w-full p-2 border rounded-md bg-gray-100 dark:bg-gray-700 dark:text-white cursor-not-allowed"
+                          className="w-full p-3 border rounded-md bg-gray-100 dark:bg-gray-700 dark:text-white cursor-not-allowed"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="about_you"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="dark:text-gray-200">About You</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Tell us about yourself"
+                          {...field}
+                          className="dark:bg-gray-700 dark:text-white"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="website_link"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="dark:text-gray-200">Website Link</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="https://yourwebsite.com"
+                          {...field}
+                          className="dark:bg-gray-700 dark:text-white"
                         />
                       </FormControl>
                       <FormMessage />

@@ -1,7 +1,33 @@
+'use client';
+
 import { User } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
+// Define the UserData interface based on the provided structure
+interface UserData {
+  id: number;
+  full_name: string;
+  email: string;
+  role: string;
+  organization_name: string;
+  contact_number: string;
+  about_you: string | null;
+  website_link: string;
+  document: string | null;
+  investmentsCount: number;
+}
+
 export default function ProfilePage() {
+  const [userData, setUserData] = useState<UserData | null>(null); // Specify the type
+
+  useEffect(() => {
+    const data = localStorage.getItem('userData');
+    if (data) {
+      setUserData(JSON.parse(data));
+    }
+  }, []);
+
   return (
     <div className="container mx-auto p-6">
       <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
@@ -11,12 +37,22 @@ export default function ProfilePage() {
               <User className="w-12 h-12 text-gray-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-semibold">Kapil Sapkota</h1>
-              <p className="text-gray-600">Investor</p>
+              <h1 className="text-2xl font-semibold">
+                {userData ? userData.full_name : 'Loading...'}
+              </h1>
+              <p className="text-gray-600">{userData ? userData.role : 'Loading...'}</p>
+              <p className="text-gray-600">
+                {userData ? userData.organization_name : 'Loading...'}
+              </p>
+              <p className="text-gray-600">{userData ? userData.email : 'Loading...'}</p>
+              <p className="text-gray-600">{userData ? userData.contact_number : 'Loading...'}</p>
+              <a href={userData ? userData.website_link : '#'} className="text-blue-500">
+                {userData ? userData.website_link : 'Loading...'}
+              </a>
             </div>
           </div>
           <div className="text-center">
-            <h2 className="text-3xl font-bold">0</h2>
+            <h2 className="text-3xl font-bold">{userData ? userData.investmentsCount : '0'}</h2>
             <p className="text-gray-600">Investments</p>
           </div>
         </div>

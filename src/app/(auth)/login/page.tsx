@@ -2,7 +2,6 @@
 
 import { z } from 'zod';
 import axios from 'axios';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { toast } from '@/hooks/use-toast';
@@ -22,7 +21,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-const loginMutationFn = async (data: { email: string; password: string }) => {
+const loginMutationFn = async (data: { email: string }) => {
   const response = await axios.post('https://investly.baliyoventures.com/api/login/', data, {
     headers: { 'Content-Type': 'application/json' },
   });
@@ -45,9 +44,6 @@ export default function Login() {
       z.object({
         email: z.string().trim().email().min(1, {
           message: 'Email is required',
-        }),
-        password: z.string().trim().min(1, {
-          message: 'Password is required',
         }),
       }),
     []
@@ -113,7 +109,6 @@ export default function Login() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
@@ -149,33 +144,14 @@ export default function Login() {
                 )}
               />
 
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="dark:text-[#f1f7feb5] text-sm">Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        className="dark:bg-gray-800"
-                        type="password"
-                        placeholder="••••••••••••"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="flex w-full items-center justify-end">
+              {/* <div className="flex w-full items-center justify-end">
                 <Link
                   className="text-sm text-primary hover:underline dark:text-white"
                   href={`/forgot-password?email=${form.getValues().email}`}
                 >
                   Forgot your password?
                 </Link>
-              </div>
+              </div> */}
 
               <Button
                 className="w-full h-11 text-[15px] bg-primary hover:bg-primary/90 text-white dark:bg-gray-800 dark:hover:bg-gray-700 font-semibold"
@@ -185,11 +161,11 @@ export default function Login() {
                 {isPending ? (
                   <>
                     <Loader className="mr-2 h-4 w-4 animate-spin" />
-                    Signing in...
+                    Logging in...
                   </>
                 ) : (
                   <>
-                    Sign in
+                    Log in
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </>
                 )}

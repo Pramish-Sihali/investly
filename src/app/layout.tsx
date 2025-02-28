@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/footer';
 import QueryProvider from '@/context/query-provider';
 import { Bricolage_Grotesque } from 'next/font/google';
 import { Newsletter } from '@/components/layout/newsletter';
+import { Navbar } from '@/components/layout/navbar/guest-navbar';
 import ContactView from '@/components/contact-us/view/contact-view';
 
 const bricolage_grotesque = Bricolage_Grotesque({ subsets: ['latin'] });
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`bg-background ${bricolage_grotesque.className} antialiased`}>
         <QueryProvider>
+          <Navbar />
           {children}
           <Toaster />
           <Newsletter />

@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { Menu } from 'lucide-react';
-import React, { useState } from 'react';
+import { Menu, User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import React, { useState, useEffect, useRef } from 'react';
 import { Sheet, SheetTitle, SheetHeader, SheetContent } from '@/components/ui/sheet';
 import {
   NavigationMenu,
@@ -19,8 +19,39 @@ import {
 
 export function Navbar() {
   const pathname = usePathname();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isSignInDropdownOpen, setIsSignInDropdownOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [reload, setReload] = useState(false);
+
+  const profileDropdownRef = useRef<HTMLDivElement | null>(null);
+  const signInDropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    setIsLoggedIn(!!token); // Convert to boolean
+    setReload((prev) => !prev); // Trigger a re-render
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        profileDropdownRef.current &&
+        !profileDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsProfileDropdownOpen(false);
+      }
+      if (signInDropdownRef.current && !signInDropdownRef.current.contains(event.target as Node)) {
+        setIsSignInDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const navLinks = [
     {
@@ -28,23 +59,31 @@ export function Navbar() {
       children: [
         { name: 'For Investors', href: '/for-investor' },
         { name: 'For Startups', href: '/for-startup' },
-        { name: 'How The Platform Works', href: '/how-the-platform-works' },
-        { name: 'Investor Matching Program', href: '/investor-matching-program' },
       ],
     },
     {
-      name: 'Articles',
+      name: 'About Us',
+      children: [
+        { name: 'About Us', href: '/company' },
+        { name: 'How It Works', href: '/how-the-platform-works' },
+        { name: 'Our Team', href: '/our-team' },
+        { name: 'Services', href: '/services' },
+      ],
+    },
+    {
+      name: 'Resources',
       children: [
         { name: 'Academy', href: '/academy' },
         { name: 'News/Updates & Events', href: '/events' },
         { name: 'Blog', href: '/blog' },
-        { name: 'Why Investly', href: '/why-investly' },
       ],
     },
+    {
+      name: 'Why us',
+      href: '/why-investly',
+    },
     { name: 'Mentor', href: '/mentor' },
-
-    { name: 'Startup Directory', href: '/startup-directory' },
-    { name: 'Company', href: '/company' },
+    { name: 'FAQ', href: '/fnq' },
   ];
 
   return (
@@ -101,31 +140,76 @@ export function Navbar() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <div className="relative">
+          <div className="relative" ref={profileDropdownRef}>
             <div className="flex gap-4">
-              <Link
-                href="/login"
-                className="px-5 py-2 border text-sm font-medium text-black bg-white rounded-md hover:bg-gray-800 hover:text-white"
-              >
-                Log In
-              </Link>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevents unintended behavior
-                  setIsDropdownOpen(!isDropdownOpen);
-                }}
-                className="px-5 py-2 border text-sm font-medium text-white bg-primary rounded-md hover:bg-gray-800"
-              >
-                Sign Up
-              </button>
+              {!isLoggedIn ? (
+                <>
+                  <Link
+                    href="/login"
+                    className="px-5 py-2 border text-sm font-medium text-black bg-white rounded-md hover:bg-gray-800 hover:text-white"
+                  >
+                    Log In
+                  </Link>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsSignInDropdownOpen(!isSignInDropdownOpen);
+                    }}
+                    className="px-5 py-2 border text-sm font-medium text-white bg-primary rounded-md hover:bg-gray-800"
+                  >
+                    Sign Up
+                  </button>
+                </>
+              ) : (
+                <div className="relative">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsProfileDropdownOpen(!isProfileDropdownOpen);
+                    }}
+                    className="p-2 text-gray-700 hover:bg-gray-200 rounded-md"
+                  >
+                    <User className="w-6 h-6" />
+                  </button>
+                  {isProfileDropdownOpen && isLoggedIn && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
+                      <Link
+                        href="/investors/profile"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 rounded-md"
+                      >
+                        Profile
+                      </Link>
+                      <Link
+                        href="/startup-directory"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 rounded-md"
+                      >
+                        Startup
+                      </Link>
+                      <button
+                        onClick={() => {
+                          localStorage.removeItem('authToken');
+                          setIsLoggedIn(false);
+                          window.location.href = '/login';
+                        }}
+                        className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Sign Up Dropdown */}
-            {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
+            {isSignInDropdownOpen && (
+              <div
+                className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10"
+                ref={signInDropdownRef}
+              >
                 <button
                   onClick={() => {
-                    setIsDropdownOpen(false);
+                    setIsSignInDropdownOpen(false);
                     window.location.href = '/signup/?usertype=Investor';
                   }}
                   className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
@@ -134,7 +218,7 @@ export function Navbar() {
                 </button>
                 <button
                   onClick={() => {
-                    setIsDropdownOpen(false);
+                    setIsSignInDropdownOpen(false);
                     window.location.href = '/signup/?usertype=Startup';
                   }}
                   className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
@@ -143,7 +227,7 @@ export function Navbar() {
                 </button>
                 <button
                   onClick={() => {
-                    setIsDropdownOpen(false);
+                    setIsSignInDropdownOpen(false);
                     window.location.href = '/signup/?usertype=Mentor';
                   }}
                   className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"

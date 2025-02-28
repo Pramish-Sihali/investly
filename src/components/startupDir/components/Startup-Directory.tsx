@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { gql } from '@apollo/client';
 import client from '@/lib/apollo-client';
 import { Button } from '@/components/ui/button';
@@ -94,9 +95,11 @@ export default async function StartupDirectoryPage() {
         </Table>
 
         <div className="flex justify-center pt-4">
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-b px-8">
-            View all open rounds
-          </Button>
+          <Link href="/startup-directory">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-b px-8">
+              View all open rounds
+            </Button>
+          </Link>
         </div>
       </div>
     </main>
