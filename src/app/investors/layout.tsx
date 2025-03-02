@@ -1,3 +1,9 @@
+import AuthChecker from '../(auth)/authChecker';
+
 export default function GuestLayout({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>;
+  return (
+    <AuthChecker>
+      <div>{children}</div>
+    </AuthChecker>
+  );
 }

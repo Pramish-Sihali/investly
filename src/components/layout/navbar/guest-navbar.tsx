@@ -47,6 +47,12 @@ export function Navbar() {
     };
   }, []);
 
+  // Effect to handle immediate UI update after login
+  useEffect(() => {
+    // This effect will trigger whenever `isLoggedIn` changes
+    // No need to do anything specific here, just ensure the component re-renders
+  }, [isLoggedIn]);
+
   const navLinks = [
     {
       name: 'How It Works',
@@ -167,12 +173,14 @@ export function Navbar() {
                   </button>
                   {isProfileDropdownOpen && isLoggedIn && (
                     <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
-                      <Link
-                        href="/investors/profile"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 rounded-md"
-                      >
-                        Profile
-                      </Link>
+                      {isLoggedIn && (
+                        <Link
+                          href="/investors/profile"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 rounded-md"
+                        >
+                          Profile
+                        </Link>
+                      )}
                       <Link
                         href="/startup-directory"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 rounded-md"

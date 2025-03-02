@@ -17,7 +17,18 @@ export default function AuthChecker({ children }: AuthCheckerProps) {
       const userDataStr = localStorage.getItem('userData');
 
       if (!authToken || !userDataStr) {
+        // Prevent access to /investors/profile if not logged in
+        if (pathname === '/investors/profile') {
+          router.replace('/login'); // Redirect to login
+          return;
+        }
         router.replace('/login');
+        return;
+      }
+
+      // Prevent access to /login and /signup if already logged in
+      if (authToken && (pathname === '/login' || pathname === '/signup')) {
+        router.replace('/'); // Redirect to home or another appropriate page
         return;
       }
 

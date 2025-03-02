@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
-import { Navbar } from '@/components/layout/navbar/guest-navbar';
+
+import AuthChecker from './authChecker';
 
 export default function AuthLayout({
   children,
@@ -7,12 +8,14 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Suspense>
-      <div className="w-full h-auto">
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="w-full max-w-[450px] mx-auto h-auto ">{children}</div>
+    <AuthChecker>
+      <Suspense>
+        <div className="w-full h-auto">
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="w-full max-w-[450px] mx-auto h-auto ">{children}</div>
+          </div>
         </div>
-      </div>
-    </Suspense>
+      </Suspense>
+    </AuthChecker>
   );
 }
