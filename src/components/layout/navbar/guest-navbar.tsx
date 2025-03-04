@@ -23,7 +23,7 @@ export function Navbar() {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isSignInDropdownOpen, setIsSignInDropdownOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const { isLoggedIn, logout } = useAuth();
+  const { isLoggedIn, logout, user, isLoading } = useAuth();
 
   const profileDropdownRef = useRef<HTMLDivElement | null>(null);
   const signInDropdownRef = useRef<HTMLDivElement | null>(null);
@@ -86,6 +86,11 @@ export function Navbar() {
     { name: 'Mentor', href: '/mentor' },
     { name: 'FAQ', href: '/fnq' },
   ];
+
+  // Update the logout handler
+  const handleLogout = async () => {
+    await logout();
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-lg">
@@ -174,6 +179,12 @@ export function Navbar() {
                   </button>
                   {isProfileDropdownOpen && isLoggedIn && (
                     <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
+                      {user && (
+                        <div className="px-4 py-2 border-b border-gray-200">
+                          <p className="text-sm font-medium">{user.name}</p>
+                          <p className="text-xs text-gray-500">{user.email}</p>
+                        </div>
+                      )}
                       {isLoggedIn && (
                         <Link
                           href="/investors/profile"
@@ -189,10 +200,7 @@ export function Navbar() {
                         Startup
                       </Link>
                       <button
-                        onClick={() => {
-                          logout();
-                          window.location.href = '/login';
-                        }}
+                        onClick={handleLogout}
                         className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
                       >
                         Logout

@@ -1,16 +1,13 @@
 'use client';
 
 import { z } from 'zod';
-import axios from 'axios';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
-import { toast } from '@/hooks/use-toast';
-import { useRouter } from 'next/navigation';
-import { useMemo, useCallback } from 'react';
+import { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Loader, ArrowRight } from 'lucide-react';
-import { useMutation } from '@tanstack/react-query';
+import { useAuth } from '@/context/auth-provider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Form,
@@ -21,22 +18,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-const loginMutationFn = async (data: { email: string }) => {
-  const response = await axios.post('https://investly.baliyoventures.com/api/login/', data, {
-    headers: { 'Content-Type': 'application/json' },
-  });
-  return response.data;
-};
-
 export default function Login() {
-  const router = useRouter();
-
-  // Memoize the mutation to prevent unnecessary re-renders
-  const { mutate, isPending } = useMutation({
-    mutationFn: loginMutationFn,
-
-    mutationKey: ['login'],
-  });
+  const { login, isLoading } = useAuth();
+  const [isPending, setIsPending] = useState(false);
 
   // Memoize the form schema
   const formSchema = useMemo(
@@ -45,67 +29,32 @@ export default function Login() {
         email: z.string().trim().email().min(1, {
           message: 'Email is required',
         }),
+        password: z.string().min(1, {
+          message: 'Password is required',
+        }),
       }),
     []
-  );
-
-  // Memoize the onSubmit handler
-  const onSubmit = useCallback(
-    (values: z.infer<typeof formSchema>) => {
-      mutate(values, {
-        onSuccess: (response) => {
-          if (response?.access) {
-            // Batch localStorage operationss
-            const updates = {
-              authToken: response.access,
-              refreshToken: response.refresh,
-              userData: JSON.stringify(response.user),
-            };
-            Object.entries(updates).forEach(([key, value]) => localStorage.setItem(key, value));
-
-            toast({
-              title: 'Login Successful',
-              description: 'Welcome back! You have successfully logged in.',
-              variant: 'default',
-            });
-            const roleRoutes: { [key: string]: string } = {
-              Investor: '/investors',
-              Startup: '/',
-              Mentor: '/',
-            };
-
-            const redirectPath = roleRoutes[response.user.role] || '/';
-            router.replace(redirectPath);
-          } else {
-            toast({
-              title: 'Login failed',
-              description: 'Invalid credentials or unexpected response',
-              variant: 'destructive',
-            });
-          }
-        },
-        onError: (error) => {
-          const message = (error as any).response?.data?.message || 'Something went wrong';
-          toast({
-            title: 'Error',
-            description: message,
-            variant: 'destructive',
-          });
-        },
-      });
-    },
-    [mutate, router]
   );
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
+      password: '',
     },
   });
 
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsPending(true);
+    try {
+      await login(values);
+    } finally {
+      setIsPending(false);
+    }
+  };
+
   return (
-    <main className="w-full min-h-screen flex items-center justify-center  py-10">
+    <main className="w-full min-h-screen flex items-center justify-center py-10">
       <div className="w-full max-w-md mx-auto h-full p-8 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
         <div className="w-full flex justify-center mb-8">
           <Image src="/logo.png" alt="logo" width={100} height={100} />
@@ -127,7 +76,7 @@ export default function Login() {
                     <FormControl>
                       <Input
                         className="dark:bg-gray-800"
-                        placeholder="subscribeto@channel.com"
+                        placeholder="your.email@example.com"
                         {...field}
                       />
                     </FormControl>
@@ -136,21 +85,31 @@ export default function Login() {
                 )}
               />
 
-              {/* <div className="flex w-full items-center justify-end">
-                <Link
-                  className="text-sm text-primary hover:underline dark:text-white"
-                  href={`/forgot-password?email=${form.getValues().email}`}
-                >
-                  Forgot your password?
-                </Link>
-              </div> */}
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="dark:text-[#f1f7feb5] text-sm">Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        className="dark:bg-gray-800"
+                        type="password"
+                        placeholder="••••••••"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <Button
                 className="w-full h-11 text-[15px] bg-primary hover:bg-primary/90 text-white dark:bg-gray-800 dark:hover:bg-gray-700 font-semibold"
-                disabled={isPending}
+                disabled={isPending || isLoading}
                 type="submit"
               >
-                {isPending ? (
+                {isPending || isLoading ? (
                   <>
                     <Loader className="mr-2 h-4 w-4 animate-spin" />
                     Logging in...

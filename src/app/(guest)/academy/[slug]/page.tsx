@@ -45,8 +45,13 @@ const fetchArticles = async (slug: string) => {
   }
 };
 
-export default async function AcademyDetailPage() {
-  const articles = await fetchArticles('');
+type AcademyDetailPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function AcademyDetailPage({ params }: AcademyDetailPageProps) {
+  const { slug } = await params;
+  const articles = await fetchArticles(slug);
 
   if (!articles || articles.length === 0) {
     notFound();
@@ -66,36 +71,64 @@ export default async function AcademyDetailPage() {
         </BreadcrumbList>
       </Breadcrumb>
       <div className="w-full max-w-4xl mx-auto px-6 sm:px-8 md:px-12">
-        {articles.map((article: { id: Key | null | undefined; title: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; createdAt: string | number | Date; videoLink: string | undefined; description: any; file: string | undefined; }) => (
-          <Card key={article.id} className="rounded-2xl shadow-md overflow-hidden mt-6">
-            <CardContent className="p-8">
-              <h1 className="text-3xl font-bold text-gray-800 mb-4">{article.title}</h1>
-              <p className="text-sm text-gray-500 mb-6">
-                {new Date(article.createdAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </p>
-              <div
-                className="prose prose-lg max-w-none text-justify"
-                dangerouslySetInnerHTML={{ __html: article.description || '' }}
-              />
-              {article.file && (
-                <div className="mt-4">
-                  <a
-                    href={article.file}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline"
-                  >
-                    Download File
-                  </a>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        ))}
+        {articles.map(
+          (article: {
+            id: Key | null | undefined;
+            title:
+              | string
+              | number
+              | bigint
+              | boolean
+              | ReactElement<unknown, string | JSXElementConstructor<any>>
+              | Iterable<ReactNode>
+              | Promise<
+                  | string
+                  | number
+                  | bigint
+                  | boolean
+                  | ReactPortal
+                  | ReactElement<unknown, string | JSXElementConstructor<any>>
+                  | Iterable<ReactNode>
+                  | null
+                  | undefined
+                >
+              | null
+              | undefined;
+            createdAt: string | number | Date;
+            videoLink: string | undefined;
+            description: any;
+            file: string | undefined;
+          }) => (
+            <Card key={article.id} className="rounded-2xl shadow-md overflow-hidden mt-6">
+              <CardContent className="p-8">
+                <h1 className="text-3xl font-bold text-gray-800 mb-4">{article.title}</h1>
+                <p className="text-sm text-gray-500 mb-6">
+                  {new Date(article.createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </p>
+                <div
+                  className="prose prose-lg max-w-none text-justify"
+                  dangerouslySetInnerHTML={{ __html: article.description || '' }}
+                />
+                {article.file && (
+                  <div className="mt-4">
+                    <a
+                      href={article.file}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      Download File
+                    </a>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )
+        )}
       </div>
     </ResponsiveContainer>
   );
