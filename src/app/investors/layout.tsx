@@ -1,9 +1,14 @@
-import AuthChecker from '../(auth)/authChecker';
+'use client';
 
-export default function GuestLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <AuthChecker>
-      <div>{children}</div>
-    </AuthChecker>
-  );
+import { redirect } from 'next/navigation';
+import { useAuth } from '@/context/auth-provider';
+
+export default function InvestorProtectedLayout({ children }: { children: React.ReactNode }) {
+  const { isLoggedIn } = useAuth();
+
+  if (!isLoggedIn) {
+    return redirect('/login'); // Redirect to login page if not authenticated
+  }
+
+  return <div>{children}</div>;
 }

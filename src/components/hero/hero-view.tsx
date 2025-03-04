@@ -14,9 +14,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col mx-auto">
+    <div className="flex min-h-screen flex-col">
       <section className="relative overflow-hidden bg-white">
-        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
           <div className="flex min-h-[80vh] flex-col lg:flex-row lg:items-center lg:gap-12">
             {/* Left Column */}
             <div className="relative z-10 flex flex-col justify-center py-12 lg:w-[45%] lg:py-0">

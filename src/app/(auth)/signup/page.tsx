@@ -21,14 +21,11 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-const registerMutationFn = async (data: any) => {
+const registerMutationFn = async (data: FormData) => {
   try {
     const response = await fetch('https://investly.baliyoventures.com/api/users/', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
+      body: data,
     });
 
     if (!response.ok) {
@@ -60,6 +57,8 @@ export default function SignUp() {
     role: z.string().min(1, { message: 'Role is required' }),
     about_you: z.string().optional(),
     website_link: z.string().url().optional(),
+    organization_logo: z.any().optional(),
+    organization_description: z.string().optional(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -72,6 +71,8 @@ export default function SignUp() {
       role: userType,
       about_you: '',
       website_link: '',
+      organization_logo: undefined,
+      organization_description: '',
     },
   });
 
@@ -80,17 +81,20 @@ export default function SignUp() {
   }, [userType, form]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    const submissionData = {
-      full_name: values.full_name,
-      organization_name: values.organization_name,
-      email: values.email,
-      contact_number: values.contact_number,
-      role: values.role,
-      description: values.about_you,
-      website_link: values.website_link,
-    };
+    const formData = new FormData();
+    formData.append('full_name', values.full_name);
+    formData.append('organization_name', values.organization_name);
+    formData.append('email', values.email);
+    formData.append('contact_number', values.contact_number);
+    formData.append('role', values.role);
+    formData.append('description', values.about_you || '');
+    formData.append('website_link', values.website_link || '');
+    if (values.organization_logo?.[0]) {
+      formData.append('organization_logo', values.organization_logo[0]);
+    }
+    formData.append('organization_description', values.organization_description || '');
 
-    mutate(submissionData, {
+    mutate(formData, {
       onSuccess: () => {
         setIsSubmitted(true);
       },
@@ -208,9 +212,8 @@ export default function SignUp() {
                         <input
                           type="text"
                           {...field}
-                          value={userType}
-                          readOnly
                           className="w-full p-3 border rounded-md bg-gray-100 dark:bg-gray-700 dark:text-white cursor-not-allowed"
+                          readOnly
                         />
                       </FormControl>
                       <FormMessage />
@@ -245,6 +248,44 @@ export default function SignUp() {
                       <FormControl>
                         <Input
                           placeholder="https://yourwebsite.com"
+                          {...field}
+                          className="dark:bg-gray-700 dark:text-white"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="organization_logo"
+                  render={({ field: { onChange, ...field } }) => (
+                    <FormItem>
+                      <FormLabel className="dark:text-gray-200">Organization Logo</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => onChange(e.target.files)}
+                          {...field}
+                          className="dark:bg-gray-700 dark:text-white"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="organization_description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="dark:text-gray-200">Organization Description</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Describe your organization"
                           {...field}
                           className="dark:bg-gray-700 dark:text-white"
                         />

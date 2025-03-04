@@ -49,8 +49,9 @@ export function Navbar() {
 
   // Effect to handle immediate UI update after login
   useEffect(() => {
-    // This effect will trigger whenever `isLoggedIn` changes
-    // No need to do anything specific here, just ensure the component re-renders
+    setIsProfileDropdownOpen(false);
+    setIsSignInDropdownOpen(false);
+    setIsSheetOpen(false);
   }, [isLoggedIn]);
 
   const navLinks = [
