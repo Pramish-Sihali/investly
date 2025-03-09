@@ -3,10 +3,9 @@ import { Button } from '@/components/ui/button';
 
 export function Footer() {
   const footerLinks = [
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
+    { name: 'About Us', href: '/about-us' },
+    { name: 'Contact', href: '/' },
+    { name: 'Privacy Policy', href: '/privacy-policy' },
   ];
 
   return (
@@ -15,10 +14,10 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-primary">Investly</h3>
-            <p className="text-sm text-gray-600">
-              Empowering startups, mentors, and investors to connect and grow together.
-            </p>
+            <div className="flex items-center">
+              <img src="/logo.png" alt="Investly Logo" className="h-24 w-24" />
+            </div>
+            <p className="text-sm text-gray-600">Where Vision Meets Capital</p>
           </div>
 
           {/* Quick Links */}

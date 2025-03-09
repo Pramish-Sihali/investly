@@ -11,30 +11,62 @@ const StartupPage = () => {
   const steps = [
     {
       id: 1,
-      title: 'Evaluating Startups',
-      description:
-        'Every investor chooses whether to make an investment in their own way. Some investors scrutinize the quality of the team. If the plan is less convincing, a good team can always rewrite it. Other investors focus on the plan and the first product prototypes, since that is the core of the business. It is quite important that every investor realizes that early-stage startup investments are very risky. If the company is not successful in the end: it is much better if you still feel it was worth a try.\n\nEntrepreneurs are required to complete an Information Memorandum, clearly documenting their business plan as well as the terms of the investment round. This includes a specification of the Minimum Investment, First and Final Closing Dates for the investment round.\n\nIf the startup chooses to offer a Investly Note as an investment then the Interest rate, Discount, and Cap need to be laid down. If instead the startup offers a Investly Straight Equity investment then the pre-money valuation needs to be laid down. Startups usually choose to fund-raise with a convertible when they are unable to make an accurate assessment of the value of the shares. And thats normally the case in the first few years of the life of the company. In the following explanation we will assume that the startup chooses to issue a convertible, and so it is offering Investly Notes.',
+      title: 'Registration & Onboarding',
+      description: `Register and become a verified member of BAIN and provide your investment preferences and areas of interest, so we can tailor opportunities that match your criteria.
+
+As a new investor joining BAIN, you'll be guided through our comprehensive onboarding process. This begins with creating your investor profile where you'll specify your investment focus areas, preferred sectors, and investment capacity. This information helps us match you with startups that align with your specific interests and expertise.
+
+Our verification process ensures that all members of our network meet certain criteria, maintaining the high quality of our investor community. Once verified, you'll gain access to exclusive investor resources, including market insights, investment guides, and networking opportunities with fellow angel investors in the BAIN community.`,
       image: '/investor.png',
     },
     {
       id: 2,
-      title: 'Pledging Funds',
-      description:
-        'When you choose to invest in a company via Investly, your investment is deposited in an independent bank account. This is to prevent the company from using the money before they have achieved their Minimum Investment. Only if the Minimum Investment has been achieved before the First Closing Date, will the money will be transferred to the account of the company. If the Minimum is not reached, the money will simply be refunded, with no cost to the investor.\n\nInvestments can start from €1.000, and on average investments fall between €5k-10k - though amounts have exceeded €200k.\n\nExample: An investor sees potential in a startup called MedicSoftware B.V. and invests €1,000 in Investly Notes. The investor receives a confirmation of payment. When the Minimum Investment is achieved the investment is finalized. The investor receives notice that the investment has been accepted and the cash amount is released to MedicSoftware.',
+      title: 'Access Exclusive Deal Flow',
+      description: `Once registered, you gain immediate access to our curated deal flow of promising startups, complete with comprehensive due diligence reports and investment briefs.
+
+BAIN takes pride in our rigorous startup selection process. Only about 10% of startups that apply to our network make it through our initial screening. This ensures that the opportunities presented to you have already been vetted for viability, innovation potential, and market opportunity.
+
+Each startup in our deal flow comes with detailed documentation, including business plans, financial projections, market analysis, and team credentials. Our due diligence process assesses everything from legal standing to competitive landscape, saving you valuable time in the early evaluation stages. You'll receive regular updates on new opportunities that match your specified investment criteria.`,
       image: '/investor1.png',
     },
     {
       id: 3,
-      title: 'Successful Round',
-      description:
-        'At the end of a successful round, any funds that havent been released yet are transferred to the entrepreneur who can now use the money for whatever they indicated in the Information Memorandum. Each time cash is released to the startup, the corresponding investors get a convertible in the form of the Investly Note.\n\nDuring the subsequent growth phase for the startup, the investors can contribute a lot by offering help and assistance. Look for valuable contacts in your network and try to bring in customers. An active group of investors can really make the difference.\n\nLater – at a time when the value of the shares can be estimated more precisely – the Investly Note will be converted to shares that are held by a Special Purpose Vehicle (SPV). You will get the shares at a Discount to reward you for getting in early. The Investly Note will also have increased in value with the pre-agreed Interest. In other words: you will get significantly more shares for your money than later investors.\n\nExample: A Investly investor that has invested €1,000 makes a habit of reading the monthly updates from the CEO. When he sees that the company is trying to expand into a country where he has contacts, he offers assistance in building the business there.',
+      title: 'Evaluation & Engage',
+      description: `Review detailed startup profiles and pitch decks. Attend our investor pitch events and interactive sessions where you can meet startup founders and ask critical questions.
+
+BAIN hosts regular pitch events both online and in-person where selected startups present their business models and growth plans. These events provide a unique opportunity to see multiple investment opportunities in one setting and engage directly with founding teams.
+
+Beyond formal pitches, we facilitate one-on-one meetings between investors and entrepreneurs to explore potential partnerships in greater depth. Our team can help coordinate these meetings and provide guidance on what questions to ask and areas to explore.
+
+We also organize sector-specific roundtables where investors with similar interests can share insights and collectively evaluate opportunities in particular industries or technology areas. This collaborative approach enhances the evaluation process through shared expertise and diverse perspectives.`,
       image: '/investor2.png',
     },
     {
       id: 4,
-      title: 'Conversion',
-      description:
-        'There comes a time when the Investly Notes will be converted into shares. This usually happens when a large investor decides to invest. The value of the shares will be determined by the price offered by the large investor. After conversion, investors are pooled through a Special Purpose Vehicle (SPV) and act as a single investor in the startups shareholders meeting.\n\nThe Conversion will happen as soon as:\n\nA large (€100,000) investor investor invests in fresh shares in the startup. (There is also a special Investly XL Note which converts with a > €500,000 investment: this is clear when you invest).\nThe startup is acquired by another company.\nWhen the Final Conversion Date arrives. At this date a conversion will be triggered automatically.\n\nAfter conversion you hold shares in the company via an SPV. By investing early you took a considerable risk. To compensate for this risk you receive both an Interest on the value of your Investly Note, and a Discount on the price of the shares. The share price is just taken from the investment round that triggers the conversion. If the convertible expires without an investment, because of the Final Conversion Date, then the startup will agree the correct market price of the shares with the investors, or else an external referee is asked to assess it. In each case the investor will benefit from the Interest and from a Discount. The Interest and the Discount are found in the Information Memorandum. What is not fixed is what % of the company you will eventually get, since when you invested the value of the company was still highly uncertain and so that simply couldnt be fixed exactly.\n\nExample: An investor has invested €1,000. After one year this has risen by 10% interest to €1,100. There is a conversion because a new investor decides to invest €100,000 in new shares in MedicSoftware at a valuation of €33 per share. At conversion there is an additional 20% Discount on the shares for the Investly Note holders, so they only pay €26,40 per share. For this reason, the investor receives €1,100/ €26,40 = 42 shares, with a total value of €1,375. The shares will be held in an SPV together with the shares of the other Investly Note investors.\n\nApart from the Interest and the Discount there is usually also a Cap. The Cap is also agreed in advance and is stated clearly in the Information Memorandum. A Cap is a maximum share price that will be used for Conversion. Naturally, investors in a convertible often like to know roughly what share price they should expect during the conversion. Of course it is difficult to say this in advance. But the Cap is a kind of guarantee: the pre-money valuation used for conversion will never be higher than then Cap. So after applying the Discount you can check whether the price is still higher than the Cap. If it is still higher, then the investor will get the lower Capped price instead. So it is a kind of price guarantee.\n\nAlthough the use of convertibles is relatively new in Europe, this way of investing is normal in the U.S. Online you will find plenty of good material explaining the convertible in general.',
+      title: 'Invest & Manage Your Portfolio',
+      description: `Choose the startups that align with your vision. With our portfolio management services, track the performance of your investments and receive ongoing strategic support.
+
+Once you've identified startups you wish to invest in, BAIN facilitates the investment process with standardized documentation and transparent terms. Our investment minimum typically starts at $5,000, allowing for accessible entry points while encouraging meaningful commitment.
+
+After investing, you gain access to our portfolio management platform where you can track key performance indicators, milestone achievements, and financial updates from all your investments in one centralized dashboard.
+
+BAIN encourages active involvement from our investors. You can choose to mentor startups, open doors to your network, or provide strategic guidance in areas of your expertise. This hands-on involvement not only benefits the startups but can significantly impact your investment outcomes.
+
+We provide regular portfolio review sessions where you can discuss your investments with our team, reassess strategies, and decide on follow-on investment opportunities when startups reach new growth stages.`,
+      image: '/investor3.png',
+    },
+    {
+      id: 5,
+      title: 'Exit & Reap Rewards',
+      description: `Our expert team assists in planning exit strategies, ensuring you are well-positioned to maximize returns when it's time to exit your investment.
+
+While angel investing is a long-term commitment, BAIN provides strategic support throughout the entire investment lifecycle, including the critical exit phase. Our team works with both investors and startups to identify optimal exit timing and opportunities.
+
+We assist in navigating acquisition offers, preparing for potential IPOs, or exploring secondary market options for your shares. Our extensive network includes connections to larger venture capital firms, corporate strategic buyers, and other exit partners.
+
+BAIN also provides valuation guidance and negotiation support to help maximize your returns when exit opportunities arise. Our historical data and market insights help inform exit decisions to achieve the best possible outcomes.
+
+For investors interested in reinvesting gains, we offer seamless opportunities to redeploy capital into new promising startups within our network, creating a sustainable cycle of investment and returns within the Nepal startup ecosystem.`,
       image: '/investor3.png',
     },
   ];
@@ -90,7 +122,7 @@ const StartupPage = () => {
         <nav className="flex items-center justify-center">
           <ol className="flex items-center space-x-2">
             <li>
-              <a href="#" className="text-base font-medium text-gray-900">
+              <a href="/" className="text-base font-medium text-gray-900">
                 Home
               </a>
             </li>
@@ -117,8 +149,8 @@ const StartupPage = () => {
               Investor to Invest in startups
             </h1>
             <p className="text-lg text-gray-600">
-              Investly makes investing in startups simple, giving Angel investors access to
-              promising startups and a steady deal-flow.
+              BAIN makes investing in startups simple, giving Angel investors access to promising
+              startups and a steady deal-flow.
             </p>
           </motion.div>
         </div>

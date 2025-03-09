@@ -17,7 +17,7 @@ const InvestorsPage = () => {
     <div className="max-w-6xl mx-auto py-10">
       <HeadingSection
         title="💰 Meet Our Investors"
-        subtitle="We are proud to announce our newest investors. Join us in celebrating their contributions to Investly's growth and success."
+        subtitle="We are proud to announce our newest investors. Join us in celebrating their contributions to BAIN'S growth and success."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">

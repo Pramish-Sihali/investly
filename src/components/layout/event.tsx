@@ -24,7 +24,7 @@ export default function EventsAndAcademy() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-24">
           {/* Left Section - Events */}
           <div>
-            <h2 className="text-3xl font-bold text-white mb-12">Investly events</h2>
+            <h2 className="text-3xl font-bold text-white mb-12">BAIN events</h2>
 
             <div className="space-y-4 mb-12">
               {events.map((event, index) => (
@@ -88,8 +88,8 @@ export default function EventsAndAcademy() {
 
             <div className="space-y-4 mt-12">
               <p className="text-gray-400 max-w-lg">
-                Learn handling investment and funding and utilizing the platform of Investly to its
-                full potential.
+                Learn handling investment and funding and utilizing the platform of BAIN to its full
+                potential.
               </p>
 
               <div>

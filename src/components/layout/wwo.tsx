@@ -1,5 +1,5 @@
 import HeadingSection from '@/components/common/heading-section';
-import { Rocket, BarChart3, Briefcase, Shield, Zap, Sun, Users, Target, Clock } from 'lucide-react';
+import { Shield, Zap, BarChart3, FileText, Users, Lightbulb, TrendingUp } from 'lucide-react';
 
 export default function WhatWeOffer() {
   const features = [
@@ -7,7 +7,7 @@ export default function WhatWeOffer() {
       icon: Shield,
       title: 'Due Diligence Support',
       description:
-        'Access comprehensive due diligence reports and expert analysis to make informed investment decisions with confidence.',
+        'Our expert team conducts thorough due diligence, analyzing business models, financials, market trends, and legal frameworks to ensure informed investment decisions.',
       bgColor: 'text-blue-100',
       iconColor: 'text-blue-600',
     },
@@ -15,51 +15,59 @@ export default function WhatWeOffer() {
       icon: Zap,
       title: 'Deal Flow Access',
       description:
-        'Get early access to pre-vetted startup deals across various sectors, with detailed pitch decks and financial metrics.',
+        'As a BAIN investor, you get exclusive access to high-quality, vetted startups. We source promising ventures through our expansive network, ensuring investors see only the best opportunities.',
       bgColor: 'text-orange-100',
       iconColor: 'text-orange-600',
     },
     {
-      icon: Sun,
+      icon: BarChart3,
       title: 'Portfolio Management',
       description:
-        'Track and manage your startup investments with real-time valuations, performance metrics, and exit opportunities.',
+        'Post-investment, we help investors track startup performance, provide strategic guidance, and optimize exit strategies—ensuring their capital is effectively utilized for maximum returns.',
       bgColor: 'text-green-100',
       iconColor: 'text-green-600',
     },
     {
-      icon: Users,
-      title: 'Investor Syndication',
+      icon: FileText,
+      title: 'Investment Structuring & Legal Support',
       description:
-        'Join forces with experienced angel investors to participate in larger deals and share investment expertise.',
+        'We assist investors and startups in structuring deals, drafting investment agreements, and navigating compliance requirements, ensuring smooth transactions and risk mitigation.',
       bgColor: 'text-purple-100',
       iconColor: 'text-purple-600',
     },
     {
-      icon: Target,
-      title: 'Investment Analytics',
+      icon: Users,
+      title: 'Pitching & Networking Events',
       description:
-        'Access detailed market insights, startup performance metrics, and industry trends to optimize your investment strategy.',
+        'BAIN organizes pitch events, investor roundtables, and mentorship sessions, providing startups with the platform to showcase their ideas while offering investors a structured experience.',
       bgColor: 'text-gray-100',
       iconColor: 'text-gray-600',
     },
     {
-      icon: Clock,
-      title: 'Deal Pipeline Updates',
+      icon: Lightbulb,
+      title: 'Post-Investment Support & Mentorship',
       description:
-        'Stay informed with regular updates on startup milestones, funding rounds, and potential exit opportunities.',
+        'Beyond funding, we ensure startups receive the right mentorship, business development support, and market linkages to scale successfully. Investors can also participate in advisory roles.',
       bgColor: 'text-yellow-100',
       iconColor: 'text-yellow-500',
+    },
+    {
+      icon: TrendingUp,
+      title: 'Exit Planning & Follow-up Funding',
+      description:
+        'We help investors and startups strategize profitable exits—whether through acquisitions, follow-on funding, or secondary sales. Our services also assist startups in securing future rounds.',
+      bgColor: 'text-pink-100',
+      iconColor: 'text-pink-600',
     },
   ];
 
   return (
-    <section className="py-10 bg-white sm:py-16 lg:py-24">
+    <section className="py-10 bg-white sm:py-16 lg:py-24 text-center">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <HeadingSection
-            title="What we have to offer"
-            subtitle="Investly makes angel investing easy and convenient"
+            title="What We Have to Offer"
+            subtitle="At Biratnagar Angel Investment Network (BAIN), we go beyond just connecting startups with investors—we provide a structured, de-risked, and value-driven investment experience."
           />
         </div>
 

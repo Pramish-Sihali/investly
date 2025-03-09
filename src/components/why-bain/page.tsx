@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { LineChart, GraduationCap, User } from 'lucide-react';
 
-export default function WhyInvestly() {
+export default function WhyBain() {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -16,9 +16,9 @@ export default function WhyInvestly() {
             <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
               <p className="text-base font-medium text-gray-500">
                 <Link href="/" className="hover:text-primary">
-                  Investly
+                  BAIN
                 </Link>{' '}
-                › Why Investly
+                › Why BAIN
               </p>
             </motion.div>
 
@@ -28,7 +28,7 @@ export default function WhyInvestly() {
               animate={{ opacity: 1, x: 0 }}
               className="mt-6 text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl"
             >
-              Why Choose <span className="text-primary">Investly</span>?
+              Why Choose <span className="text-primary">BAIN</span>?
             </motion.h1>
 
             {/* Hero Image */}
@@ -47,11 +47,9 @@ export default function WhyInvestly() {
               {/* Left Column - Introduction */}
               <div className="lg:col-span-5">
                 <p className="text-lg font-bold text-gray-900 lg:text-xl text-justify">
-                  Your gateway to financial success. We offer cutting-edge investment solutions and
-                  educational resources investors at every level.There are many reasons to choose
-                  Investly.As a startup,we understand the challenges and opportunities that come
-                  with building a business. Weve been there, and were here to help you navigate the
-                  journey.
+                  At Biratnagar Angel Investment Network (BAIN), we go beyond traditional angel
+                  investing - we are building a movement to redefine early-stage investing in Nepal.
+                  Here what makes BAIN stand out from the rest:
                 </p>
               </div>
 
@@ -61,21 +59,21 @@ export default function WhyInvestly() {
                 {[
                   {
                     icon: <User className="w-8 h-8" />,
-                    title: 'Expert Financial Guidance',
+                    title: 'Not Just Investors - A Startup Growth Partner',
                     description:
-                      'Access personalized investment strategies from experienced advisors who understand your financial goals.There are many reasons to choose Investly.As a startup,we understand the challenges and opportunities that come with building a business. Weve been there, and were here to help you navigate the journey.',
+                      'At Biratnagar Angel Investment Network (BAIN), we go beyond funding. We co-build startups, offering hands-on mentorship, strategic guidance, and long-term growth support. Unlike traditional investor networks that just write checks, we invest in potential and nurture it into success.',
                   },
                   {
                     icon: <LineChart className="w-8 h-8" />,
-                    title: 'Advanced Trading Platform',
+                    title: 'Beyond Capital - Smart Money, Smart Network',
                     description:
-                      'Use our state-of-the-art trading platform with real-time analytics and market insights.There are many reasons to choose Investly.As a startup,we understand the challenges and opportunities that come with building a business. Weve been there, and were here to help you navigate the journey.',
+                      'We believe that money alone doesn grow startups-the right network does. BAIN connects founders with investors who bring not just funds, but also industry expertise, strategic partnerships, and market access.',
                   },
                   {
                     icon: <GraduationCap className="w-8 h-8" />,
-                    title: 'Educational Resources',
+                    title: 'Nepals First Regional Angel Network with a Localized Edge',
                     description:
-                      'Access comprehensive learning materials, workshops, and webinars to enhance your investment knowledge.There are many reasons to choose Investly.As a startup,we understand the challenges and opportunities that come with building a business. Weve been there, and were here to help you navigate the journey.',
+                      'Unlike generic national or global networks, BAIN is rooted in Nepals; emerging startup landscape, with a special focus on Biratnagar and regional innovation hubs. We understand local market challenges, untapped opportunities, and regulatory nuances, making our support uniquely effective.',
                   },
                 ].map((feature, index) => (
                   <motion.div
@@ -87,7 +85,7 @@ export default function WhyInvestly() {
                       <div className="text-primary">{feature.icon}</div>
                       <div>
                         <h3 className="text-xl font-semibold text-gray-900">{feature.title}</h3>
-                        <p className="mt-2 text-gray-600">{feature.description}</p>
+                        <p className="mt-2 text-gray-600 text-justify">{feature.description}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -95,10 +93,10 @@ export default function WhyInvestly() {
 
                 {/* Call to Action */}
                 <div className="bg-primary/5 p-8 rounded-xl">
-                  <h3 className="text-xl font-semibold text-primary mb-4">Ready to Start?</h3>
+                  <h3 className="text-xl font-semibold text-primary mb-4">Join BAIN Today</h3>
                   <p className="text-gray-600 mb-6">
-                    Join thousands of successful investors who trust Investly for their financial
-                    journey.
+                    Whether youre a founder looking for smart capital or an investor seeking
+                    high-potential opportunities, BAIN is where innovation meets investment.
                   </p>
                   <Link
                     href="/signup"

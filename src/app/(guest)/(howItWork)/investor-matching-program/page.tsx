@@ -56,7 +56,7 @@ const InvestorMatchingProgram: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <HeadingSection
-        title="Investly Investor Matching Program"
+        title="BAIN Investor Matching Program"
         subtitle="Bridging innovative startups with the right investors through a comprehensive, personalized matching process.
 
 "

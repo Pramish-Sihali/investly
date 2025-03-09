@@ -14,8 +14,8 @@ import ContactView from '@/components/contact-us/view/contact-view';
 const bricolage_grotesque = Bricolage_Grotesque({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Investly',
-  description: 'Investly',
+  title: 'BAIN',
+  description: 'BAIN',
 };
 
 export default function RootLayout({

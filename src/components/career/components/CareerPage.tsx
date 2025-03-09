@@ -1,21 +1,21 @@
-"use client"
+'use client';
 
-import { useState } from "react"
+import { useState } from 'react';
 
-import { JobModal } from "./JobModal"
-import { jobs } from "../utils/jobData"
-import { JobListing } from "./JobListing"
+import { JobModal } from './JobModal';
+import { jobs } from '../utils/jobData';
+import { JobListing } from './JobListing';
 
-import type { Job } from "../../../types/career"
+import type { Job } from '../../../types/career';
 
 export default function CareerPage() {
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null)
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
 
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-primary text-primary-foreground py-12">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">Join Our Team at Investly</h1>
+          <h1 className="text-4xl font-bold mb-4">Join Our Team at BAINS</h1>
           <p className="text-xl">Discover exciting opportunities and grow with us</p>
         </div>
       </header>
@@ -31,7 +31,7 @@ export default function CareerPage() {
         </section>
 
         <section className="prose max-w-none">
-          <h2 className="text-3xl font-semibold mb-6">Why Join Investly?</h2>
+          <h2 className="text-3xl font-semibold mb-6">Why Join BAINS?</h2>
           <ul className="list-disc pl-6">
             <li>Innovative and dynamic work environment</li>
             <li>Competitive salary and benefits package</li>
@@ -46,10 +46,9 @@ export default function CareerPage() {
 
       <footer className="bg-muted py-6 mt-12">
         <div className="container mx-auto px-4 text-center text-muted-foreground">
-          © {new Date().getFullYear()} Investly. All rights reserved.
+          © {new Date().getFullYear()} BAINS. All rights reserved.
         </div>
       </footer>
     </div>
-  )
+  );
 }
-

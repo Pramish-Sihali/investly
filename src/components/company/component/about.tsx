@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
 
 import Image from 'next/image';
-import { Users, Shield, BarChart2 } from 'lucide-react';
 import HeadingSection from '@/components/common/heading-section';
 
 export const metadata: Metadata = {
-  title: 'About Investly | Our Mission & Values',
+  title: 'About BAIN | Biratnagar Angel Investment Network',
   description:
-    'Learn about Investlys commitment to revolutionizing investing through AI-driven strategies and user-centric services',
+    'Learn about BAINs commitment to fostering early-stage investments in Nepal and connecting startups with experienced investors.',
 };
 
 export default function AboutUsPage() {
@@ -15,9 +14,8 @@ export default function AboutUsPage() {
     <div className="container mx-auto px-4 py-16 max-w-7xl">
       {/* Hero Section */}
       <HeadingSection
-        title="About Investly"
-        subtitle=" Empowering investors with AI-driven strategies and personalized financial solutions to
-          build a secure and prosperous future."
+        title="About Us"
+        subtitle="Biratnagar Angel Investment Network (BAIN) is a pioneering platform dedicated to fostering early-stage investments in Nepal."
       />
 
       {/* Main Content */}
@@ -25,63 +23,63 @@ export default function AboutUsPage() {
         <div className="relative h-[400px] rounded-lg overflow-hidden">
           <Image
             src="/about1.png"
-            alt="Investly Dashboard"
+            alt="BAIN Investment Platform"
             fill
             className="object-cover"
             quality={95}
           />
         </div>
         <div className="space-y-6">
-          <h2 className="text-3xl font-semibold">Revolutionizing Investment Strategies</h2>
-          <p className="text-muted-foreground">
-            At Investly, we&apos;re dedicated to transforming the investment landscape through
-            cutting-edge AI technology and data-driven insights. Our platform empowers both novice
-            and experienced investors to make informed decisions and achieve their financial goals.
+          <h2 className="text-3xl font-semibold">Connecting Startups & Investors</h2>
+          <p className="text-muted-foreground text-justify">
+            As the first structured angel investor network in Biratnagar, we connect high-potential
+            startups with experienced investors who provide not just capital but also mentorship,
+            strategic guidance, and industry expertise. Our goal is to strengthen Nepal’s startup
+            ecosystem by bridging the gap between innovative entrepreneurs and visionary investors.
           </p>
-          <ul className="space-y-4">
-            <li className="flex items-center gap-3">
-              <BarChart2 className="h-5 w-5 text-primary" />
-              <span>AI-powered investment analysis</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Shield className="h-5 w-5 text-primary" />
-              <span>Robust security measures</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Users className="h-5 w-5 text-primary" />
-              <span>Personalized user experience</span>
-            </li>
-          </ul>
         </div>
       </div>
 
-      {/* Values Section */}
+      {/* Angel Investment Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div className="order-2 md:order-1 space-y-6">
-          <h2 className="text-3xl font-semibold">Our Core Values</h2>
-          <p className="text-muted-foreground">
-            Investly is built on a foundation of trust, innovation, and user-centricity. We believe
-            that everyone should have access to sophisticated investment tools and strategies,
-            regardless of their experience level or account size.
+          <h2 className="text-3xl font-semibold">The Context of Angel Investment</h2>
+          <p className="text-muted-foreground text-justify">
+            Angel investment refers to early-stage funding provided by high-net-worth individuals or
+            experienced entrepreneurs who believe in supporting promising startups. Angel investment
+            plays a crucial role in fueling startup growth, especially in markets like Nepal, where
+            access to traditional financing remains limited for early-stage businesses.
           </p>
-          <ul className="space-y-4">
-            <li className="flex items-center gap-3">
-              <div className="h-2 w-2 bg-primary rounded-full" />
-              <span>Transparency in all operations</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <div className="h-2 w-2 bg-primary rounded-full" />
-              <span>Continuous innovation and improvement</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <div className="h-2 w-2 bg-primary rounded-full" />
-              <span>Commitment to financial education</span>
-            </li>
-          </ul>
+          <p className="text-muted-foreground text-justify">
+            Unlike banks, venture capital, or private equity firms, angel investors use their own
+            funds to invest in promising startups, often in exchange for equity. They bring more
+            than just money—they offer mentorship, networks, and business acumen to help startups
+            scale.
+          </p>
         </div>
         <div className="order-1 md:order-2 relative h-[400px] rounded-lg overflow-hidden">
-          <Image src="/about.png" alt="Investly Team" fill className="object-cover" quality={95} />
+          <Image
+            src="/about.png"
+            alt="Angel Investment"
+            fill
+            className="object-cover"
+            quality={95}
+          />
         </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="text-center mt-16">
+        <h2 className="text-3xl font-semibold">Join Us</h2>
+        <p className="text-muted-foreground max-w-3xl mx-auto mt-4">
+          At BAIN, we believe in unlocking the potential of Nepal’s entrepreneurs by providing them
+          with the right resources, guidance, and investment opportunities. Whether you are a
+          startup seeking funding or an investor looking for high-growth opportunities, BAIN is the
+          platform that connects ideas with capital and expertise.
+        </p>
+        <p className="mt-6 text-lg font-semibold">
+          Join us in shaping the future of entrepreneurship in Nepal!
+        </p>
       </div>
     </div>
   );

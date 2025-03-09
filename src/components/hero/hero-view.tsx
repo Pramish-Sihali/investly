@@ -1,56 +1,23 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 
 export default function Home() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    setIsAuthenticated(!!authToken);
-  }, []);
-
   return (
     <div className="flex min-h-screen flex-col">
       <section className="relative overflow-hidden bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
           <div className="flex min-h-[80vh] flex-col lg:flex-row lg:items-center lg:gap-12">
-            {/* Left Column */}
             <div className="relative z-10 flex flex-col justify-center py-12 lg:w-[45%] lg:py-0">
-              <h1 className="text-[2.75rem] font-bold leading-tight text-[#FF6B3D] sm:text-6xl lg:text-7xl">
-                Investly
+              <h1 className="bg-gradient-to-r from-primary to-[#467FB2] bg-clip-text text-transparent text-[2.75rem] font-bold leading-tight sm:text-3xl lg:text-5xl mb-4">
+                Biratnagar Angel Investment Network.
               </h1>
-              <p className="mt-3 text-2xl text-gray-900 sm:text-3xl lg:text-[2rem]">
-                Nepal leading Angel Platform
+              <p className="mt-3 text-sm text-gray-900 sm:text-3xl lg:text-2xl">
+                Where Vision Meets Capital.
               </p>
-              {!isAuthenticated && (
-                <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mt-5">
-                  <Link href="/signup/?usertype=Investor">
-                    <Button
-                      size="lg"
-                      className="bg-primary hover:bg-primary/90 text-white w-full sm:w-auto"
-                    >
-                      Sign up as investor
-                    </Button>
-                  </Link>
-                  <Link href="/signup/?usertype=Startup">
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="text-black bg-white/10 border-white hover:bg-white/10 w-full sm:w-auto border-gray "
-                    >
-                      Sign up as startup
-                    </Button>
-                  </Link>
-                </div>
-              )}
             </div>
 
-            {/* Right Column with Image and Stats (Hidden on mobile) */}
-            <div className="relative hidden lg:block lg:w-[55%]">
+            <div className="relative hidden lg:block lg:w-[50%]">
               <div className="relative h-[300px] w-full lg:h-[500px]">
                 <Image
                   src="/landing.png"
@@ -63,11 +30,11 @@ export default function Home() {
                 <div className="absolute left-0 top-24 z-20 flex flex-col gap-10 bg-gray">
                   <div className="absolute left-[-100px] z-20 flex flex-col gap-10">
                     <div className="transform rounded-2xl bg-white p-6 shadow-lg transition-transform hover:-translate-y-1">
-                      <div className="text-4xl font-bold text-[#FF6B3D] sm:text-5xl">5,000</div>
+                      <div className="text-4xl font-bold text-primary sm:text-5xl">5,000</div>
                       <div className="mt-1 text-base text-gray-800 sm:text-lg">funded startups</div>
                     </div>
                     <div className="transform rounded-2xl bg-white p-6 shadow-lg transition-transform hover:-translate-y-1">
-                      <div className="text-4xl font-bold text-[#FF6B3D] sm:text-5xl">600Cr</div>
+                      <div className="text-4xl font-bold text-primary sm:text-5xl">600Cr</div>
                       <div className="mt-1 text-base text-gray-800 sm:text-md">
                         combined valuation
                       </div>

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
-import { StartupCard } from '@/components/starup-card';
 import HeadingSection from '@/components/common/heading-section';
+import { StartupCard } from '@/components/startupDir/starup-card';
 
 const startups = [
   {
@@ -52,7 +52,7 @@ export default function InvestPage() {
       <div className="space-y-8">
         <HeadingSection
           title="Invest in startups"
-          subtitle="Investly makes angel investing easy and convenient"
+          subtitle="BAIN makes angel investing easy and convenient"
         />
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">

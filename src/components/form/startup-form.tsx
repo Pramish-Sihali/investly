@@ -43,7 +43,7 @@ const formSchema = z.object({
   contact_number: z.string().min(5, {
     message: 'Contact number must be at least 5 characters.',
   }),
-  role: z.enum(['Investor', 'Mentor', 'Startup'], {
+  role: z.enum(['Investor', 'Mentor', 'Startup', 'Founder', 'Employee'], {
     required_error: 'Please select a role.',
   }),
   about_you: z.string().optional(),
@@ -110,6 +110,11 @@ export default function UserRegistrationForm() {
       toast({
         title: 'Please activate your account via the email sent to you.',
         variant: 'default',
+      });
+      toast({
+        title: 'Registration successful!',
+        description: 'You have successfully registered.',
+        
       });
     },
     onError: (error) => {
@@ -210,7 +215,7 @@ export default function UserRegistrationForm() {
                       <FormItem>
                         <FormLabel>Contact Number</FormLabel>
                         <FormControl>
-                          <Input placeholder="+1 (555) 123-4567" {...field} />
+                          <Input placeholder="+9770000000000" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -230,7 +235,8 @@ export default function UserRegistrationForm() {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="Startup">Startup</SelectItem>
+                            <SelectItem value="Founder">Founder</SelectItem>
+                            <SelectItem value="Employee">Employee</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -245,7 +251,7 @@ export default function UserRegistrationForm() {
                     name="about_you"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>About You</FormLabel>
+                        <FormLabel>About Your Business</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="Tell us about yourself or your organization"
@@ -263,7 +269,7 @@ export default function UserRegistrationForm() {
                     name="website_link"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Website Link</FormLabel>
+                        <FormLabel>Website</FormLabel>
                         <FormControl>
                           <Input placeholder="https://example.com" {...field} />
                         </FormControl>
@@ -274,7 +280,7 @@ export default function UserRegistrationForm() {
                   />
 
                   <FormItem>
-                    <FormLabel>Document</FormLabel>
+                    <FormLabel>Your Pitch Deck or Business Plan</FormLabel>
                     <FormControl>
                       <Input type="file" onChange={handleFileChange} className="cursor-pointer" />
                     </FormControl>

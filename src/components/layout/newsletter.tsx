@@ -25,7 +25,7 @@ export function Newsletter() {
 
     setLoading(true); // Set loading to true while submitting
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact/newsletter/`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/newsletter/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,6 +41,7 @@ export function Newsletter() {
       toast('Subscribed Successfully!', {
         description: 'You have subscribed to our newsletter.',
       });
+      toast.success('You have successfully subscribed to our newsletter!');
       setEmail(''); // Clear the email field on success
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred.';
@@ -62,7 +63,7 @@ export function Newsletter() {
           </h2>
           <p className=" text-lg leading-relaxed text-black">
             Sign up now to receive offers and information about us and never miss an update from
-            Investly!
+            BAIN!
           </p>
           <form
             onSubmit={handleSubscribe}
@@ -78,7 +79,7 @@ export function Newsletter() {
             />
             <button
               type="submit"
-              className="bg-[#FF7F50] text-white px-6 py-4 font-semibold text-xl rounded-r-lg hover:bg-[#FF6B3D] transition-colors"
+              className="bg-primary text-white px-6 py-4 font-semibold text-xl rounded-r-lg hover:bg-primary transition-colors"
               disabled={loading}
             >
               {loading ? '...' : '→'}

@@ -14,6 +14,7 @@ interface StartupCardProps {
   raised?: string;
   tag?: string;
   featured?: boolean;
+  websiteLink?: string;
 }
 
 export function StartupCard({
@@ -26,6 +27,7 @@ export function StartupCard({
   raised,
   tag,
   featured,
+  websiteLink,
 }: StartupCardProps) {
   return (
     <Card className="overflow-hidden transition-all hover:shadow-lg">
@@ -58,25 +60,20 @@ export function StartupCard({
             </div>
             <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
           </div>
-
-          <div className="space-y-2">
-            <Progress value={progress} className="h-2" />
-            <div className="flex justify-between text-sm">
-              {raised && <span className="font-medium">{raised} raised</span>}
-              <span className="text-muted-foreground">{daysLeft} days left</span>
-            </div>
-          </div>
         </div>
       </CardContent>
 
       <CardFooter className="p-6 pt-0">
-        <Button
-          variant="ghost"
-          className="w-full justify-between hover:bg-transparent hover:text-primary"
-        >
-          Find out more
-          <ChevronRight className="h-4 w-4" />
-        </Button>
+        {websiteLink && (
+          <a
+            href={websiteLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            Visit Website
+          </a>
+        )}
       </CardFooter>
     </Card>
   );

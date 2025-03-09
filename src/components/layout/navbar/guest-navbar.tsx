@@ -3,11 +3,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { Menu, User } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import React, { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@/context/auth-provider';
-import React, { useRef, useState, useEffect } from 'react';
 import { Sheet, SheetTitle, SheetHeader, SheetContent } from '@/components/ui/sheet';
 import {
   NavigationMenu,
@@ -20,39 +19,9 @@ import {
 
 export function Navbar() {
   const pathname = usePathname();
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [isSignInDropdownOpen, setIsSignInDropdownOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const { isLoggedIn, logout, user, isLoading } = useAuth();
 
   const profileDropdownRef = useRef<HTMLDivElement | null>(null);
-  const signInDropdownRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        profileDropdownRef.current &&
-        !profileDropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsProfileDropdownOpen(false);
-      }
-      if (signInDropdownRef.current && !signInDropdownRef.current.contains(event.target as Node)) {
-        setIsSignInDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  // Effect to handle immediate UI update after login
-  useEffect(() => {
-    setIsProfileDropdownOpen(false);
-    setIsSignInDropdownOpen(false);
-    setIsSheetOpen(false);
-  }, [isLoggedIn]);
 
   const navLinks = [
     {
@@ -65,10 +34,13 @@ export function Navbar() {
     {
       name: 'About Us',
       children: [
-        { name: 'About Us', href: '/company' },
+        { name: 'About Us', href: '/about-us' },
         { name: 'How It Works', href: '/how-the-platform-works' },
         { name: 'Our Team', href: '/our-team' },
-        { name: 'Services', href: '/services' },
+        {
+          name: 'Why us',
+          href: '/why-Bain',
+        },
       ],
     },
     {
@@ -79,28 +51,18 @@ export function Navbar() {
         { name: 'Blog', href: '/blog' },
       ],
     },
-    {
-      name: 'Why us',
-      href: '/why-investly',
-    },
     { name: 'Mentor', href: '/mentor' },
     { name: 'FAQ', href: '/fnq' },
   ];
 
-  // Update the logout handler
-  const handleLogout = async () => {
-    await logout();
-  };
-
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-lg">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="text-xl font-bold text-primary">
-          <Image src="/logo.png" alt="Investify Logo" width={100} height={100} />
+      <div className="container mx-20 flex h-16 items-center justify-between px-2">
+        <Link href="/" className="text-xl font-bold text-primary ">
+          <Image src="/logo.png" alt="Investify Logo" width={150} height={150} />
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className=" hidden md:flex items-center space-x-10">
           <NavigationMenu>
             <NavigationMenuList>
               {navLinks.map((section) => (
@@ -147,105 +109,12 @@ export function Navbar() {
           </NavigationMenu>
 
           <div className="relative" ref={profileDropdownRef}>
-            <div className="flex gap-4">
-              {!isLoggedIn ? (
-                <>
-                  <Link
-                    href="/login"
-                    className="px-5 py-2 border text-sm font-medium text-black bg-white rounded-md hover:bg-gray-800 hover:text-white"
-                  >
-                    Log In
-                  </Link>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsSignInDropdownOpen(!isSignInDropdownOpen);
-                    }}
-                    className="px-5 py-2 border text-sm font-medium text-white bg-primary rounded-md hover:bg-gray-800"
-                  >
-                    Sign Up
-                  </button>
-                </>
-              ) : (
-                <div className="relative">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsProfileDropdownOpen(!isProfileDropdownOpen);
-                    }}
-                    className="p-2 text-gray-700 hover:bg-gray-200 rounded-md"
-                  >
-                    <User className="w-6 h-6" />
-                  </button>
-                  {isProfileDropdownOpen && isLoggedIn && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
-                      {user && (
-                        <div className="px-4 py-2 border-b border-gray-200">
-                          <p className="text-sm font-medium">{user.name}</p>
-                          <p className="text-xs text-gray-500">{user.email}</p>
-                        </div>
-                      )}
-                      {isLoggedIn && (
-                        <Link
-                          href="/investors/profile"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 rounded-md"
-                        >
-                          Profile
-                        </Link>
-                      )}
-                      <Link
-                        href="/startup-directory"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 rounded-md"
-                      >
-                        Startup
-                      </Link>
-                      <button
-                        onClick={handleLogout}
-                        className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
+            <div className="">
+              {/* Removed Login and Sign Up buttons */}
+              {/* ... existing code ... */}
+              {/* Removed Profile Dropdown */}
+              {/* ... existing code ... */}
             </div>
-
-            {/* Sign Up Dropdown */}
-            {isSignInDropdownOpen && (
-              <div
-                className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10"
-                ref={signInDropdownRef}
-              >
-                <button
-                  onClick={() => {
-                    setIsSignInDropdownOpen(false);
-                    window.location.href = '/signup/?usertype=Investor';
-                  }}
-                  className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-                >
-                  Sign Up As Investor
-                </button>
-                <button
-                  onClick={() => {
-                    setIsSignInDropdownOpen(false);
-                    window.location.href = '/signup/?usertype=Startup';
-                  }}
-                  className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-                >
-                  Sign Up As Startup
-                </button>
-                <button
-                  onClick={() => {
-                    setIsSignInDropdownOpen(false);
-                    window.location.href = '/signup/?usertype=Mentor';
-                  }}
-                  className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-                >
-                  Sign Up As Mentor
-                </button>
-              </div>
-            )}
           </div>
         </div>
 

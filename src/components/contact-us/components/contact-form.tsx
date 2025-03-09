@@ -37,6 +37,7 @@ export default function ContactForm({
       phone_number: '',
       email: '',
       message: '',
+      who_you_are: '',
       property: propertyId || '',
     },
   });
@@ -44,7 +45,7 @@ export default function ContactForm({
   const onSubmit = async (data: ContactFormSchema) => {
     setLoading(true); // Start loading
     try {
-      const response = await fetch('https://yetipm.baliyoventures.com/api/inquiries/', {
+      const response = await fetch('https://investly.baliyoventures.com/api/contact/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -142,12 +143,40 @@ export default function ContactForm({
 
           <FormField
             control={form.control}
+            name="who_you_are"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Who You Are</FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <select
+                      className="p-5 px-5 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-primary"
+                      {...field}
+                    >
+                      <option value="">Select an option</option>
+                      <option value="Mentor">Mentor</option>
+                      <option value="Investor">Investor</option>
+                      <option value="Startups">Startups</option>
+                    </select>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
+                <FormLabel>Tell us about yourself or why are you joining</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Enter your message" rows={4} {...field} />
+                  <Textarea
+                    placeholder="Tell us about yourself or why are you joining"
+                    rows={4}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

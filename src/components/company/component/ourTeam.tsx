@@ -42,7 +42,7 @@ const OurTeam = async () => {
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <HeadingSection
           title="Our Team"
-          subtitle="Meet the dedicated professionals behind Investly, working tirelessly to make angel investing accessible and rewarding."
+          subtitle="Meet the dedicated professionals behind BAIN, working tirelessly to make angel investing accessible and rewarding."
         />
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           {teamMembers.map((member) => (

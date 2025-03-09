@@ -40,7 +40,7 @@ const FAQ = ({ categories }: FAQProps) => (
             <TabsTrigger
               key={category.title}
               value={category.title}
-              className="text-gray-700  border-gray-300 font-medium px-6 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 hover:text-primary-500 hover:border-primary-500"
+              className="text-gray-700 border-gray-300 font-medium px-6 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 hover:text-primary-500 hover:border-primary-500"
             >
               {category.title}
             </TabsTrigger>
@@ -58,10 +58,10 @@ const FAQ = ({ categories }: FAQProps) => (
                   value={`item-${faq.id}`}
                   className="border-b border-gray-200 last:border-none"
                 >
-                  <AccordionTrigger className="text-lg font-medium px-6 py-4  rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400">
+                  <AccordionTrigger className="text-lg font-medium px-6 py-4 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="px-6 py-4  rounded-b-lg">
+                  <AccordionContent className="px-6 py-4 rounded-b-lg">
                     <p className="text-gray-600 leading-relaxed text-base">{faq.answer}</p>
                   </AccordionContent>
                 </AccordionItem>
@@ -80,33 +80,43 @@ const faqData: FAQCategory[] = [
     faqs: [
       {
         id: 1,
-        question: 'What is Investly?',
+        question: 'What is Biratnagar Angel Investment Network (BAIN)?',
         answer:
-          'Investly is an online investment platform that allows users to invest in various financial products, including stocks, bonds, and mutual funds, with ease and convenience.',
+          'BAIN is a network of angel investors who provide early-stage funding and mentorship to promising startups in Nepal.',
       },
       {
         id: 2,
-        question: 'How do I create an account?',
+        question: 'How does BAIN work?',
         answer:
-          "To create an account on Investly, simply click on the 'Sign Up' button, fill in your personal details, and verify your email address. Once your account is activated, you can start investing.",
+          'BAIN connects startups with angel investors through deal sourcing, evaluation, pitching events, and post-investment support.',
       },
       {
         id: 3,
-        question: 'What payment methods does Investly accept?',
+        question: 'Who can join BAIN?',
         answer:
-          'Investly accepts bank transfers, credit/debit cards, and digital payment options such as PayPal for funding your investment account.',
+          'Angel investors, experienced entrepreneurs, and professionals interested in investing in startups can join BAIN.',
       },
       {
         id: 4,
-        question: 'Can I access Investly on mobile devices?',
+        question: 'Does BAIN invest directly in startups?',
         answer:
-          'Yes, Investly has a mobile-friendly website and a dedicated app available for iOS and Android users.',
+          'No, BAIN facilitates connections between startups and investors who make independent investment decisions.',
       },
       {
         id: 5,
-        question: 'What are the benefits of using Investly?',
+        question: 'Is BAIN limited to startups from Biratnagar?',
+        answer: 'No, startups from across Nepal can apply for funding and support.',
+      },
+      {
+        id: 6,
+        question: 'How is BAIN different from venture capital firms?',
         answer:
-          'Investly provides a user-friendly platform for investing in a variety of financial products with low fees, advanced security measures, and expert guidance to help users make informed investment decisions.',
+          'Angel investors at BAIN invest personal funds in early-stage startups, unlike VC firms that manage pooled investment funds.',
+      },
+      {
+        id: 7,
+        question: 'How can I contact BAIN?',
+        answer: 'You can reach us via email, our website, or by visiting our office in Biratnagar.',
       },
     ],
   },
@@ -114,34 +124,45 @@ const faqData: FAQCategory[] = [
     title: 'Startup',
     faqs: [
       {
-        id: 6,
-        question: 'What types of investments can I make?',
-        answer:
-          'Investly offers a wide range of investment options, including individual stocks, bonds, exchange-traded funds (ETFs), and mutual funds. We also offer socially responsible investment options.',
-      },
-      {
-        id: 7,
-        question: 'How much do I need to start investing?',
-        answer:
-          'You can start investing with as little as $100. Investly provides flexible options to accommodate investors of all levels.',
-      },
-      {
         id: 8,
-        question: 'How do I get started with my first investment?',
+        question: 'How can my startup apply for funding?',
         answer:
-          'To start investing, create an account, complete your profile, and deposit funds into your Investly account. Once done, you can browse available investment options and make your first investment with just a few clicks.',
+          'Apply through our website by submitting your business plan, financial projections, and a pitch deck.',
       },
       {
         id: 9,
-        question: 'Are there any fees for using Investly?',
+        question: 'What type of startups does BAIN support?',
         answer:
-          'Investly charges minimal transaction fees, and there are no hidden charges. You can view our fee structure in your account settings.',
+          'Early-stage startups with innovative business models, high growth potential, and scalability.',
       },
       {
         id: 10,
-        question: 'Can I track my investments in real-time?',
+        question: 'What are the selection criteria for investment?',
         answer:
-          "Yes, Investly provides real-time tracking and analytics to help you monitor your portfolio's performance.",
+          'Market potential, business model viability, team experience, revenue model, risk assessment, and competition.',
+      },
+      {
+        id: 11,
+        question: 'What should I include in my pitch deck?',
+        answer:
+          'Problem & Solution, Market Opportunity, Business Model, Competitive Advantage, Financials, and Funding Requirements.',
+      },
+      {
+        id: 12,
+        question: 'Do I need to give up equity in my company?',
+        answer:
+          'Yes, investors typically invest in exchange for equity, negotiated based on valuation.',
+      },
+      {
+        id: 13,
+        question: 'Does BAIN provide mentorship?',
+        answer: 'Yes, BAIN offers mentorship, advisory support, and networking opportunities.',
+      },
+      {
+        id: 14,
+        question: 'What if my startup is not selected?',
+        answer:
+          'You will receive feedback and can reapply after refining your business model or joining training programs.',
       },
     ],
   },
@@ -149,34 +170,48 @@ const faqData: FAQCategory[] = [
     title: 'Investor',
     faqs: [
       {
-        id: 11,
-        question: 'Is Investly safe to use?',
-        answer:
-          'Yes, Investly takes security seriously. We use the latest encryption technologies to protect your personal data and investments. Additionally, we are regulated by financial authorities to ensure the highest standards of security.',
-      },
-      {
-        id: 12,
-        question: 'How can I withdraw my investments?',
-        answer:
-          'To withdraw your investments, simply go to your account dashboard, select the investment you wish to withdraw from, and follow the instructions. Withdrawals are processed within 1-2 business days.',
-      },
-      {
-        id: 13,
-        question: 'What happens if the market fluctuates?',
-        answer:
-          'Market fluctuations are normal. Investly provides risk assessment tools and expert guidance to help investors make informed decisions during market volatility.',
-      },
-      {
-        id: 14,
-        question: 'Can I automate my investments?',
-        answer:
-          'Yes, Investly offers an auto-invest feature that allows you to set predefined rules for automated investing based on your preferences.',
-      },
-      {
         id: 15,
-        question: 'Does Investly provide financial advice?',
+        question: 'Who can become an angel investor with BAIN?',
         answer:
-          'Investly offers educational resources, market insights, and expert recommendations to help investors make informed decisions. However, we do not provide personalized financial advice.',
+          'Anyone with financial resources, business experience, and a passion for startups can invest.',
+      },
+      {
+        id: 16,
+        question: 'How much do I need to invest?',
+        answer: 'Investments typically range from NPR 2 lakh to NPR 50 lakh per startup.',
+      },
+      {
+        id: 17,
+        question: 'What is the expected return on investment (ROI)?',
+        answer: 'Returns vary based on startup success, industry trends, and market conditions.',
+      },
+      {
+        id: 18,
+        question: 'How do I assess startup opportunities?',
+        answer:
+          'BAIN provides due diligence reports, investment briefs, and organizes pitch events to help investors evaluate startups based on key metrics and risk factors.',
+      },
+      {
+        id: 19,
+        question: 'Can I invest individually or as part of a group?',
+        answer:
+          'Both options are available. You can invest individually or collaborate with other angels to co-invest in promising startups.',
+      },
+      {
+        id: 20,
+        question: 'What kind of support does BAIN offer to investors?',
+        answer:
+          'BAIN assists investors with deal sourcing, due diligence, investment structuring, legal documentation, and portfolio management.',
+      },
+      {
+        id: 21,
+        question: 'How do I exit an investment?',
+        answer: `
+Exit strategies may include:
+Selling shares to new investors in follow-up funding rounds,
+Acquisition by a larger company,
+Startup IPO (Initial Public Offering),
+Buyback by founders or other investors`,
       },
     ],
   },
