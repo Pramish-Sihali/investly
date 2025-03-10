@@ -1,7 +1,4 @@
 import Image from 'next/image';
-import { ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
 import { Card, CardFooter, CardContent } from '@/components/ui/card';
 
 interface StartupCardProps {
@@ -22,11 +19,7 @@ export function StartupCard({
   country,
   description,
   logo,
-  progress,
-  daysLeft,
-  raised,
   tag,
-  featured,
   websiteLink,
 }: StartupCardProps) {
   return (

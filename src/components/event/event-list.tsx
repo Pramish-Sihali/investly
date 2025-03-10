@@ -48,24 +48,24 @@ const EventCard = ({ event }: { event: Event }) => {
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row items-start gap-6 p-8 bg-white shadow-md hover:shadow-lg transition-shadow duration-200 rounded-xl mb-8 border border-gray-100">
-        <div className="flex-1 space-y-4">
+      <div className="flex flex-col sm:flex-row items-start gap-4 p-4 sm:p-8 bg-white shadow-md hover:shadow-lg transition-shadow duration-200 rounded-xl mb-6 border border-gray-100">
+        <div className="flex-1 space-y-2">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-primary" />
             <p className="text-sm font-medium text-gray-500">{formatDate(event.eventDate)}</p>
           </div>
-          <h3 className="text-2xl font-semibold text-gray-800">{event.title}</h3>
+          <h3 className="text-xl sm:text-2xl font-semibold text-gray-800">{event.title}</h3>
           <p className="text-gray-600">{event.eventLocation}</p>
-          <div className="flex gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row gap-2 pt-2">
             <Button
               onClick={() => setOpenDetails(true)}
-              className="bg-gray-50 text-gray-800 hover:bg-gray-100 transition-colors duration-200"
+              className="w-full sm:w-auto bg-gray-50 text-gray-800 hover:bg-gray-100 transition-colors duration-200"
             >
               Read More
             </Button>
             <Button
               onClick={() => setOpenApply(true)}
-              className="bg-primary text-white hover:bg-primary/90 transition-colors duration-200"
+              className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 transition-colors duration-200"
             >
               Apply for Event
             </Button>
@@ -87,7 +87,7 @@ const EventCard = ({ event }: { event: Event }) => {
             \
           </div>
 
-          <div className="mt-8 flex justify-end space-x-4">
+          <div className="mt-8 flex flex-col sm:flex-row justify-end space-x-0 sm:space-x-4">
             <Button
               onClick={() => setOpenDetails(false)}
               variant="outline"
@@ -108,9 +108,9 @@ const EventCard = ({ event }: { event: Event }) => {
           <DialogHeader>
             <DialogTitle>Apply for Event</DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col gap-4">
-            <Input type="email" placeholder="Email" required />
-            <Input type="password" placeholder="Password" required />
+          <div className="flex flex-col gap-2">
+            <Input type="email" placeholder="Email" required className="w-full" />
+            <Input type="password" placeholder="Password" required className="w-full" />
             <Button
               onClick={() => setOpenApply(false)}
               className="w-full bg-primary text-white hover:bg-primary"

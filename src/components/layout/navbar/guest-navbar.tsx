@@ -57,12 +57,12 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-lg">
-      <div className="container mx-20 flex h-16 items-center justify-between px-2">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-20">
         <Link href="/" className="text-xl font-bold text-primary ">
           <Image src="/logo.png" alt="Investify Logo" width={150} height={150} />
         </Link>
 
-        <div className=" hidden md:flex items-center space-x-10">
+        <div className="hidden md:flex items-center space-x-10">
           <NavigationMenu>
             <NavigationMenuList>
               {navLinks.map((section) => (
@@ -107,19 +107,10 @@ export function Navbar() {
               ))}
             </NavigationMenuList>
           </NavigationMenu>
-
-          <div className="relative" ref={profileDropdownRef}>
-            <div className="">
-              {/* Removed Login and Sign Up buttons */}
-              {/* ... existing code ... */}
-              {/* Removed Profile Dropdown */}
-              {/* ... existing code ... */}
-            </div>
-          </div>
         </div>
 
         {/* Mobile Navigation */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center">
           <Button variant="ghost" size="icon" onClick={() => setIsSheetOpen(true)}>
             <Menu className="h-6 w-6" />
           </Button>
