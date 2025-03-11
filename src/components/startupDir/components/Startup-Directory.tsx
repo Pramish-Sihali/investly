@@ -7,12 +7,13 @@ import { StartupCard } from '@/components/startupDir/starup-card';
 
 const FETCH_STARTUPS = gql`
   query FetchStartups {
-    companies(role: STARTUP) {
+    companies {
       results {
         organizationName
         organizationLogo
         organizationDescription
         websiteLink
+        role
       }
     }
   }
@@ -46,16 +47,16 @@ export default async function StartupDirectoryPage() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {startups.map((startup: any) => (
             <StartupCard
-              key={startup.organizationName}
+              key={`${startup.organizationName}-${startup.websiteLink}`}
               name={startup.organizationName}
-              country={startup.contactCountry || 'N/A'} // Fallback if contactCountry is not available
-              description={startup.organizationDescription || 'No description available'} // Fallback if description is empty
-              logo={startup.organizationLogo}
-              progress={50} // You might want to add this field to your GraphQL query
+              country={startup.contactCountry || 'N/A'}
+              description={startup.organizationDescription || 'No description available'}
+              logo={startup.organizationLogo || '/path/to/default/logo.png'}
+              progress={50}
               daysLeft={30}
-              raised={startup.amountRaising || 'N/A'} // Fallback if amountRaising is not available
-              featured={startup.featured || false} // Fallback if featured is not available
-              websiteLink={startup.websiteLink} // Pass websiteLink to the card
+              raised={startup.amountRaising || 'N/A'}
+              featured={startup.featured || false}
+              websiteLink={startup.websiteLink}
             />
           ))}
         </div>
