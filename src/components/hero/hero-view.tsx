@@ -7,7 +7,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       <section className="relative overflow-hidden bg-white">
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
-          <div className="flex min-h-[80vh] flex-col lg:flex-row lg:items-center lg:gap-12">
+          <div className="flex min-h-[68vh] sm:min-h-[80vh] flex-col lg:flex-row lg:items-center lg:gap-12">
             <div className="relative z-10 flex flex-col justify-center py-12 lg:w-[45%] lg:py-0">
               <h1 className="bg-gradient-to-r from-primary to-[#467FB2] bg-clip-text text-transparent text-[2.75rem] font-bold leading-tight sm:text-3xl lg:text-5xl mb-4">
                 Biratnagar Angel Investment Network.
@@ -48,7 +48,7 @@ export default function Home() {
       </section>
 
       {/* Companies Section */}
-      <section className="py-10 bg-gray-100 sm:py-16 lg:py-24">
+      <section className="py-5 bg-gray-100 sm:py-16 lg:py-24">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 sm:gap-x-12 gap-y-12">
             {/* Left Column */}
@@ -71,7 +71,10 @@ export default function Home() {
             <div className="lg:col-span-3 xl:col-span-4">
               <div className="grid items-center max-w-4xl grid-cols-2 mx-auto lg:grid-cols-4 gap-x-10 gap-y-16">
                 {companies.map((company, index) => (
-                  <div key={index} className={`${index >= 4 ? 'hidden lg:block' : ''}`}>
+                  <div
+                    key={index}
+                    className={`${index >= 4 ? 'hidden lg:block' : ''} flex justify-center`}
+                  >
                     <Image
                       src={`/${company.logo}`}
                       alt={company.name}
@@ -84,7 +87,7 @@ export default function Home() {
               </div>
 
               {/* Mobile Navigation Dots */}
-              <div className="flex items-center justify-start mt-10 space-x-3 lg:hidden">
+              <div className="flex items-center justify-center mt-10 space-x-3 lg:hidden">
                 <div className="w-2.5 h-2.5 rounded-full bg-primary block" />
                 <div className="w-2.5 h-2.5 rounded-full bg-gray-300 block" />
                 <div className="w-2.5 h-2.5 rounded-full bg-gray-300 block" />
