@@ -1,96 +1,126 @@
-import HeadingSection from '@/components/common/heading-section';
 import { Shield, Zap, BarChart3, FileText, Users, Lightbulb, TrendingUp } from 'lucide-react';
 
-export default function WhatWeOffer() {
-  const features = [
+import HeadingSection from '../common/heading-section';
+
+export default function OurServices() {
+  const services = [
     {
       icon: Shield,
       title: 'Due Diligence Support',
       description:
-        'Our expert team conducts thorough due diligence, analyzing business models, financials, market trends, and legal frameworks to ensure informed investment decisions.',
-      bgColor: 'text-blue-100',
-      iconColor: 'text-blue-600',
+        'Investing in early-stage startups comes with risks. Our expert team conducts thorough due diligence, analyzing business models, financials, market trends, and legal frameworks to ensure informed investment decisions.',
+      bgColor: 'bg-blue-50',
+      iconColor: 'text-blue-500',
     },
     {
       icon: Zap,
       title: 'Deal Flow Access',
       description:
-        'As a BAIN investor, you get exclusive access to high-quality, vetted startups. We source promising ventures through our expansive network, ensuring investors see only the best opportunities.',
-      bgColor: 'text-orange-100',
-      iconColor: 'text-orange-600',
+        'As a BAIN investor, you get exclusive access to high-quality, vetted startups. We source promising ventures through our expansive network, pitching events, and direct startup outreach, ensuring investors see only the best opportunities.',
+      bgColor: 'bg-orange-50',
+      iconColor: 'text-orange-500',
     },
     {
       icon: BarChart3,
       title: 'Portfolio Management',
       description:
         'Post-investment, we help investors track startup performance, provide strategic guidance, and optimize exit strategies—ensuring their capital is effectively utilized for maximum returns.',
-      bgColor: 'text-green-100',
-      iconColor: 'text-green-600',
+      bgColor: 'bg-green-50',
+      iconColor: 'text-green-500',
     },
     {
       icon: FileText,
       title: 'Investment Structuring & Legal Support',
       description:
         'We assist investors and startups in structuring deals, drafting investment agreements, and navigating compliance requirements, ensuring smooth transactions and risk mitigation.',
-      bgColor: 'text-purple-100',
-      iconColor: 'text-purple-600',
+      bgColor: 'bg-purple-50',
+      iconColor: 'text-purple-500',
     },
     {
       icon: Users,
       title: 'Pitching & Networking Events',
       description:
-        'BAIN organizes pitch events, investor roundtables, and mentorship sessions, providing startups with the platform to showcase their ideas while offering investors a structured experience.',
-      bgColor: 'text-gray-100',
-      iconColor: 'text-gray-600',
+        'BAIN organizes pitch events, investor roundtables, and mentorship sessions, providing startups with the platform to showcase their ideas while offering investors a structured and engaging investment experience.',
+      bgColor: 'bg-pink-50',
+      iconColor: 'text-pink-500',
     },
     {
       icon: Lightbulb,
       title: 'Post-Investment Support & Mentorship',
       description:
-        'Beyond funding, we ensure startups receive the right mentorship, business development support, and market linkages to scale successfully. Investors can also participate in advisory roles.',
-      bgColor: 'text-yellow-100',
-      iconColor: 'text-yellow-500',
+        'Beyond funding, we ensure startups receive the right mentorship, business development support, and market linkages to scale successfully. Investors can also participate in mentoring and advisory roles.',
+      bgColor: 'bg-yellow-50',
+      iconColor: 'text-yellow-600',
     },
     {
       icon: TrendingUp,
       title: 'Exit Planning & Follow-up Funding',
       description:
-        'We help investors and startups strategize profitable exits—whether through acquisitions, follow-on funding, or secondary sales. Our services also assist startups in securing future rounds.',
-      bgColor: 'text-pink-100',
-      iconColor: 'text-pink-600',
+        'We help investors and startups strategize profitable exits—whether through acquisitions, follow-on funding, or secondary sales. Our fundraising advisory services also assist startups in securing future rounds of investment.',
+      bgColor: 'bg-teal-50',
+      iconColor: 'text-teal-500',
     },
   ];
 
   return (
-    <section className="py-10 bg-white sm:py-16 lg:py-24 text-center">
+    <section className="py-16 bg-white">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <HeadingSection
-            title="What We Have to Offer"
-            subtitle="At Biratnagar Angel Investment Network (BAIN), we go beyond just connecting startups with investors—we provide a structured, de-risked, and value-driven investment experience."
+            title="Our Services"
+            subtitle="At Biratnagar Angel Investment Network (BAIN), we go beyond just connecting startups with
+investors—we provide a structured, de-risked, and value-driven investment experience."
           />
         </div>
 
-        <div className="grid grid-cols-1 gap-12 text-center sm:grid-cols-2 md:grid-cols-3 lg:gap-y-16">
-          {features.map((feature, index) => (
-            <div key={index}>
-              <div className="relative flex items-center justify-center mx-auto">
-                <svg
-                  className={feature.bgColor}
-                  width="72"
-                  height="75"
-                  viewBox="0 0 72 75"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M63.6911 28.8569C68.0911 48.8121 74.6037 61.2674 53.2349 65.9792C31.8661 70.6909 11.6224 61.2632 7.22232 41.308C2.82229 21.3528 3.6607 12.3967 25.0295 7.68503C46.3982 2.97331 59.2911 8.90171 63.6911 28.8569Z" />
-                </svg>
-                <feature.icon className={`absolute w-9 h-9 ${feature.iconColor}`} />
+        <div className="max-w-6xl mx-auto">
+          {/* First row - 4 cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            {services.slice(0, 4).map((service, index) => (
+              <div
+                key={index}
+                className="p-6 bg-white border border-gray-200 rounded-lg transition-all hover:shadow-sm"
+              >
+                <div className="flex justify-center mb-4">
+                  <div
+                    className={`w-12 h-12 flex items-center justify-center rounded-full ${service.bgColor}`}
+                  >
+                    <service.icon className={`w-6 h-6 ${service.iconColor}`} />
+                  </div>
+                </div>
+                <h3 className="mb-2 text-base font-semibold text-center text-gray-900">
+                  {service.title}
+                </h3>
+                <p className="text-xs text-center text-gray-600 leading-relaxed">
+                  {service.description}
+                </p>
               </div>
-              <h3 className="mt-8 text-lg font-semibold text-black">{feature.title}</h3>
-              <p className="mt-4 text-base text-gray-600 text-center">{feature.description}</p>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Second row - 3 cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {services.slice(4, 7).map((service, index) => (
+              <div
+                key={index}
+                className="p-6 bg-white border border-gray-200 rounded-lg transition-all hover:shadow-sm"
+              >
+                <div className="flex justify-center mb-4">
+                  <div
+                    className={`w-12 h-12 flex items-center justify-center rounded-full ${service.bgColor}`}
+                  >
+                    <service.icon className={`w-6 h-6 ${service.iconColor}`} />
+                  </div>
+                </div>
+                <h3 className="mb-2 text-base font-semibold text-center text-gray-900">
+                  {service.title}
+                </h3>
+                <p className="text-xs text-center text-gray-600 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
