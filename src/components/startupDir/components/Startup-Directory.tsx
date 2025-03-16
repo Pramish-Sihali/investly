@@ -6,14 +6,14 @@ import HeadingSection from '@/components/common/heading-section';
 import { StartupCard } from '@/components/startupDir/starup-card';
 
 const FETCH_STARTUPS = gql`
-  query FetchStartups {
-    companies {
+  query MyQuery {
+    companies(organizationRole: STARTUP) {
       results {
-        organizationName
         organizationLogo
+        organizationName
+        organizationRole
         organizationDescription
         websiteLink
-        role
       }
     }
   }
