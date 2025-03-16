@@ -4,7 +4,7 @@ import { gql } from '@apollo/client';
 import client from '@/lib/apollo-client';
 import { Card, CardContent } from '@/components/ui/card';
 import HeadingSection from '@/components/common/heading-section';
-import ResponsiveContainer from '@/components/common/responsive-container'
+import ResponsiveContainer from '@/components/common/responsive-container';
 
 interface ReadingList {
   id: string;
@@ -31,16 +31,12 @@ const fetchReadingLists = async (): Promise<ReadingList[]> => {
       `,
       fetchPolicy: 'no-cache',
     });
-
-    console.log('Fetched Data:', data);
-
     return data.academy || [];
   } catch (error) {
     console.error('Error fetching reading lists:', error);
     return [];
   }
 };
-
 
 export default async function AcademyPage() {
   const readingLists = await fetchReadingLists();
@@ -66,7 +62,7 @@ export default async function AcademyPage() {
                   <div className="w-16 h-24 rounded-full flex items-center justify-center mb-6">
                     {item.logo && (
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_API_URL}${item.logo}`} 
+                        src={`${process.env.NEXT_PUBLIC_API_URL}${item.logo}`}
                         alt="logo"
                         width={500}
                         height={200}

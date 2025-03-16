@@ -71,7 +71,7 @@ export default function Home() {
                     </button>
                   </Link>
                   <Link href="/for-startup">
-                    <button className="border-2 border-primary text-primary hover:bg-primary/5 font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1">
+                    <button className="border border-primary text-primary hover:bg-primary/5 font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1">
                       For Investors
                     </button>
                   </Link>
