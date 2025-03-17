@@ -4,8 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
+import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import React, { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetTitle, SheetHeader, SheetContent } from '@/components/ui/sheet';
 import {
@@ -20,8 +20,6 @@ import {
 export function Navbar() {
   const pathname = usePathname();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-
-  const profileDropdownRef = useRef<HTMLDivElement | null>(null);
 
   const navLinks = [
     {
@@ -52,7 +50,7 @@ export function Navbar() {
       ],
     },
     { name: 'Mentor', href: '/mentor' },
-    { name: 'FAQ', href: '/fnq' },
+    { name: 'FAQ', href: '/faqs' },
   ];
 
   return (

@@ -114,7 +114,6 @@ export default function UserRegistrationForm() {
       toast({
         title: 'Registration successful!',
         description: 'You have successfully registered.',
-        
       });
     },
     onError: (error) => {
@@ -128,11 +127,11 @@ export default function UserRegistrationForm() {
   function onSubmit(values: FormValues) {
     setLoading(true);
     const formData = new FormData();
-    Object.entries(values).forEach(([key, value]) => {
+    for (const [key, value] of Object.entries(values)) {
       if (value !== undefined && key !== 'document') {
         formData.append(key, value);
       }
-    });
+    }
 
     if (file) {
       formData.append('document', file);
@@ -146,34 +145,35 @@ export default function UserRegistrationForm() {
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-      form.setValue('document', e.target.files[0]);
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      form.setValue('document', selectedFile);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <Card className="w-3/4 mx-auto md:mx-10 mt-10 justify-center">
-        <CardContent>
-          <div className="flex flex-col items-center justify-center mt-10">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full max-w-4xl mx-auto shadow-xl">
+        <CardContent className="p-8">
+          <div className="flex flex-col items-center justify-center mb-8">
             <HeadingSection
               title="Startups Registration"
               subtitle="Please fill in the details below if you are a startup"
             />
           </div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-6">
                   <FormField
                     control={form.control}
                     name="full_name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Full Name</FormLabel>
+                        <FormLabel className="text-base font-medium">Full Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} />
+                          <Input placeholder="John Doe" className="h-12" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -185,9 +185,9 @@ export default function UserRegistrationForm() {
                     name="organization_name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Organization Name</FormLabel>
+                        <FormLabel className="text-base font-medium">Organization Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Company Inc." {...field} />
+                          <Input placeholder="Company Inc." className="h-12" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -199,9 +199,14 @@ export default function UserRegistrationForm() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel className="text-base font-medium">Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="john@example.com" {...field} />
+                          <Input
+                            type="email"
+                            placeholder="john@example.com"
+                            className="h-12"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -213,9 +218,9 @@ export default function UserRegistrationForm() {
                     name="contact_number"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Contact Number</FormLabel>
+                        <FormLabel className="text-base font-medium">Contact Number</FormLabel>
                         <FormControl>
-                          <Input placeholder="+9770000000000" {...field} />
+                          <Input placeholder="+9770000000000" className="h-12" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -227,10 +232,10 @@ export default function UserRegistrationForm() {
                     name="role"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Role</FormLabel>
+                        <FormLabel className="text-base font-medium">Role</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger className="h-12">
                               <SelectValue placeholder="Select a role" />
                             </SelectTrigger>
                           </FormControl>
@@ -245,17 +250,17 @@ export default function UserRegistrationForm() {
                   />
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <FormField
                     control={form.control}
                     name="about_you"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>About Your Business</FormLabel>
+                        <FormLabel className="text-base font-medium">About Your Business</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="Tell us about yourself or your organization"
-                            className="min-h-[120px]"
+                            className="min-h-[120px] resize-none"
                             {...field}
                           />
                         </FormControl>
@@ -269,9 +274,9 @@ export default function UserRegistrationForm() {
                     name="website_link"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Website</FormLabel>
+                        <FormLabel className="text-base font-medium">Website</FormLabel>
                         <FormControl>
-                          <Input placeholder="https://example.com" {...field} />
+                          <Input placeholder="https://example.com" className="h-12" {...field} />
                         </FormControl>
                         <FormDescription>Optional: Enter your website URL</FormDescription>
                         <FormMessage />
@@ -280,17 +285,27 @@ export default function UserRegistrationForm() {
                   />
 
                   <FormItem>
-                    <FormLabel>Your Pitch Deck or Business Plan</FormLabel>
+                    <FormLabel className="text-base font-medium">
+                      Your Pitch Deck or Business Plan
+                    </FormLabel>
                     <FormControl>
-                      <Input type="file" onChange={handleFileChange} className="cursor-pointer" />
+                      <Input
+                        type="file"
+                        onChange={handleFileChange}
+                        className="h-12 cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+                      />
                     </FormControl>
                     <FormDescription>Optional: Upload a document (PDF, DOC, etc.)</FormDescription>
                   </FormItem>
                 </div>
               </div>
 
-              <div className="flex justify-center mt-6">
-                <Button type="submit" className="w-full max-w-xs" disabled={loading}>
+              <div className="flex justify-center mt-8">
+                <Button
+                  type="submit"
+                  className="w-full max-w-xs h-12 text-base font-medium transition-all duration-200 hover:scale-105"
+                  disabled={loading}
+                >
                   {loading ? 'Submitting...' : 'Submit Form'}
                 </Button>
               </div>

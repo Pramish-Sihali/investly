@@ -1,11 +1,28 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { fadeIn, slideIn } from '@/lib/animations';
+import { fadeIn } from '@/lib/animations';
 import { Card, CardContent } from '@/components/ui/card';
 import React, { useRef, useState, useEffect } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import HeadingSection from '@/components/common/heading-section';
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import {
+  TwitterIcon,
+  FacebookIcon,
+  LinkedinIcon,
+  WhatsappIcon,
+  TwitterShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  WhatsappShareButton,
+} from 'react-share';
 
 const StartupPage = () => {
   const steps = [
@@ -119,28 +136,21 @@ For investors interested in reinvesting gains, we offer seamless opportunities t
     <section className="py-12 bg-white sm:py-16 lg:py-20">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         {/* Breadcrumb Navigation */}
-        <nav className="flex items-center justify-center">
-          <ol className="flex items-center space-x-2">
-            <li>
-              <a href="/" className="text-base font-medium text-gray-900">
+        <Breadcrumb className="flex items-center justify-center">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/" className="text-base font-medium text-gray-900">
                 Home
-              </a>
-            </li>
-            <li>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 text-gray-900 shrink-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
-                </svg>
-                <span className="ml-2 text-base font-medium text-gray-500">Investor Guide</span>
-              </div>
-            </li>
-          </ol>
-        </nav>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage className="text-base font-medium text-gray-500">
+                Investor Guide
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
         {/* Header Section */}
         <div className="max-w-xl mx-auto text-center mt-8">
@@ -156,30 +166,45 @@ For investors interested in reinvesting gains, we offer seamless opportunities t
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 mt-12 lg:grid-cols-12 lg:gap-x-12 gap-y-8">
+        <div className="grid grid-cols-1 mt-12 lg:grid-cols-12 lg:gap-x-8 gap-y-8">
           {/* Sidebar */}
-          <div className="lg:col-span-2 lg:self-start lg:sticky lg:top-6">
-            <ul className="flex flex-col space-y-4">
-              {steps.map((step) => (
-                <motion.li
-                  key={step.id}
-                  whileHover={{ x: 4 }}
-                  className={`cursor-pointer transition-all duration-200 p-3 rounded-lg ${
-                    activeStep === step.id ? 'bg-primary text-white' : 'hover:bg-gray-50'
-                  }`}
-                  onClick={() => scrollToStep(step.id)}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="font-bold">{step.id}</span>
-                    <span>{step.title}</span>
-                  </div>
-                </motion.li>
-              ))}
-            </ul>
+          <div className="lg:col-span-3 lg:self-start lg:sticky lg:top-20">
+            <Card className="border-none shadow-sm">
+              <CardContent className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Navigation</h3>
+                <ul className="flex flex-col space-y-2">
+                  {steps.map((step) => (
+                    <motion.li
+                      key={step.id}
+                      whileHover={{ x: 4 }}
+                      className={`cursor-pointer transition-all duration-200 rounded-lg ${
+                        activeStep === step.id
+                          ? 'bg-primary text-white shadow-sm'
+                          : 'hover:bg-gray-50'
+                      }`}
+                      onClick={() => scrollToStep(step.id)}
+                    >
+                      <div className="flex items-center gap-3 p-3">
+                        <div
+                          className={`flex items-center justify-center w-8 h-8 rounded-full ${
+                            activeStep === step.id
+                              ? 'bg-white/20 text-white'
+                              : 'bg-gray-100 text-gray-600'
+                          }`}
+                        >
+                          <span className="font-bold">{step.id}</span>
+                        </div>
+                        <span className="text-sm font-medium">{step.title}</span>
+                      </div>
+                    </motion.li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-6">
             {steps.map((step, index) => (
               <motion.div
                 key={step.id}
@@ -192,7 +217,7 @@ For investors interested in reinvesting gains, we offer seamless opportunities t
                 viewport={{ once: true }}
                 className="mb-16"
               >
-                <Card className="overflow-hidden">
+                <Card className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow duration-200">
                   <CardContent className="p-0">
                     <div className="aspect-w-16 aspect-h-9 mb-6">
                       <img
@@ -202,7 +227,12 @@ For investors interested in reinvesting gains, we offer seamless opportunities t
                       />
                     </div>
                     <div className="p-8">
-                      <h2 className="text-3xl font-bold text-gray-900 mb-4">{step.title}</h2>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
+                          <span className="font-bold">{step.id}</span>
+                        </div>
+                        <h2 className="text-2xl font-bold text-gray-900">{step.title}</h2>
+                      </div>
                       <div className="prose max-w-none">
                         <p className="text-gray-600">
                           {expandedSteps[step.id]
@@ -211,8 +241,9 @@ For investors interested in reinvesting gains, we offer seamless opportunities t
                         </p>
                       </div>
                       <button
+                        type="button"
                         onClick={() => toggleExpand(step.id)}
-                        className="mt-4 text-primary font-semibold flex items-center gap-2"
+                        className="mt-4 text-primary font-semibold flex items-center gap-2 hover:text-primary/80 transition-colors"
                       >
                         {expandedSteps[step.id] ? 'Show Less' : 'Read More'}
                         <ChevronDownIcon
@@ -229,17 +260,50 @@ For investors interested in reinvesting gains, we offer seamless opportunities t
           </div>
 
           {/* Social Share Sidebar */}
-          <div className="lg:col-span-2 lg:self-start lg:sticky lg:top-6">
-            <ul className="flex lg:flex-col items-center space-y-4">
-              {/* Add your social share buttons here */}
-              {/* Example for one button */}
-              <li>
-                <button className="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-gray-900 hover:text-white">
-                  <span className="sr-only">Share</span>
-                  {/* Add icon here */}
-                </button>
-              </li>
-            </ul>
+          <div className="lg:col-span-3 lg:self-start lg:sticky lg:top-20">
+            <Card className="border-none shadow-sm">
+              <CardContent className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Share</h3>
+                <ul className="flex lg:flex-row items-center">
+                  <li>
+                    <FacebookShareButton
+                      title="Check out this amazing guide for investors on BAIN!"
+                      url={typeof window !== 'undefined' ? window.location.href : ''}
+                      className="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2]"
+                    >
+                      <FacebookIcon size={24} round />
+                    </FacebookShareButton>
+                  </li>
+                  <li>
+                    <TwitterShareButton
+                      url={typeof window !== 'undefined' ? window.location.href : ''}
+                      title="Check out this amazing guide for investors on BAIN!"
+                      className="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-[#1DA1F2] hover:text-white hover:border-[#1DA1F2]"
+                    >
+                      <TwitterIcon size={24} round />
+                    </TwitterShareButton>
+                  </li>
+                  <li>
+                    <LinkedinShareButton
+                      url={typeof window !== 'undefined' ? window.location.href : ''}
+                      title="Check out this amazing guide for investors on BAIN!"
+                      className="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2]"
+                    >
+                      <LinkedinIcon size={24} round />
+                    </LinkedinShareButton>
+                  </li>
+                  <li>
+                    <WhatsappShareButton
+                      url={typeof window !== 'undefined' ? window.location.href : ''}
+                      title="Check out this amazing guide for investors on BAIN!"
+                      className="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-[#25D366] hover:text-white hover:border-[#25D366]"
+                    >
+                      <WhatsappIcon size={24} round />
+                    </WhatsappShareButton>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

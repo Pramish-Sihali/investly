@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import HeadingSection from '@/components/common/heading-section';
 import ResponsiveContainer from '@/components/common/responsive-container';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
@@ -27,42 +28,52 @@ interface FAQProps {
 
 const FAQ = ({ categories }: FAQProps) => (
   <ResponsiveContainer variant="narrow" paddingY="xl">
-    <div className="w-full max-w-5xl mx-auto px-6 sm:px-8 md:px-12 mt-12">
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 mt-16 mb-20">
       <HeadingSection
         badge="FAQ"
         title="Frequently Asked Questions"
         subtitle="Find quick answers to common queries."
       />
 
-      <Tabs defaultValue={categories[0]?.title} className="mt-8">
-        <TabsList className="flex rounded-none justify-center bg-transparent mb-6 ">
+      <Tabs defaultValue={categories[0]?.title} className="mt-12">
+        <TabsList className="flex rounded-full justify-center bg-gray-50/50 p-1 mb-8 w-fit mx-auto">
           {categories.map((category) => (
             <TabsTrigger
               key={category.title}
               value={category.title}
-              className="text-gray-700 border-gray-300 font-medium px-6 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 hover:text-primary-500 hover:border-primary-500"
+              className={cn(
+                'text-gray-500 font-medium px-6 py-2 rounded-full transition-all duration-200',
+                'data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-2 data-[state=active]:border-primary-600',
+                'hover:text-primary-600 hover:border-2 hover:border-primary-200',
+                'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400',
+                'border-2 border-transparent'
+              )}
             >
               {category.title}
             </TabsTrigger>
           ))}
         </TabsList>
 
-        <Separator />
+        <Separator className="mb-8" />
 
         {categories.map((category) => (
-          <TabsContent key={category.title} value={category.title} className="mt-6">
-            <Accordion type="single" collapsible className="w-full">
+          <TabsContent
+            key={category.title}
+            value={category.title}
+            className="mt-6 data-[state=inactive]:animate-fadeOut data-[state=active]:animate-fadeIn"
+          >
+            <Accordion type="single" collapsible className="w-full space-y-4">
               {category.faqs.map((faq) => (
                 <AccordionItem
                   key={faq.id}
                   value={`item-${faq.id}`}
-                  className="border-b border-gray-200 last:border-none"
+                  className="border border-gray-100 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
                 >
-                  <AccordionTrigger className="text-lg font-medium px-6 py-4 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400">
+                  <AccordionTrigger className="text-lg font-semibold px-6 py-4 rounded-t-xl hover:no-underline focus:no-underline">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="px-6 py-4 rounded-b-lg">
-                    <p className="text-gray-600 leading-relaxed text-base">{faq.answer}</p>
+                  <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed text-base">
+                    {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
               ))}
@@ -217,6 +228,6 @@ Buyback by founders or other investors`,
   },
 ];
 
-const FAQPage = () => <FAQ categories={faqData} />;
+const FAQPageView = () => <FAQ categories={faqData} />;
 
-export default FAQPage;
+export default FAQPageView;

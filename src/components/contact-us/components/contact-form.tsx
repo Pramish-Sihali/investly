@@ -11,6 +11,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { showError, showSuccess } from '@/lib/alerts';
 import { contactFormSchema } from '@/schemas/contact-form-schemas';
 import {
+  Select,
+  SelectItem,
+  SelectValue,
+  SelectContent,
+  SelectTrigger,
+} from '@/components/ui/select';
+import {
   Form,
   FormItem,
   FormField,
@@ -19,15 +26,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-type ContactFormProps = {
-  propertyId?: string;
-  inquiryType?: 'General Inquiry' | 'Specific Property';
-};
-
-export default function ContactForm({
-  propertyId,
-  inquiryType = 'General Inquiry',
-}: ContactFormProps) {
+export default function ContactForm() {
   const [loading, setLoading] = useState(false); // State for tracking loading status
   const form = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
@@ -38,7 +37,6 @@ export default function ContactForm({
       email: '',
       message: '',
       who_you_are: '',
-      property: propertyId || '',
     },
   });
 
@@ -52,8 +50,6 @@ export default function ContactForm({
         },
         body: JSON.stringify({
           ...data,
-          inquiry_type: inquiryType,
-          property: propertyId ? parseInt(propertyId) : null,
         }),
       });
 
@@ -149,15 +145,16 @@ export default function ContactForm({
                 <FormLabel>Who You Are</FormLabel>
                 <FormControl>
                   <div className="relative">
-                    <select
-                      className="p-5 px-5 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-primary"
-                      {...field}
-                    >
-                      <option value="">Select an option</option>
-                      <option value="Mentor">Mentor</option>
-                      <option value="Investor">Investor</option>
-                      <option value="Startups">Startups</option>
-                    </select>
+                    <Select {...field} onValueChange={field.onChange}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select an option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Mentor">Mentor</SelectItem>
+                        <SelectItem value="Investor">Investor</SelectItem>
+                        <SelectItem value="Startups">Startups</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </FormControl>
                 <FormMessage />

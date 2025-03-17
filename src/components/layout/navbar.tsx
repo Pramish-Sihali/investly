@@ -114,48 +114,48 @@ export function Navbar() {
                 Log In
               </Link>
               <button
-  onClick={(e) => {
-    e.stopPropagation(); // Prevents unintended behavior
-    setIsDropdownOpen(!isDropdownOpen);
-  }}
-  className="px-5 py-2 border text-sm font-medium text-white bg-primary rounded-md hover:bg-gray-800"
->
-  Sign Up
-</button>
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevents unintended behavior
+                  setIsDropdownOpen(!isDropdownOpen);
+                }}
+                className="px-5 py-2 border text-sm font-medium text-white bg-primary rounded-md hover:bg-gray-800"
+              >
+                Sign Up
+              </button>
             </div>
 
             {/* Sign Up Dropdown */}
             {isDropdownOpen && (
-  <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
-    <button
-      onClick={() => {
-        setIsDropdownOpen(false);
-        window.location.href = '/signup/?usertype=investor';
-      }}
-      className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-    >
-      Sign Up As Investor
-    </button>
-    <button
-      onClick={() => {
-        setIsDropdownOpen(false);
-        window.location.href = '/signup/?usertype=startup';
-      }}
-      className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-    >
-      Sign Up As Startup
-    </button>
-    <button
-      onClick={() => {
-        setIsDropdownOpen(false);
-        window.location.href = '/signup/?usertype=mentor';
-      }}
-      className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
-    >
-      Sign Up As Mentor
-    </button>
-  </div>
-)}
+              <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md z-10">
+                <button
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    window.location.href = '/signup/?usertype=investor';
+                  }}
+                  className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
+                >
+                  Sign Up As Investor
+                </button>
+                <button
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    window.location.href = '/signup/?usertype=startup';
+                  }}
+                  className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
+                >
+                  Sign Up As Startup
+                </button>
+                <button
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    window.location.href = '/signup/?usertype=mentor';
+                  }}
+                  className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 rounded-md"
+                >
+                  Sign Up As Mentor
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
