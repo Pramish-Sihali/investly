@@ -18,7 +18,7 @@ export default function Home() {
       <section className="relative overflow-hidden bg-gradient-to-b from-white to-blue-50">
         <div className="absolute right-0 top-0 -z-10 h-full w-1/2 bg-blue-50 opacity-20 lg:block hidden" />
         <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-8">
-          <div className={`transition-all duration-1000 ease-out transform`}>
+          <div className="transition-all duration-1000 ease-out transform">
             <div className="flex min-h-[80vh] flex-col lg:flex-row lg:items-center lg:gap-12">
               {/* Hero Text Content - Enhanced with animations */}
               <div className="relative z-10 flex flex-col justify-center py-8 lg:w-[45%] lg:py-0">
