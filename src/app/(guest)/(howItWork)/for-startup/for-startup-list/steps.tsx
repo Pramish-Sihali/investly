@@ -34,7 +34,6 @@ const StartupPage = () => {
 The application process is designed to be comprehensive yet straightforward. You'll provide essential information about your startup, including your business model, target market, current stage, and funding needs. This helps us assess how we can best support your growth journey.
 
 Our team reviews each application carefully, focusing on innovation potential, market opportunity, and team capabilities. We look for startups that demonstrate strong potential for growth and a clear path to market success.`,
-      image: '/startup.png',
     },
     {
       id: 2,
@@ -54,7 +53,6 @@ We also assess your startup's readiness for investment, looking at factors such 
 BAIN provides more than just funding opportunities. You'll get access to our comprehensive support ecosystem, including mentorship from experienced entrepreneurs, industry experts, and successful investors. Our network can help you with everything from strategic planning to market expansion.
 
 We also offer various resources and tools to help you scale your business, including pitch deck templates, financial modeling guides, and market research reports. Our goal is to provide you with everything you need to succeed.`,
-      image: '/startup2.png',
     },
     {
       id: 4,
@@ -64,7 +62,6 @@ We also offer various resources and tools to help you scale your business, inclu
 Our pitch events are designed to showcase your startup in the best possible light. You'll have the opportunity to present your business model, growth strategy, and funding needs to a curated audience of interested investors. These events are interactive, allowing for meaningful discussions and immediate feedback.
 
 Beyond formal pitches, we facilitate direct connections with investors who align with your vision. Our team helps prepare you for these meetings, ensuring you present your startup effectively and answer investor questions confidently.`,
-      image: '/startup3.png',
     },
     {
       id: 5,
@@ -74,7 +71,6 @@ Beyond formal pitches, we facilitate direct connections with investors who align
 Post-investment, BAIN remains committed to your success. We provide ongoing support through regular check-ins, strategic guidance, and access to additional resources as your startup grows. Our network can help you with everything from hiring talent to expanding into new markets.
 
 We also facilitate connections with potential partners, customers, and advisors who can help accelerate your growth. Our goal is to be a long-term partner in your startup's journey to success.`,
-      image: '/startup4.png',
     },
   ];
 
@@ -209,13 +205,6 @@ We also facilitate connections with potential partners, customers, and advisors 
               >
                 <Card className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow duration-200">
                   <CardContent className="p-0">
-                    <div className="aspect-w-16 aspect-h-9 mb-6">
-                      <img
-                        src={step.image}
-                        alt={`Step ${step.id}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
                     <div className="p-8">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
