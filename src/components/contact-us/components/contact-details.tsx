@@ -65,14 +65,6 @@ export default function ContactDetails() {
                   {address.email_1}
                 </a>
               )}
-              {address.email_2 && (
-                <a
-                  href={`mailto:${address.email_2}`}
-                  className="block text-sm hover:text-primary transition-colors"
-                >
-                  {address.email_2}
-                </a>
-              )}
             </div>
           </div>
         </div>

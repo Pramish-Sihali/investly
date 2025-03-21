@@ -7,7 +7,7 @@ import { StartupCard } from '@/components/startupDir/starup-card';
 
 const FETCH_STARTUPS = gql`
   query MyQuery {
-    companies(organizationRole: STARTUP, limit: 6) {
+    companies(organizationRole: STARTUP) {
       results {
         organizationLogo
         organizationName
@@ -32,7 +32,7 @@ async function fetchStartups() {
   }
 }
 
-export default async function StartupDirectoryPage() {
+export default async function StartupDirectoryPageAll() {
   const startups = await fetchStartups();
 
   return (
@@ -59,15 +59,6 @@ export default async function StartupDirectoryPage() {
               websiteLink={startup.websiteLink}
             />
           ))}
-        </div>
-
-        {/* Optional: Button to view more */}
-        <div className="flex justify-center pt-4">
-          <Link href="/startup-directory">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
-              View all startups
-            </Button>
-          </Link>
         </div>
       </div>
     </main>

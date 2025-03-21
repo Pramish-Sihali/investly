@@ -34,7 +34,6 @@ const StartupPage = () => {
 As a new investor joining BAIN, you'll be guided through our comprehensive onboarding process. This begins with creating your investor profile where you'll specify your investment focus areas, preferred sectors, and investment capacity. This information helps us match you with startups that align with your specific interests and expertise.
 
 Our verification process ensures that all members of our network meet certain criteria, maintaining the high quality of our investor community. Once verified, you'll gain access to exclusive investor resources, including market insights, investment guides, and networking opportunities with fellow angel investors in the BAIN community.`,
-      image: '/investor.png',
     },
     {
       id: 2,
@@ -44,7 +43,6 @@ Our verification process ensures that all members of our network meet certain cr
 BAIN takes pride in our rigorous startup selection process. Only about 10% of startups that apply to our network make it through our initial screening. This ensures that the opportunities presented to you have already been vetted for viability, innovation potential, and market opportunity.
 
 Each startup in our deal flow comes with detailed documentation, including business plans, financial projections, market analysis, and team credentials. Our due diligence process assesses everything from legal standing to competitive landscape, saving you valuable time in the early evaluation stages. You'll receive regular updates on new opportunities that match your specified investment criteria.`,
-      image: '/investor1.png',
     },
     {
       id: 3,
@@ -56,7 +54,6 @@ BAIN hosts regular pitch events both online and in-person where selected startup
 Beyond formal pitches, we facilitate one-on-one meetings between investors and entrepreneurs to explore potential partnerships in greater depth. Our team can help coordinate these meetings and provide guidance on what questions to ask and areas to explore.
 
 We also organize sector-specific roundtables where investors with similar interests can share insights and collectively evaluate opportunities in particular industries or technology areas. This collaborative approach enhances the evaluation process through shared expertise and diverse perspectives.`,
-      image: '/investor2.png',
     },
     {
       id: 4,
@@ -70,7 +67,6 @@ After investing, you gain access to our portfolio management platform where you 
 BAIN encourages active involvement from our investors. You can choose to mentor startups, open doors to your network, or provide strategic guidance in areas of your expertise. This hands-on involvement not only benefits the startups but can significantly impact your investment outcomes.
 
 We provide regular portfolio review sessions where you can discuss your investments with our team, reassess strategies, and decide on follow-on investment opportunities when startups reach new growth stages.`,
-      image: '/investor3.png',
     },
     {
       id: 5,
@@ -84,7 +80,6 @@ We assist in navigating acquisition offers, preparing for potential IPOs, or exp
 BAIN also provides valuation guidance and negotiation support to help maximize your returns when exit opportunities arise. Our historical data and market insights help inform exit decisions to achieve the best possible outcomes.
 
 For investors interested in reinvesting gains, we offer seamless opportunities to redeploy capital into new promising startups within our network, creating a sustainable cycle of investment and returns within the Nepal startup ecosystem.`,
-      image: '/investor3.png',
     },
   ];
 
@@ -219,13 +214,6 @@ For investors interested in reinvesting gains, we offer seamless opportunities t
               >
                 <Card className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow duration-200">
                   <CardContent className="p-0">
-                    <div className="aspect-w-16 aspect-h-9 mb-6">
-                      <img
-                        src={step.image}
-                        alt={`Step ${step.id}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
                     <div className="p-8">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">

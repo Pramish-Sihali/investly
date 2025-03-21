@@ -69,7 +69,7 @@ export function Navbar() {
                     <>
                       <NavigationMenuTrigger>{section.name}</NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                        <ul className="grid w-[400px] gap-3 p-4 md:min-w-fit">
                           {section.children.map((item) => (
                             <li key={item.name}>
                               <NavigationMenuLink asChild>
