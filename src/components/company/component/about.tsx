@@ -4,7 +4,7 @@ import Image from 'next/image';
 import HeadingSection from '@/components/common/heading-section';
 
 export const metadata: Metadata = {
-  title: 'About BAIN | Biratnagar Angel Investment Network',
+  title: 'About BAIN | Biratnagar Angel Investors Network',
   description:
     'Learn about BAINs commitment to fostering early-stage investments in Nepal and connecting startups with experienced investors.',
 };
@@ -15,7 +15,7 @@ export default function AboutUsPage() {
       {/* Hero Section */}
       <HeadingSection
         title="About Us"
-        subtitle="Biratnagar Angel Investment Network (BAIN) is a pioneering platform dedicated to fostering early-stage investments in Nepal."
+        subtitle="Biratnagar Angel Investors Network (BAIN) is a pioneering platform dedicated to fostering early-stage investments in Nepal."
       />
 
       {/* Main Content */}
@@ -32,10 +32,11 @@ export default function AboutUsPage() {
         <div className="space-y-6">
           <h2 className="text-3xl font-semibold">Connecting Startups & Investors</h2>
           <p className="text-muted-foreground text-justify">
-            As the first structured angel investor network in Biratnagar, we connect high-potential
-            startups with experienced investors who provide not just capital but also mentorship,
-            strategic guidance, and industry expertise. Our goal is to strengthen Nepal’s startup
-            ecosystem by bridging the gap between innovative entrepreneurs and visionary investors.
+            To strengthen the startup ecosystem in Koshi Province, the Chamber of Industries, Morang
+            (CIM) has launched the Biratnagar Angel Investors Network (BAIN), a dedicated platform
+            that connects early-stage startups with local angel investors. BAIN aims to bridge the
+            critical financing gap by providing small-ticket investments and mentorship, enabling
+            innovative startups to grow and thrive.
           </p>
         </div>
       </div>
@@ -45,16 +46,10 @@ export default function AboutUsPage() {
         <div className="order-2 md:order-1 space-y-6">
           <h2 className="text-3xl font-semibold">The Context of Angel Investment</h2>
           <p className="text-muted-foreground text-justify">
-            Angel investment refers to early-stage funding provided by high-net-worth individuals or
-            experienced entrepreneurs who believe in supporting promising startups. Angel investment
-            plays a crucial role in fueling startup growth, especially in markets like Nepal, where
-            access to traditional financing remains limited for early-stage businesses.
-          </p>
-          <p className="text-muted-foreground text-justify">
-            Unlike banks, venture capital, or private equity firms, angel investors use their own
-            funds to invest in promising startups, often in exchange for equity. They bring more
-            than just money—they offer mentorship, networks, and business acumen to help startups
-            scale.
+            This initiative emerged from CIM’s broader Startup and Innovation Program, which
+            supports the transformation of new business ideas into sustainable enterprises. Through
+            BAIN, CIM is institutionalising angel investing in Nepal while directly addressing the
+            critical gap in early-stage financing that limits the growth of high-potential startups.
           </p>
         </div>
         <div className="order-1 md:order-2 relative h-[400px] rounded-lg overflow-hidden">

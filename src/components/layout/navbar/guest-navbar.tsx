@@ -57,7 +57,7 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 bg-white shadow-lg">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-20">
         <Link href="/" className="text-xl font-bold text-primary ml-0">
-          <Image src="/logo.png" alt="Investify Logo" width={150} height={150} />
+          <Image src="/mainlogo.png" alt="Investify Logo" width={120} height={120} />
         </Link>
 
         <div className="hidden md:flex items-center space-x-10">

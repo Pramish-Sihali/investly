@@ -47,7 +47,7 @@ export default function WhyBain() {
               {/* Left Column - Introduction */}
               <div className="lg:col-span-5">
                 <p className="text-lg font-bold text-gray-900 lg:text-xl text-justify">
-                  At Biratnagar Angel Investment Network (BAIN), we go beyond traditional angel
+                  At Biratnagar Angel Investors Network (BAIN), we go beyond traditional angel
                   investing - we are building a movement to redefine early-stage investing in Nepal.
                   Here what makes BAIN stand out from the rest:
                 </p>
@@ -61,7 +61,7 @@ export default function WhyBain() {
                     icon: <User className="w-8 h-8" />,
                     title: 'Not Just Investors - A Startup Growth Partner',
                     description:
-                      'At Biratnagar Angel Investment Network (BAIN), we go beyond funding. We co-build startups, offering hands-on mentorship, strategic guidance, and long-term growth support. Unlike traditional investor networks that just write checks, we invest in potential and nurture it into success.',
+                      'At Biratnagar Angel Investors Network (BAIN), we go beyond funding. We co-build startups, offering hands-on mentorship, strategic guidance, and long-term growth support. Unlike traditional investor networks that just write checks, we invest in potential and nurture it into success.',
                   },
                   {
                     icon: <LineChart className="w-8 h-8" />,

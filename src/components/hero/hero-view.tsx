@@ -23,7 +23,7 @@ export default function Home() {
               {/* Hero Text Content - Enhanced with animations */}
               <div className="relative z-10 flex flex-col justify-center py-8 lg:w-[45%] lg:py-0">
                 <h1 className="bg-gradient-to-r from-primary to-[#467FB2] bg-clip-text text-transparent text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl mb-3">
-                  Biratnagar Angel Investment Network.
+                  Biratnagar Angel Investors Network.
                 </h1>
                 <p className="mt-2 text-xl text-gray-900 sm:text-2xl lg:text-2xl">
                   Where Vision Meets Capital.
