@@ -54,7 +54,7 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 bg-white shadow-lg">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="text-xl font-bold text-primary">
-          <Image src="/logo.png" alt="Investify Logo" width={100} height={100} />
+          <Image src="/mainlogo.png" alt="Investify Logo" width={100} height={100} />
         </Link>
 
         {/* Desktop Navigation */}

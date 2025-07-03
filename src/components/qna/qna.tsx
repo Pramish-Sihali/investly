@@ -91,7 +91,7 @@ const faqData: FAQCategory[] = [
     faqs: [
       {
         id: 1,
-        question: 'What is Biratnagar Angel Investors Network (BAIN)?',
+        question: 'What is Biratnagar Angel Investment Network (BAIN)?',
         answer:
           'BAIN is a network of angel investors who provide early-stage funding and mentorship to promising startups in Nepal.',
       },
@@ -166,11 +166,23 @@ const faqData: FAQCategory[] = [
       },
       {
         id: 13,
+        question: "How is my startup's valuation determined?",
+        answer:
+          'Valuation is an integral part of the investment process. We consider multiple factors, such as: Revenue Multiples (if your company has revenue, investors may use a multiple of annual revenue to determine value), The Berkus Method (a framework used for early-stage startups without significant revenue), and Comparable Transactions (looking at similar startups in your industry).',
+      },
+      {
+        id: 14,
+        question: 'Can I negotiate the valuation and investment terms?',
+        answer:
+          "Yes! Valuation and investment terms are negotiable between the startup and investors. It's crucial to justify your valuation with financials, market potential, and traction.",
+      },
+      {
+        id: 15,
         question: 'Does BAIN provide mentorship?',
         answer: 'Yes, BAIN offers mentorship, advisory support, and networking opportunities.',
       },
       {
-        id: 14,
+        id: 16,
         question: 'What if my startup is not selected?',
         answer:
           'You will receive feedback and can reapply after refining your business model or joining training programs.',
@@ -181,41 +193,41 @@ const faqData: FAQCategory[] = [
     title: 'Investor',
     faqs: [
       {
-        id: 15,
+        id: 17,
         question: 'Who can become an angel investor with BAIN?',
         answer:
           'Anyone with financial resources, business experience, and a passion for startups can invest.',
       },
       {
-        id: 16,
+        id: 18,
         question: 'How much do I need to invest?',
         answer: 'Investments typically range from NPR 2 lakh to NPR 50 lakh per startup.',
       },
       {
-        id: 17,
+        id: 19,
         question: 'What is the expected return on investment (ROI)?',
         answer: 'Returns vary based on startup success, industry trends, and market conditions.',
       },
       {
-        id: 18,
+        id: 20,
         question: 'How do I assess startup opportunities?',
         answer:
           'BAIN provides due diligence reports, investment briefs, and organizes pitch events to help investors evaluate startups based on key metrics and risk factors.',
       },
       {
-        id: 19,
+        id: 21,
         question: 'Can I invest individually or as part of a group?',
         answer:
           'Both options are available. You can invest individually or collaborate with other angels to co-invest in promising startups.',
       },
       {
-        id: 20,
+        id: 22,
         question: 'What kind of support does BAIN offer to investors?',
         answer:
           'BAIN assists investors with deal sourcing, due diligence, investment structuring, legal documentation, and portfolio management.',
       },
       {
-        id: 21,
+        id: 23,
         question: 'How do I exit an investment?',
         answer: `
 Exit strategies may include:

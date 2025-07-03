@@ -15,7 +15,7 @@ export function Footer() {
           {/* Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center">
-              <img src="/logo.png" alt="Investly Logo" className="h-24 w-24" />
+              <img src="/mainlogo.png" alt="Investly Logo" className="h-24 w-24" />
             </div>
             <p className="text-sm text-gray-600">Where Vision Meets Capital</p>
           </div>

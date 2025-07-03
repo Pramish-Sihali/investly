@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { showError, showSuccess } from '@/lib/alerts';
 import { contactFormSchema } from '@/schemas/contact-form-schemas';
@@ -27,7 +28,7 @@ import {
 } from '@/components/ui/form';
 
 export default function ContactForm() {
-  const [loading, setLoading] = useState(false); // State for tracking loading status
+  const [loading, setLoading] = useState(false); 
   const form = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -37,6 +38,7 @@ export default function ContactForm() {
       email: '',
       message: '',
       who_you_are: '',
+      privacy_agreement: false,
     },
   });
 
@@ -101,7 +103,7 @@ export default function ContactForm() {
                 <FormItem>
                   <FormLabel>Last Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your first name" className="p-5" {...field} />
+                    <Input placeholder="Enter your last name" className="p-5" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -175,6 +177,27 @@ export default function ContactForm() {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="privacy_agreement"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel className="text-sm font-normal">
+                    I agree that my information may be used for future communication and community-related purposes.
+                  </FormLabel>
+                </div>
                 <FormMessage />
               </FormItem>
             )}

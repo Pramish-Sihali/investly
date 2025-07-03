@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
           className="prose prose-blue max-w-none mb-12"
         >
           <p className="text-gray-700 leading-relaxed">
-            Welcome to the Biratnagar Angel Investors Network (BAIN) website. Your privacy is
+            Welcome to the Biratnagar Angel Investment Network (BAIN) website. Your privacy is
             important to us, and we are committed to protecting your personal information. This
             Privacy Policy explains how we collect, use, and safeguard your data when you visit our
             website or use our services.
@@ -233,7 +233,7 @@ export default function PrivacyPolicy() {
           className="mt-16 pt-8 border-t border-gray-100 text-center"
         >
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Biratnagar Angel Investors Network (BAIN). All rights
+            © {new Date().getFullYear()} Biratnagar Angel Investment Network (BAIN). All rights
             reserved.
           </p>
         </motion.div>
