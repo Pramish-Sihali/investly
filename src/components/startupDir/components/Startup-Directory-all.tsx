@@ -1,7 +1,5 @@
-import Link from 'next/link';
 import { gql } from '@apollo/client';
 import client from '@/lib/apollo-client';
-import { Button } from '@/components/ui/button';
 import HeadingSection from '@/components/common/heading-section';
 import { StartupCard } from '@/components/startupDir/starup-card';
 

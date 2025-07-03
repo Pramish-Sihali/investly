@@ -1,4 +1,4 @@
-import { Shield, Zap, BarChart3, FileText, Users, Lightbulb, TrendingUp } from 'lucide-react';
+import { Zap, Users, Shield, FileText, BarChart3, Lightbulb, TrendingUp } from 'lucide-react';
 
 import HeadingSection from '../common/heading-section';
 

@@ -1,6 +1,8 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+
+import { useState, useEffect, useContext, createContext } from 'react';
 
 // Define the user type
 interface User {
@@ -57,7 +59,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const mockUser: User = {
         id: '1',
         role: 'investor', // or whatever role
-        email: email,
+        email,
         name: 'John Doe',
       };
 

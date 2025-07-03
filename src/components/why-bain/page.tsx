@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { LineChart, GraduationCap, User } from 'lucide-react';
+import { User, LineChart, GraduationCap } from 'lucide-react';
 
 export default function WhyBain() {
   return (
