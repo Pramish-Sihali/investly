@@ -45,10 +45,7 @@ export function Navbar() {
     { name: 'Company', href: '/company' },
   ];
 
-  const handleSignUp = (userType: string) => {
-    router.push(`/signup/?usertype=${userType}`);
-    setIsDropdownOpen(false);
-  };
+ 
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-lg">

@@ -93,28 +93,6 @@ const HowThePlatformWorks: React.FC = () => {
           </div>
         </div>
       </section>
-
-      <section className="text-center mt-16">
-        <h2 className="text-3xl font-semibold mb-6">Ready to Start Investing?</h2>
-        <p className="text-xl text-gray-600 mb-8">
-          Join thousands of investors discovering and supporting the next generation of innovative
-          startups.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link
-            href="/signup"
-            className="bg-primary text-white px-8 py-4 rounded-full text-lg hover:bg-primary-dark transition-colors"
-          >
-            Create Account
-          </Link>
-          <Link
-            href="/login"
-            className="border-2 border-primary text-primary px-8 py-4 rounded-full text-lg hover:bg-primary-light transition-colors"
-          >
-            Log In
-          </Link>
-        </div>
-      </section>
     </div>
   );
 };

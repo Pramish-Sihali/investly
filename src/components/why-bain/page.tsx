@@ -90,21 +90,6 @@ export default function WhyBain() {
                     </div>
                   </motion.div>
                 ))}
-
-                {/* Call to Action */}
-                <div className="bg-primary/5 p-8 rounded-xl">
-                  <h3 className="text-xl font-semibold text-primary mb-4">Join BAIN Today</h3>
-                  <p className="text-gray-600 mb-6">
-                    Whether youre a founder looking for smart capital or an investor seeking
-                    high-potential opportunities, BAIN is where innovation meets investment.
-                  </p>
-                  <Link
-                    href="/signup"
-                    className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                  >
-                    Get Started Now
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
