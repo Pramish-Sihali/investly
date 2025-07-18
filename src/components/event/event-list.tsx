@@ -6,9 +6,10 @@ import client from '@/lib/apollo-client';
 import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { sanitizeHtmlContentSync } from '@/utils/htmlsanitize';
 import HeadingSection from '@/components/common/heading-section';
 import ResponsiveContainer from '@/components/common/responsive-container';
-import { Dialog, DialogTitle, DialogHeader, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogTitle, DialogHeader, DialogContent } from '@/components/ui/dialog'; 
 
 interface Event {
   id: string;
@@ -46,6 +47,9 @@ const EventCard = ({ event }: { event: Event }) => {
     });
   };
 
+  // Sanitize the event details HTML using the synchronous version
+  const sanitizedEventDetails = sanitizeHtmlContentSync(event.eventDetails);
+
   return (
     <>
       <div className="flex flex-col sm:flex-row items-start gap-4 p-4 sm:p-8 bg-white shadow-md hover:shadow-lg transition-shadow duration-200 rounded-xl mb-6 border border-gray-100">
@@ -74,20 +78,32 @@ const EventCard = ({ event }: { event: Event }) => {
       </div>
 
       <Dialog open={openDetails} onOpenChange={setOpenDetails}>
-        <DialogContent className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg overflow-hidden">
-          <DialogHeader className="border-b pb-4">
+        <DialogContent className="max-w-4xl max-h-[95vh] mx-auto bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+          <DialogHeader className="border-b pb-4 px-6 pt-6 flex-shrink-0">
             <DialogTitle className="text-2xl font-bold text-gray-800">{event.title}</DialogTitle>
+            <div className="flex items-center gap-2 mt-2">
+              <div className="w-2 h-2 rounded-full bg-primary" />
+              <p className="text-sm font-medium text-gray-500">{formatDate(event.eventDate)}</p>
+            </div>
+            <p className="text-gray-600 mt-1">{event.eventLocation}</p>
           </DialogHeader>
 
-          <div className="mt-6 text-gray-700 space-y-6">
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <h3 className="text-lg font-semibold mb-2">Event Details</h3>
-              <p className="text-gray-600 whitespace-pre-line">{event.eventDetails}</p>
+          <div className="px-6 py-6 overflow-y-auto flex-grow">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-gray-800">Event Details</h3>
+              <div 
+                className="prose prose-sm max-w-none text-gray-700 leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: sanitizedEventDetails }}
+                style={{
+                  // Custom styles for better readability
+                  fontSize: '14px',
+                  lineHeight: '1.6',
+                }}
+              />
             </div>
-            \
           </div>
 
-          <div className="mt-8 flex flex-col sm:flex-row justify-end space-x-0 sm:space-x-4">
+          <div className="border-t px-6 py-4 bg-gray-50 flex flex-col sm:flex-row justify-end gap-3 flex-shrink-0">
             <Button
               onClick={() => setOpenDetails(false)}
               variant="outline"
@@ -95,7 +111,7 @@ const EventCard = ({ event }: { event: Event }) => {
             >
               Close
             </Button>
-            <Button className="w-full sm:w-auto bg-primary text-white hover:bg-primary-dark">
+            <Button className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90">
               Register for Event
             </Button>
           </div>
@@ -104,16 +120,16 @@ const EventCard = ({ event }: { event: Event }) => {
 
       {/* Apply for Event Modal */}
       <Dialog open={openApply} onOpenChange={setOpenApply}>
-        <DialogContent>
+        <DialogContent className="max-w-md mx-auto">
           <DialogHeader>
             <DialogTitle>Apply for Event</DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4 px-6 pb-6">
             <Input type="email" placeholder="Email" required className="w-full" />
             <Input type="password" placeholder="Password" required className="w-full" />
             <Button
               onClick={() => setOpenApply(false)}
-              className="w-full bg-primary text-white hover:bg-primary"
+              className="w-full bg-primary text-white hover:bg-primary/90"
             >
               Submit
             </Button>
@@ -129,7 +145,7 @@ interface EventPageProps {
 }
 
 const EventPage: React.FC<EventPageProps> = ({ limit }) => {
-  const [showAll, setShowAll] = useState(false);
+  const [showAll] = useState(false);
   const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
@@ -163,7 +179,7 @@ const EventPage: React.FC<EventPageProps> = ({ limit }) => {
         {!showAll && events.length > (limit || 0) && (
           <div className="text-center mt-4">
             <Link href="/events">
-              <Button className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark mt-12">
+              <Button className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 mt-12">
                 View More
               </Button>
             </Link>

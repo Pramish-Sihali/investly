@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { gql } from '@apollo/client';
 import client from '@/lib/apollo-client';
 import { notFound } from 'next/navigation';
+import { sanitizeBlogContentSync } from '@/utils/htmlsanitize';
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -46,6 +47,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   if (!blog) {
     notFound();
   }
+
+  // Sanitize the blog content HTML using the synchronous version
+  const sanitizedBlogContent = sanitizeBlogContentSync(blog.content || '');
 
   return (
     <section className="py-12 bg-white sm:py-16 lg:py-20">
@@ -138,11 +142,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             />
           </div>
 
-          {/* Blog content */}
+          {/* Blog content - Now sanitized */}
           <div className="mt-10">
             <div
               className="prose prose-lg max-w-none text-base font-normal leading-7 text-gray-700 font-pj"
-              dangerouslySetInnerHTML={{ __html: blog.content || '' }}
+              dangerouslySetInnerHTML={{ __html: sanitizedBlogContent }}
             />
           </div>
         </div>
