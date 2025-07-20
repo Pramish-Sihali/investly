@@ -39,13 +39,10 @@ export function Footer() {
 
           {/* Call to Action */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-gray-800">Join Us</h4>
+            <h4 className="text-lg font-semibold text-gray-800">Become a Part of Our Community</h4>
             <p className="text-sm text-gray-600">
-              Sign up today to start your journey as a mentor, founder, or investor.
+              Start your journey today — whether you&apos;re a mentor, founder, or investor.
             </p>
-            <Button asChild>
-              <Link href="/signup">Sign Up</Link>
-            </Button>
           </div>
         </div>
 
