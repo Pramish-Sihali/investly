@@ -37,13 +37,11 @@ const HowThePlatformWorks: React.FC = () => {
       title: 'Investor Readiness Sessions',
       description:
         'Online workshops designed to help startup founders understand investor perspectives and refine their pitches.',
-      link: '/events/investor-readiness',
     },
     {
       title: 'Round Table Sessions',
       description:
         'Live online events connecting investors with promising startups, fostering direct communication and networking.',
-      link: '/events/round-table',
     },
   ];
 
@@ -82,12 +80,6 @@ const HowThePlatformWorks: React.FC = () => {
               >
                 <h3 className="text-2xl font-semibold mb-4">{event.title}</h3>
                 <p className="text-gray-600 mb-6">{event.description}</p>
-                <Link
-                  href={event.link}
-                  className="inline-block bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark transition-colors"
-                >
-                  Learn More
-                </Link>
               </div>
             ))}
           </div>
