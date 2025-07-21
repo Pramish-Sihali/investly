@@ -52,7 +52,6 @@ const formSchema = z.object({
     .url({ message: 'Please enter a valid URL.' })
     .optional()
     .or(z.literal('')),
-  document: z.instanceof(File).optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -80,7 +79,6 @@ const registerMutationFn = async (data: FormValues) => {
 };
 
 export default function UserRegistrationForm() {
-  const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
   const form = useForm<FormValues>({
@@ -102,7 +100,6 @@ export default function UserRegistrationForm() {
         title: 'Form submitted successfully',
       });
       form.reset();
-      setFile(null);
       toast({
         title: 'Check your email for activation instructions.',
         variant: 'default',
@@ -126,31 +123,12 @@ export default function UserRegistrationForm() {
 
   function onSubmit(values: FormValues) {
     setLoading(true);
-    const formData = new FormData();
-    for (const [key, value] of Object.entries(values)) {
-      if (value !== undefined && key !== 'document') {
-        formData.append(key, value);
-      }
-    }
-
-    if (file) {
-      formData.append('document', file);
-    }
-
     mutate(values, {
       onSettled: () => {
         setLoading(false);
       },
     });
   }
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    if (selectedFile) {
-      setFile(selectedFile);
-      form.setValue('document', selectedFile);
-    }
-  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -227,27 +205,7 @@ export default function UserRegistrationForm() {
                     )}
                   />
 
-                  <FormField
-                    control={form.control}
-                    name="role"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base font-medium">Role</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="h-12">
-                              <SelectValue placeholder="Select a role" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="Founder">Founder</SelectItem>
-                            <SelectItem value="Employee">Employee</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  
                 </div>
 
                 <div className="space-y-6">
@@ -283,20 +241,27 @@ export default function UserRegistrationForm() {
                       </FormItem>
                     )}
                   />
-
-                  <FormItem>
-                    <FormLabel className="text-base font-medium">
-                      Your Pitch Deck or Business Plan
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        type="file"
-                        onChange={handleFileChange}
-                        className="h-12 cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
-                      />
-                    </FormControl>
-                    <FormDescription>Optional: Upload a document (PDF, DOC, etc.)</FormDescription>
-                  </FormItem>
+                  <FormField
+                    control={form.control}
+                    name="role"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium">Role</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="h-12">
+                              <SelectValue placeholder="Select a role" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="Founder">Founder</SelectItem>
+                            <SelectItem value="Employee">Employee</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
               </div>
 
