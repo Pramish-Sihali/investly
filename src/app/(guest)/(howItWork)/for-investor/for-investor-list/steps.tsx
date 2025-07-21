@@ -247,52 +247,7 @@ For investors interested in reinvesting gains, we offer seamless opportunities t
             ))}
           </div>
 
-          {/* Social Share Sidebar */}
-          <div className="lg:col-span-3 lg:self-start lg:sticky lg:top-20">
-            <Card className="border-none shadow-sm">
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Share</h3>
-                <ul className="flex lg:flex-row items-center">
-                  <li>
-                    <FacebookShareButton
-                      title="Check out this amazing guide for investors on BAIN!"
-                      url={typeof window !== 'undefined' ? window.location.href : ''}
-                      className="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2]"
-                    >
-                      <FacebookIcon size={24} round />
-                    </FacebookShareButton>
-                  </li>
-                  <li>
-                    <TwitterShareButton
-                      url={typeof window !== 'undefined' ? window.location.href : ''}
-                      title="Check out this amazing guide for investors on BAIN!"
-                      className="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-[#1DA1F2] hover:text-white hover:border-[#1DA1F2]"
-                    >
-                      <TwitterIcon size={24} round />
-                    </TwitterShareButton>
-                  </li>
-                  <li>
-                    <LinkedinShareButton
-                      url={typeof window !== 'undefined' ? window.location.href : ''}
-                      title="Check out this amazing guide for investors on BAIN!"
-                      className="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2]"
-                    >
-                      <LinkedinIcon size={24} round />
-                    </LinkedinShareButton>
-                  </li>
-                  <li>
-                    <WhatsappShareButton
-                      url={typeof window !== 'undefined' ? window.location.href : ''}
-                      title="Check out this amazing guide for investors on BAIN!"
-                      className="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 border border-gray-200 rounded-full hover:bg-[#25D366] hover:text-white hover:border-[#25D366]"
-                    >
-                      <WhatsappIcon size={24} round />
-                    </WhatsappShareButton>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
+        
         </div>
       </div>
     </section>
