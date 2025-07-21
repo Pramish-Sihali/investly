@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { sanitizeHtmlContentSync } from '@/utils/htmlsanitize';
 import HeadingSection from '@/components/common/heading-section';
 import ResponsiveContainer from '@/components/common/responsive-container';
-import { Dialog, DialogTitle, DialogHeader, DialogContent } from '@/components/ui/dialog'; 
+import { Dialog, DialogTitle, DialogHeader, DialogContent } from '@/components/ui/dialog';
 
 interface Event {
   id: string;
@@ -33,9 +33,30 @@ const FETCH_EVENTS = gql`
   }
 `;
 
+const CREATE_EVENT_ATTENDEE = gql`
+  mutation CreateEventAttendee($email: String!, $eventId: ID!) {
+    createEventAttendee(email: $email, eventId: $eventId) {
+      eventAttendee {
+        email
+        event {
+          id
+          title
+        }
+      }
+    }
+  }
+`;
+
 const EventCard = ({ event }: { event: Event }) => {
   const [openApply, setOpenApply] = useState(false);
   const [openDetails, setOpenDetails] = useState(false);
+  const [openRegister, setOpenRegister] = useState(false);
+  const [email, setEmail] = useState('');
+  const [registerEmail, setRegisterEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+  const [registerMessage, setRegisterMessage] = useState('');
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -45,6 +66,88 @@ const EventCard = ({ event }: { event: Event }) => {
       month: 'long',
       day: 'numeric',
     });
+  };
+
+  const handleSubmitApplication = async () => {
+    if (!email || !email.includes('@')) {
+      setSubmitMessage('Please enter a valid email address.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      const { data } = await client.mutate({
+        mutation: CREATE_EVENT_ATTENDEE,
+        variables: {
+          email: email,
+          eventId: event.id,
+        },
+      });
+
+      if (data?.createEventAttendee?.eventAttendee) {
+        setSubmitMessage('Successfully applied for the event!');
+        setTimeout(() => {
+          setOpenApply(false);
+          setEmail('');
+          setSubmitMessage('');
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Error applying for event:', error);
+      setSubmitMessage('Failed to apply for the event. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleRegisterForEvent = async () => {
+    if (!registerEmail || !registerEmail.includes('@')) {
+      setRegisterMessage('Please enter a valid email address.');
+      return;
+    }
+
+    setIsRegistering(true);
+    setRegisterMessage('');
+
+    try {
+      const { data } = await client.mutate({
+        mutation: CREATE_EVENT_ATTENDEE,
+        variables: {
+          email: registerEmail,
+          eventId: event.id,
+        },
+      });
+
+      if (data?.createEventAttendee?.eventAttendee) {
+        setRegisterMessage('Successfully registered for the event!');
+        setTimeout(() => {
+          setOpenRegister(false);
+          setRegisterEmail('');
+          setRegisterMessage('');
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Error registering for event:', error);
+      setRegisterMessage('Failed to register for the event. Please try again.');
+    } finally {
+      setIsRegistering(false);
+    }
+  };
+
+  const handleCloseApplyDialog = () => {
+    setOpenApply(false);
+    setEmail('');
+    setSubmitMessage('');
+    setIsSubmitting(false);
+  };
+
+  const handleCloseRegisterDialog = () => {
+    setOpenRegister(false);
+    setRegisterEmail('');
+    setRegisterMessage('');
+    setIsRegistering(false);
   };
 
   // Sanitize the event details HTML using the synchronous version
@@ -91,7 +194,7 @@ const EventCard = ({ event }: { event: Event }) => {
           <div className="px-6 py-6 overflow-y-auto flex-grow">
             <div>
               <h3 className="text-lg font-semibold mb-4 text-gray-800">Event Details</h3>
-              <div 
+              <div
                 className="prose prose-sm max-w-none text-gray-700 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: sanitizedEventDetails }}
                 style={{
@@ -111,28 +214,127 @@ const EventCard = ({ event }: { event: Event }) => {
             >
               Close
             </Button>
-            <Button className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90">
+            <Button
+              onClick={() => setOpenRegister(true)}
+              className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90"
+            >
               Register for Event
             </Button>
           </div>
         </DialogContent>
       </Dialog>
 
-      {/* Apply for Event Modal */}
-      <Dialog open={openApply} onOpenChange={setOpenApply}>
+      {/* Register for Event Modal */}
+      <Dialog open={openRegister} onOpenChange={handleCloseRegisterDialog}>
         <DialogContent className="max-w-md mx-auto">
           <DialogHeader>
-            <DialogTitle>Apply for Event</DialogTitle>
+            <DialogTitle>Register for Event: {event.title}</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col gap-4 px-6 pb-6">
-            <Input type="email" placeholder="Email" required className="w-full" />
-            <Input type="password" placeholder="Password" required className="w-full" />
-            <Button
-              onClick={() => setOpenApply(false)}
-              className="w-full bg-primary text-white hover:bg-primary/90"
-            >
-              Submit
-            </Button>
+            <div>
+              <label
+                htmlFor="registerEmail"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Email Address
+              </label>
+              <Input
+                id="registerEmail"
+                type="email"
+                placeholder="Enter your email address"
+                value={registerEmail}
+                onChange={(e) => setRegisterEmail(e.target.value)}
+                required
+                className="w-full"
+                disabled={isRegistering}
+              />
+            </div>
+
+            {registerMessage && (
+              <div
+                className={`text-sm p-2 rounded ${
+                  registerMessage.includes('Successfully')
+                    ? 'bg-green-100 text-green-700 border border-green-200'
+                    : 'bg-red-100 text-red-700 border border-red-200'
+                }`}
+              >
+                {registerMessage}
+              </div>
+            )}
+
+            <div className="flex gap-2">
+              <Button
+                onClick={handleCloseRegisterDialog}
+                variant="outline"
+                className="flex-1"
+                disabled={isRegistering}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleRegisterForEvent}
+                className="flex-1 bg-primary text-white hover:bg-primary/90"
+                disabled={isRegistering || !registerEmail}
+              >
+                {isRegistering ? 'Registering...' : 'Register'}
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Apply for Event Modal */}
+      <Dialog open={openApply} onOpenChange={handleCloseApplyDialog}>
+        <DialogContent className="max-w-md mx-auto">
+          <DialogHeader>
+            <DialogTitle>Apply for Event: {event.title}</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col gap-4 px-6 pb-6">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                Email Address
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full"
+                disabled={isSubmitting}
+              />
+            </div>
+
+            {submitMessage && (
+              <div
+                className={`text-sm p-2 rounded ${
+                  submitMessage.includes('Successfully')
+                    ? 'bg-green-100 text-green-700 border border-green-200'
+                    : 'bg-red-100 text-red-700 border border-red-200'
+                }`}
+              >
+                {submitMessage}
+              </div>
+            )}
+
+            <div className="flex gap-2">
+              <Button
+                onClick={handleCloseApplyDialog}
+                variant="outline"
+                className="flex-1"
+                disabled={isSubmitting}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleSubmitApplication}
+                className="flex-1 bg-primary text-white hover:bg-primary/90"
+                disabled={isSubmitting || !email}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit Application'}
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
