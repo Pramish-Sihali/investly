@@ -48,7 +48,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="mt-8 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Investify. All rights reserved.
+          © {new Date().getFullYear()} BAIN. All rights reserved.
         </div>
       </div>
     </footer>
