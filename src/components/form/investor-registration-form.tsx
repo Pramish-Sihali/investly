@@ -14,28 +14,23 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Card, CardContent } from '@/components/ui/card';
 import HeadingSection from '@/components/common/heading-section';
 import {
-  Select,
-  SelectItem,
-  SelectValue,
-  SelectContent,
-  SelectTrigger,
-} from '@/components/ui/select';
-import {
   Form,
   FormItem,
   FormField,
   FormLabel,
   FormControl,
   FormMessage,
-  FormDescription,
 } from '@/components/ui/form';
 
-const formSchema = z.object({
+const investorFormSchema = z.object({
   full_name: z.string().min(2, {
-    message: 'Full name must be at least 2 characters.',
+    message: 'Name must be at least 2 characters.',
   }),
   organization_name: z.string().min(2, {
-    message: 'Organization name must be at least 2 characters.',
+    message: 'Organisation name must be at least 2 characters.',
+  }),
+  investment_interest_area: z.string().min(5, {
+    message: 'Investment interest area must be at least 5 characters.',
   }),
   email: z.string().email({
     message: 'Please enter a valid email address.',
@@ -43,27 +38,29 @@ const formSchema = z.object({
   contact_number: z.string().min(5, {
     message: 'Contact number must be at least 5 characters.',
   }),
-  role: z.enum(['Investor', 'Mentor', 'Startup', 'Founder', 'Employee'], {
-    required_error: 'Please select a role.',
-  }),
-  about_you: z.string().optional(),
-  website_link: z
-    .string()
-    .url({ message: 'Please enter a valid URL.' })
-    .optional()
-    .or(z.literal('')),
 });
 
-type FormValues = z.infer<typeof formSchema>;
+type InvestorFormValues = z.infer<typeof investorFormSchema>;
 
-const registerMutationFn = async (data: FormValues) => {
+interface InvestorAPIPayload extends InvestorFormValues {
+  organization_role: 'Investor';
+  about_you: string;
+}
+
+const registerInvestorMutationFn = async (data: InvestorFormValues) => {
   try {
+    const apiPayload: InvestorAPIPayload = {
+      ...data,
+      organization_role: 'Investor',
+      about_you: data.investment_interest_area,
+    };
+
     const response = await fetch('https://investly.baliyoventures.com/api/users/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(apiPayload),
     });
 
     if (!response.ok) {
@@ -78,26 +75,26 @@ const registerMutationFn = async (data: FormValues) => {
   }
 };
 
-export default function UserRegistrationForm() {
+export default function InvestorRegistrationForm() {
   const [loading, setLoading] = useState(false);
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<InvestorFormValues>({
+    resolver: zodResolver(investorFormSchema),
     defaultValues: {
       full_name: '',
       organization_name: '',
+      investment_interest_area: '',
       email: '',
       contact_number: '',
-      about_you: '',
-      website_link: '',
     },
   });
 
   const { mutate } = useMutation({
-    mutationFn: registerMutationFn,
+    mutationFn: registerInvestorMutationFn,
     onSuccess: () => {
       toast({
-        title: 'Form submitted successfully',
+        title: 'Registration successful!',
+        description: 'You have successfully registered as an investor.',
       });
       form.reset();
       toast({
@@ -108,20 +105,17 @@ export default function UserRegistrationForm() {
         title: 'Please activate your account via the email sent to you.',
         variant: 'default',
       });
-      toast({
-        title: 'Registration successful!',
-        description: 'You have successfully registered.',
-      });
     },
     onError: (error) => {
       toast({
         title: 'Error',
+        description: error.message || 'Registration failed. Please try again.',
         variant: 'destructive',
       });
     },
   });
 
-  function onSubmit(values: FormValues) {
+  function onSubmit(values: InvestorFormValues) {
     setLoading(true);
     mutate(values, {
       onSettled: () => {
@@ -136,8 +130,8 @@ export default function UserRegistrationForm() {
         <CardContent className="p-8">
           <div className="flex flex-col items-center justify-center mb-8">
             <HeadingSection
-              title="Startups Registration"
-              subtitle="Please fill in the details below if you are a startup"
+              title="Investor Registration"
+              subtitle="Please fill in the details below to register as an investor"
             />
           </div>
           <Form {...form}>
@@ -149,7 +143,7 @@ export default function UserRegistrationForm() {
                     name="full_name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base font-medium">Full Name</FormLabel>
+                        <FormLabel className="text-base font-medium">Name of Investor</FormLabel>
                         <FormControl>
                           <Input placeholder="John Doe" className="h-12" {...field} />
                         </FormControl>
@@ -163,9 +157,9 @@ export default function UserRegistrationForm() {
                     name="organization_name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base font-medium">Organization Name</FormLabel>
+                        <FormLabel className="text-base font-medium">Organisation Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Company Inc." className="h-12" {...field} />
+                          <Input placeholder="Investment Firm Inc." className="h-12" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -181,7 +175,7 @@ export default function UserRegistrationForm() {
                         <FormControl>
                           <Input
                             type="email"
-                            placeholder="john@example.com"
+                            placeholder="investor@example.com"
                             className="h-12"
                             {...field}
                           />
@@ -190,13 +184,15 @@ export default function UserRegistrationForm() {
                       </FormItem>
                     )}
                   />
+                </div>
 
+                <div className="space-y-6">
                   <FormField
                     control={form.control}
                     name="contact_number"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base font-medium">Contact Number</FormLabel>
+                        <FormLabel className="text-base font-medium">Contact No.</FormLabel>
                         <FormControl>
                           <Input placeholder="+9770000000000" className="h-12" {...field} />
                         </FormControl>
@@ -205,59 +201,21 @@ export default function UserRegistrationForm() {
                     )}
                   />
 
-
-                </div>
-
-                <div className="space-y-6">
                   <FormField
                     control={form.control}
-                    name="about_you"
+                    name="investment_interest_area"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base font-medium">About Your Business</FormLabel>
+                        <FormLabel className="text-base font-medium">
+                          Investment Interest Area
+                        </FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder="Tell us about yourself or your organization"
+                            placeholder="Describe your investment interests (e.g., Technology, Healthcare, Fintech, etc.)"
                             className="min-h-[120px] resize-none"
                             {...field}
                           />
                         </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="website_link"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base font-medium">Website</FormLabel>
-                        <FormControl>
-                          <Input placeholder="https://example.com" className="h-12" {...field} />
-                        </FormControl>
-                        <FormDescription>Optional: Enter your website URL</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="role"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base font-medium">Role</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="h-12">
-                              <SelectValue placeholder="Select a role" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="Founder">Founder</SelectItem>
-                            <SelectItem value="Employee">Employee</SelectItem>
-                          </SelectContent>
-                        </Select>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -271,7 +229,7 @@ export default function UserRegistrationForm() {
                   className="w-full max-w-xs h-12 text-base font-medium transition-all duration-200 hover:scale-105"
                   disabled={loading}
                 >
-                  {loading ? 'Submitting...' : 'Submit Form'}
+                  {loading ? 'Submitting...' : 'Register as Investor'}
                 </Button>
               </div>
             </form>
