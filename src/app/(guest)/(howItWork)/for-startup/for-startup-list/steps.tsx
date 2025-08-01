@@ -13,16 +13,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import {
-  TwitterIcon,
-  FacebookIcon,
-  LinkedinIcon,
-  WhatsappIcon,
-  TwitterShareButton,
-  FacebookShareButton,
-  LinkedinShareButton,
-  WhatsappShareButton,
-} from 'react-share';
+
 
 const StartupPage = () => {
   const steps = [

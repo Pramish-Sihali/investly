@@ -245,14 +245,11 @@ export default function MentorPage() {
     return (
       <section className="py-12 bg-gray-50 sm:py-16 lg:py-20">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-          <HeadingSection
-            badge="Mentors"
-            title="Connect with Expert Mentors"
-            subtitle="Get personalized guidance from industry leaders who have been where you want to go."
-          />
-          <div className="flex items-center justify-center mt-16">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
-            <span className="ml-2 text-lg text-gray-600">Loading mentors...</span>
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="flex items-center">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+              <span className="ml-2 text-lg text-gray-600">Loading mentors...</span>
+            </div>
           </div>
         </div>
       </section>
@@ -263,16 +260,13 @@ export default function MentorPage() {
     return (
       <section className="py-12 bg-gray-50 sm:py-16 lg:py-20">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-          <HeadingSection
-            badge="Mentors"
-            title="Connect with Expert Mentors"
-            subtitle="Get personalized guidance from industry leaders who have been where you want to go."
-          />
-          <div className="mt-16 text-center">
-            <p className="text-lg text-red-600 mb-4">{error}</p>
-            <Button onClick={fetchMentors} variant="outline">
-              Try Again
-            </Button>
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <p className="text-lg text-red-600 mb-4">{error}</p>
+              <Button onClick={fetchMentors} variant="outline">
+                Try Again
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -281,15 +275,13 @@ export default function MentorPage() {
 
   if (mentors.length === 0) {
     return (
-      <section className="py-12 bg-gray-50 sm:py-16 lg:py-20">
+      <section className="py-12 bg-white sm:py-16 lg:py-20">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-          <HeadingSection
-            badge="Mentors"
-            title="Connect with Expert Mentors"
-            subtitle="Get personalized guidance from industry leaders who have been where you want to go."
-          />
-          <div className="mt-16 text-center">
-            <p className="text-lg text-gray-600">No active mentors available at the moment.</p>
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <h1 className="text-6xl font-bold text-blue-600 mb-2">Coming Soon</h1>
+              <p className="text-lg text-gray-600">Mentors will be available shortly</p>
+            </div>
           </div>
         </div>
       </section>
