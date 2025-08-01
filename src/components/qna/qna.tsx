@@ -91,7 +91,7 @@ const faqData: FAQCategory[] = [
     faqs: [
       {
         id: 1,
-        question: 'What is Biratnagar Angel Investment Network (BAIN)?',
+        question: 'What is Biratnagar Angel Investors Network (BAIN)?',
         answer:
           'BAIN is a network of angel investors who provide early-stage funding and mentorship to promising startups in Nepal.',
       },

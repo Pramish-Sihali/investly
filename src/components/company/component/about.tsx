@@ -4,7 +4,7 @@ import Image from 'next/image';
 import HeadingSection from '@/components/common/heading-section';
 
 export const metadata: Metadata = {
-  title: 'About BAIN | Biratnagar Angel Investment Network',
+  title: 'About BAIN | Biratnagar Angel Investors Network',
   description:
     'Learn about BAINs commitment to fostering early-stage investments in Nepal and connecting startups with experienced investors.',
 };
@@ -15,12 +15,12 @@ export default function AboutUsPage() {
       {/* Hero Section */}
       <HeadingSection
         title="About Us"
-        subtitle="Biratnagar Angel Investment Network (BAIN) is a pioneering platform dedicated to fostering early-stage investments in Nepal."
+        subtitle="Biratnagar Angel Investors Network (BAIN) is a pioneering platform dedicated to fostering early-stage investments in Nepal."
       />
       <div className="p-4 mb-16">
         <div className="max-w-5xl mx-auto text-center">
           <p className="text-muted-foreground text-lg leading-relaxed">
-            The Biratnagar Angel Investment Network (BAIN) is a network supporting early-stage
+            The Biratnagar Angel Investors Network (BAIN) is a network supporting early-stage
             startups in Koshi Province by providing small-ticket investments. It bridges the
             financing gap for high-potential startups that lack access to traditional funding,
             fostering innovation and enabling business growth in the region. The Biratnagar Angel
@@ -47,7 +47,7 @@ export default function AboutUsPage() {
           <h2 className="text-3xl font-semibold">Connecting Startups & Investors</h2>
           <p className="text-muted-foreground text-justify">
             To strengthen the startup ecosystem in Koshi Province, the Chamber of Industries, Morang
-            (CIM) has launched the Biratnagar Angel Investment Network (BAIN), a dedicated platform
+            (CIM) has launched the Biratnagar Angel Investors Network (BAIN), a dedicated platform
             that connects early-stage startups with local angel investors. BAIN aims to bridge the
             critical financing gap by providing small-ticket investments and mentorship, enabling
             innovative startups to grow and thrive.

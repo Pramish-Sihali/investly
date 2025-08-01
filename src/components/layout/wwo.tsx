@@ -68,7 +68,7 @@ export default function OurServices() {
         <div className="text-center mb-12">
           <HeadingSection
             title="Our Services"
-            subtitle="At Biratnagar Angel Investment Network (BAIN), we go beyond just connecting startups with
+            subtitle="At Biratnagar Angel Investors Network (BAIN), we go beyond just connecting startups with
 investors—we provide a structured, de-risked, and value-driven investment experience."
           />
         </div>
