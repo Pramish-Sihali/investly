@@ -12,7 +12,6 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 
-// Types for the cohort data
 interface CohortMember {
   id: string;
   name: string;
@@ -39,7 +38,6 @@ interface CohortResponse {
   };
 }
 
-// GraphQL query function using Apollo Client
 async function fetchCohortData(id: string, participatingStatus: string): Promise<CohortResponse> {
   try {
     const { data } = await client.query({
@@ -85,11 +83,7 @@ interface PageProps {
 export default async function CohortDetailPage({ params }: PageProps) {
   const { type, id } = await params;
 
-  // Convert type to uppercase to match the enum (e.g., 'startup' -> 'STARTUP')
   const participatingStatus = type.toUpperCase();
-
-  // Format type for display (e.g., 'startup' -> 'Startup')
-  const displayType = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
 
   try {
     const data = await fetchCohortData(id, participatingStatus);
