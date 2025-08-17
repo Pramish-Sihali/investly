@@ -18,7 +18,7 @@ export function Footer() {
               <img src="/mainlogo.png" alt="Investly Logo" className="h-24 w-24" />
             </div>
             <p className="text-sm text-gray-600">Where Vision Meets Capital</p>
-            <p className="text-sm text-gray-600"> Initiated by</p>
+            <p className="text-sm text-gray-600"> Initiated by CIM</p>
             <Image src="/cim-logo.jpg" alt="Cim Logo" width={64} height={24} />
           </div>
 
