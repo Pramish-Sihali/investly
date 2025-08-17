@@ -3,6 +3,14 @@ import Image from 'next/image';
 import { gql } from '@apollo/client';
 import client from '@/lib/apollo-client';
 import { notFound } from 'next/navigation';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 
 // Types for the cohort data
 interface CohortMember {
@@ -80,6 +88,9 @@ export default async function CohortDetailPage({ params }: PageProps) {
   // Convert type to uppercase to match the enum (e.g., 'startup' -> 'STARTUP')
   const participatingStatus = type.toUpperCase();
 
+  // Format type for display (e.g., 'startup' -> 'Startup')
+  const displayType = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+
   try {
     const data = await fetchCohortData(id, participatingStatus);
     const cohort = data.cohorts.results[0];
@@ -91,6 +102,25 @@ export default async function CohortDetailPage({ params }: PageProps) {
 
     return (
       <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumb Navigation */}
+        <div className="mb-6">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/cohort">Cohorts</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{cohort.companyName}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+
         {/* Header Section */}
         <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
           <div className="flex items-start gap-6">
