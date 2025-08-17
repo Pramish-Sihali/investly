@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 import {
-  FacebookShareButton,
-  TwitterShareButton,
-  LinkedinShareButton,
-  WhatsappShareButton,
   FacebookIcon,
   LinkedinIcon,
   WhatsappIcon,
+  TwitterShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  WhatsappShareButton,
 } from 'react-share';
 
 interface ShareData {

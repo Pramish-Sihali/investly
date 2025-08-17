@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Rocket, BarChart3, Briefcase } from 'lucide-react';
 import HeadingSection from '@/components/common/heading-section';

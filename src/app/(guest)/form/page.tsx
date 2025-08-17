@@ -1,7 +1,7 @@
 'use client';
 
 import UserRegistrationForm from '@/components/form/startup-form';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs';
 import InvestorRegistrationForm from '@/components/form/investor-registration-form';
 
 export default function Form() {

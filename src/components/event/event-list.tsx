@@ -81,7 +81,7 @@ const EventCard = ({ event }: { event: Event }) => {
       const { data } = await client.mutate({
         mutation: CREATE_EVENT_ATTENDEE,
         variables: {
-          email: email,
+          email,
           eventId: event.id,
         },
       });

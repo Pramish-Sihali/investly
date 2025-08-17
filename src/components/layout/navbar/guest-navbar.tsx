@@ -47,6 +47,8 @@ export function Navbar() {
         { name: 'Academy', href: '/academy' },
         { name: 'News/Updates & Events', href: '/events' },
         { name: 'Blog', href: '/blog' },
+        { name: 'Templates', href: '/templates' },
+        { name: 'Cohort', href: '/cohort' },
       ],
     },
     { name: 'Mentor', href: '/mentor' },
