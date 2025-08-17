@@ -125,7 +125,7 @@ const Partners = () => {
 
             <div className="mt-8">
               <Link
-                href="/join-network"
+                href="/form"
                 className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-primary rounded-lg shadow-sm hover:bg-primary/90 transition-colors"
               >
                 Join our network
