@@ -14,6 +14,9 @@ const bricolage_grotesque = Bricolage_Grotesque({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'BAIN',
   description: 'BAIN',
+  icons:{
+    icon:"/mainlogo.png"
+  }
 };
 
 export default function RootLayout({

@@ -28,87 +28,96 @@ import HeadingSection from '@/components/common/heading-section';
 //     });
 //     return data.allTeamMembers.results;
 //   } catch (error) {
-//     console.error('Error fetching board members:', error);
-//     return [];
-//   }
-// };
-
-const BoardOfDirectors = async () => {
-
-      const angelInvestors= [
-        {
-            id:1,
-            name:"CA Manoj Adhikari",
-            profilePicture:'/angelInvestors/CAManojAdhikari.jpeg',
-        },
-        {
-            id:2,
-            name:"Mr. Bholeshwor Dulal",
-            profilePicture:'/angelInvestors/MrBholeshworDulal.jpeg',
-        },
-        {
-            id:3,
-            name:"Mr. Bipin Kabra",
-            profilePicture:'/angelInvestors/MrBipinKabra.jpeg',
-        },
-        {
-            id:4,
-            name:"Mr. Birendra Rathi",
-            profilePicture:'/angelInvestors/MrBirendraRathi.jpeg',
-        },
-        {
-            id:5,
-            name:"Mr. Pratik Raut",
-            profilePicture:'/angelInvestors/MrPratikRaut.jpeg',
-        },
-        {
-            id:6,
-            name:"Mr. Rakesh Surana",
-            profilePicture:'/angelInvestors/MrRakeshSurana.jpeg',
-        },
-        {
-            id:7,
-            name:"Mr. Raj Kumar Golchha",
-            profilePicture:'/angelInvestors/MrRaj KumarGolchha.jpeg',
-        },
-        {
-            id:8,
-            name:"Mr. Roman Kattel",
-            profilePicture:'/angelInvestors/MrRomanKattel.png',
-        },
-        {
-            id:9,
-            name:"Mr. Santosh Kumar Bhagat",
-            profilePicture:'/angelInvestors/MrSantosh KumarBhagat.jpeg',
-        },
-        {
-            id:10,
-            name:"Mr. Saurav Sharda",
-            profilePicture:'/angelInvestors/MrSauravSharda.jpeg',
-        },
-        {
-            id:11,
-            name:"Mr. Siddhart Kabra",
-            profilePicture:'/angelInvestors/MrSiddhartKabra.jpeg',
-        },
-        {
-            id:12,
-            name:"Mr. Sujit Jha",
-            profilePicture:'/angelInvestors/MrSujitJha.jpeg',
-        },
-        {
-            id:13,
-            name:"Mr. Surendra Kumar Golchha",
-            profilePicture:'/angelInvestors/MrSurendraKumarGolchha.jpeg',
-        },
-        {
-            id:14,
-            name:"Mr. Suyesh Pyakurel",
-            profilePicture:'/angelInvestors/MrSuyeshPyakurel.jpeg',
-        },
-        
-        
-    ]
+  //     console.error('Error fetching board members:', error);
+  //     return [];
+  //   }
+  // };
+  
+  const BoardOfDirectors = async () => {
+    
+    const angelInvestors = [
+      {
+        id: 13,
+        name: 'Mr. Surendra Kumar Golchha',
+        profilePicture: '/angelInvestors/MrSurendraKumarGolchha.jpeg',
+        role:"Director, Golchha Organisation (Hulas Food)"
+      },
+      {
+        id: 14,
+        name: 'Mr. Suyesh Pyakurel',
+        profilePicture: '/angelInvestors/MrSuyeshPyakurel.jpeg',
+        role:"Managing Director, MM Group of Companies"
+      },
+      {
+        id: 6,
+        name: 'Mr. Rakesh Surana',
+        profilePicture: '/angelInvestors/MrRakeshSurana.jpeg',
+        role:" Managing Director, Reliance Thermopoly"
+      },
+      {
+        id: 11,
+        name: 'Mr. Siddhart Kabra',
+        profilePicture: '/angelInvestors/MrSiddhartKabra.jpeg',
+        role:" ",
+      },
+      {
+        id: 1,
+        name: 'CA Manoj Adhikari',
+        profilePicture: '/angelInvestors/CAManojAdhikari.jpeg',
+      },
+      {
+        id: 2,
+        name: 'Mr. Bholeshwor Dulal',
+        profilePicture: '/angelInvestors/MrBholeshworDulal.jpeg',
+        role:"",
+      },
+      {
+        id: 3,
+        name: 'Mr. Bipin Kabra',
+        profilePicture: '/angelInvestors/MrBipinKabra.jpeg',
+        role:"Director, Kabra G Group of Companies",
+      },
+      {
+        id: 4,
+        name: 'Mr. Birendra Rathi',
+        profilePicture: '/angelInvestors/MrBirendraRathi.jpeg',
+        role:"Managing Director, Pashupati Poli Propylene Pvt. Ltd.",
+      },
+      {
+        id: 5,
+        name: 'Mr. Pratik Raut',
+        profilePicture: '/angelInvestors/MrPratikRaut.jpeg',
+        role:"Managing Director, Shivam Organisation"
+      },
+      {
+        id: 7,
+        name: 'Mr. Raj Kumar Golchha',
+        profilePicture: '/angelInvestors/MrRaj KumarGolchha.jpeg',
+        role:"Managing Director, RKG Group"
+      },
+      {
+        id: 8,
+        name: 'Mr. Roman Kattel',
+        profilePicture: '/angelInvestors/MrRomanKattel.png',
+        role:"Director, Panam Group",
+      },
+      {
+        id: 9,
+        name: 'Mr. Santosh Kumar Bhagat',
+        profilePicture: '/angelInvestors/MrSantosh KumarBhagat.jpeg',
+        role:"Director, ACC Itta Udgyog Pvt. Ltd"
+      },
+      {
+        id: 10,
+        name: 'Mr. Saurav Sharda',
+        profilePicture: '/angelInvestors/MrSauravSharda.jpeg',
+      },
+      {
+        id: 12,
+        name: 'Mr. Sujit Jha',
+        profilePicture: '/angelInvestors/MrSujitJha.jpeg',
+      },
+    ];
 
 
   return (
@@ -140,9 +149,9 @@ const BoardOfDirectors = async () => {
                 <h3 className="text-xl font-bold text-gray-900 group-hover:text-gray-800 transition-colors duration-200">
                   {member.name}
                 </h3>
-                {/* <p className="text-sm text-gray-600 font-medium uppercase tracking-wide">
+                <p className="text-sm text-gray-600 font-medium uppercase tracking-wide">
                   {member.role}
-                </p> */}
+                </p>
               </div>
             </div>
           ))}

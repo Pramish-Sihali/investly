@@ -150,6 +150,10 @@ For investors interested in reinvesting gains, we offer seamless opportunities t
           </motion.div>
         </div>
 
+      <img className=' ml-16 lg:ml-48 w-[70%] h-max' src="/Investor Journey Banner 6x8_page-0001.jpg">
+      
+      </img>
+
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 mt-12 lg:grid-cols-12 lg:gap-x-8 gap-y-8">
           {/* Sidebar */}

@@ -87,44 +87,21 @@ function Testimonials({ testimonials }: TestimonialsProps) {
 const staticTestimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Mubhin Basnet',
+    name: 'Sheran Singh Lama (Entrepreneur)',
     testimonial:
-      "BAIN connected me with opportunities I never thought possible. The transparency and guidance throughout the process made investing simple and reliable.",
+      "I had a great learning session on the cohort, I got introduced to new concepts but important required for any business personnel.",
     // image: '/startup1.png',
-    source: 'Investor',
-  },
-  {
-    id: 2,
-    name: 'Ishika Bhandari',
-    testimonial:
-      "As a first-time investor, I was nervous, but BAIN’s platform gave me confidence. Their insights and support are unmatched.",
-    // image: '/startup2.png',
     source: 'Angel Investor',
   },
   {
-    id: 3,
-    name: 'Sheran Singh Lama',
+    id: 2,
+    name: 'Ishika Agrawal (Investor)',
     testimonial:
-      "What I love about BAIN is how easy it is to diversify and track investments. It truly feels like my money is working smarter for me.",
-    // image: '/startup3.png',
-    source: 'Entrepreneur & Investor',
+      "BAIN’s service has been top notch with deal flow, investment agreements and post investment support. ",
+    // image: '/startup2.png',
+    source: 'Angel Investor',
   },
-  {
-    id: 4,
-    name: 'Shirish Kafley',
-    testimonial:
-      "BAIN bridges the gap between promising startups and investors. I’ve discovered ventures that align perfectly with my values and goals.",
-    // image: '/startup4.png',
-    source: 'Private Investor',
-  },
-  {
-    id: 5,
-    name: 'Ronij Joshi',
-    testimonial:
-      "Partnering with BAIN has been one of my best financial decisions. Their professionalism and vision set them apart in the investment space.",
-    // image: '/startup5.png',
-    source: 'Happy Client',
-  },
+
 ];
 
 

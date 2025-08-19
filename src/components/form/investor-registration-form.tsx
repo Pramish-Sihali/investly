@@ -145,7 +145,7 @@ export default function InvestorRegistrationForm() {
                       <FormItem>
                         <FormLabel className="text-base font-medium">Name of Investor</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" className="h-12" {...field} />
+                          <Input placeholder="Enter your full name" className="h-12" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -157,9 +157,13 @@ export default function InvestorRegistrationForm() {
                     name="organization_name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base font-medium">Organisation Name</FormLabel>
+                        <FormLabel className="text-base font-medium">Organization Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Investment Firm Inc." className="h-12" {...field} />
+                          <Input
+                            placeholder="Enter your organization name"
+                            className="h-12"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -175,7 +179,7 @@ export default function InvestorRegistrationForm() {
                         <FormControl>
                           <Input
                             type="email"
-                            placeholder="investor@example.com"
+                            placeholder="Enter your email address"
                             className="h-12"
                             {...field}
                           />
@@ -192,9 +196,13 @@ export default function InvestorRegistrationForm() {
                     name="contact_number"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base font-medium">Contact No.</FormLabel>
+                        <FormLabel className="text-base font-medium">Contact Number</FormLabel>
                         <FormControl>
-                          <Input placeholder="+9770000000000" className="h-12" {...field} />
+                          <Input
+                            placeholder="Enter your contact number"
+                            className="h-12"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -211,7 +219,7 @@ export default function InvestorRegistrationForm() {
                         </FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder="Describe your investment interests (e.g., Technology, Healthcare, Fintech, etc.)"
+                            placeholder="E.g., Technology, Healthcare, Fintech"
                             className="min-h-[120px] resize-none"
                             {...field}
                           />

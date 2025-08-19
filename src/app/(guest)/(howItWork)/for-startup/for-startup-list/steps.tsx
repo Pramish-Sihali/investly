@@ -16,6 +16,7 @@ import {
 
 
 const StartupPage = () => {
+
   const steps = [
     {
       id: 1,
@@ -141,6 +142,9 @@ We also facilitate connections with potential partners, customers, and advisors 
             </p>
           </motion.div>
         </div>
+        <img className=' ml-16 lg:ml-48 w-[70%] h-max' src="/6x8 ft project flow chart_page-0001.jpg">
+      
+      </img>
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 mt-12 lg:grid-cols-12 lg:gap-x-8 gap-y-8">

@@ -63,9 +63,6 @@ export function Navbar() {
         { name: 'Mentors', href: '/mentor' },
       ],
     },
-    // { name: 'Mentor', href: '/mentor' },
-
-    
     { name: 'FAQ', href: '/faqs' },
   ];
 
@@ -83,17 +80,19 @@ export function Navbar() {
                 <NavigationMenuItem key={section.name}>
                   {section.children ? (
                     <>
-                      <NavigationMenuTrigger>{section.name}</NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:min-w-fit">
+                      <NavigationMenuTrigger className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
+                        {section.name}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent className="left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto">
+                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px]">
                           {section.children.map((item) => (
                             <li key={item.name}>
                               <NavigationMenuLink asChild>
                                 <Link
                                   href={item.href}
                                   className={cn(
-                                    'block px-4 py-2 text-sm',
-                                    pathname === item.href ? 'bg-gray-200' : 'hover:bg-gray-100'
+                                    'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+                                    pathname === item.href ? 'bg-accent text-accent-foreground' : ''
                                   )}
                                 >
                                   {item.name}
@@ -110,7 +109,7 @@ export function Navbar() {
                         href={section.href}
                         className={cn(
                           'px-4 py-2 text-sm font-medium rounded-md transition-colors',
-                          pathname === section.href ? ' text-primary' : 'hover:bg-accent'
+                          pathname === section.href ? 'text-primary' : 'hover:bg-accent'
                         )}
                       >
                         {section.name}
@@ -140,15 +139,15 @@ export function Navbar() {
                 <li key={section.name} className="text-gray-700">
                   {section.children ? (
                     <div>
-                      <span>{section.name}</span>
-                      <ul className="ml-4">
+                      <span className="font-medium">{section.name}</span>
+                      <ul className="ml-4 mt-2 space-y-1">
                         {section.children.map((item) => (
                           <li key={item.name}>
                             <Link
                               href={item.href}
                               className={cn(
-                                'block px-4 py-2',
-                                pathname === item.href ? 'bg-gray-200' : 'hover:bg-gray-100'
+                                'block px-4 py-2 rounded-md transition-colors',
+                                pathname === item.href ? 'bg-gray-200 text-primary' : 'hover:bg-gray-100'
                               )}
                               onClick={() => setIsSheetOpen(false)}
                             >
@@ -162,8 +161,8 @@ export function Navbar() {
                     <Link
                       href={section.href}
                       className={cn(
-                        'block px-4 py-2',
-                        pathname === section.href ? 'bg-gray-200' : 'hover:bg-gray-100'
+                        'block px-4 py-2 rounded-md font-medium transition-colors',
+                        pathname === section.href ? 'bg-gray-200 text-primary' : 'hover:bg-gray-100'
                       )}
                       onClick={() => setIsSheetOpen(false)}
                     >
