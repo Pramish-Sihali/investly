@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
 import React, { useState } from 'react';
+import {usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { useRouter, usePathname } from 'next/navigation';
 import { Sheet, SheetTitle, SheetHeader, SheetContent } from '@/components/ui/sheet';
 import {
   NavigationMenu,
@@ -19,7 +19,7 @@ import {
 
 export function Navbar() {
   const pathname = usePathname();
-  const router = useRouter();
+  // const router = useRouter();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 

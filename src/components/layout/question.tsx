@@ -18,11 +18,13 @@ const QuestionButton: React.FC = () => {
     try {
       const response = await axios.post("/api/ask-ai", { question });
       setAnswer(response.data.answer); // Set AI response
-    } catch (error) {
-      setAnswer("Error fetching response. Try again.");
+    } 
+    // catch (error) {
+    //   setAnswer("Error fetching response. Try again.",);
+    // }
+    finally{
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
