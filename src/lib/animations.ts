@@ -1,13 +1,13 @@
 export const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  // show: {
-  //   opacity: 1,
-  //   y: 0,
-  //   transition: {
-  //     duration: 0.6,
-  //     ease: "easeOut"
-  //   }
-  // }
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut" as const
+    }
+  }
 };
 
 export const slideIn = (direction: 'left' | 'right') => ({
@@ -20,7 +20,7 @@ export const slideIn = (direction: 'left' | 'right') => ({
     opacity: 1,
     transition: {
       duration: 0.5,
-      ease: "easeOut"
+      ease: "easeOut" as const
     }
   }
 }); 

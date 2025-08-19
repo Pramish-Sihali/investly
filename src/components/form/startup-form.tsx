@@ -132,152 +132,152 @@ export default function UserRegistrationForm() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <Card className="w-full max-w-4xl mx-auto shadow-xl">
-        <CardContent className="p-8">
-          <div className="flex flex-col items-center justify-center mb-8">
-            <HeadingSection
-              title="Startups Registration"
-              subtitle="Please fill in the details below if you are a startup"
-            />
+  <Card className="w-full max-w-4xl mx-auto shadow-xl">
+    <CardContent className="p-8">
+      <div className="flex flex-col items-center justify-center mb-8">
+        <HeadingSection
+          title="Startups Registration"
+          subtitle="Please fill in the details below if you are a startup"
+        />
+      </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <FormField
+                control={form.control}
+                name="full_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base font-medium">Full Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your full name" className="h-12" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="organization_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base font-medium">Organization Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your organization name" className="h-12" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base font-medium">Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="Enter your email address"
+                        className="h-12"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="contact_number"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base font-medium">Contact Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your contact number" className="h-12" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="space-y-6">
+              <FormField
+                control={form.control}
+                name="about_you"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base font-medium">About Your Business</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Briefly describe your business or idea"
+                        className="min-h-[120px] resize-none"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="website_link"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base font-medium">Website</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your website URL (optional)" className="h-12" {...field} />
+                    </FormControl>
+                    <FormDescription>Optional: Enter your website URL</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base font-medium">Role</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className="h-12">
+                          <SelectValue placeholder="Select your role" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="Founder">Founder</SelectItem>
+                        <SelectItem value="Employee">Employee</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="full_name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base font-medium">Full Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="John Doe" className="h-12" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
 
-                  <FormField
-                    control={form.control}
-                    name="organization_name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base font-medium">Organization Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Company Inc." className="h-12" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+          <div className="flex justify-center mt-8">
+            <Button
+              type="submit"
+              className="w-full max-w-xs h-12 text-base font-medium transition-all duration-200 hover:scale-105"
+              disabled={loading}
+            >
+              {loading ? 'Submitting...' : 'Submit Form'}
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </CardContent>
+  </Card>
+</div>
 
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base font-medium">Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="john@example.com"
-                            className="h-12"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="contact_number"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base font-medium">Contact Number</FormLabel>
-                        <FormControl>
-                          <Input placeholder="+9770000000000" className="h-12" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-
-                </div>
-
-                <div className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="about_you"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base font-medium">About Your Business</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Tell us about yourself or your organization"
-                            className="min-h-[120px] resize-none"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="website_link"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base font-medium">Website</FormLabel>
-                        <FormControl>
-                          <Input placeholder="https://example.com" className="h-12" {...field} />
-                        </FormControl>
-                        <FormDescription>Optional: Enter your website URL</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="role"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base font-medium">Role</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="h-12">
-                              <SelectValue placeholder="Select a role" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="Founder">Founder</SelectItem>
-                            <SelectItem value="Employee">Employee</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </div>
-
-              <div className="flex justify-center mt-8">
-                <Button
-                  type="submit"
-                  className="w-full max-w-xs h-12 text-base font-medium transition-all duration-200 hover:scale-105"
-                  disabled={loading}
-                >
-                  {loading ? 'Submitting...' : 'Submit Form'}
-                </Button>
-              </div>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
-    </div>
   );
 }

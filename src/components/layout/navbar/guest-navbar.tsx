@@ -34,11 +34,16 @@ export function Navbar() {
       children: [
         { name: 'About Us', href: '/about-us' },
         { name: 'How It Works', href: '/how-the-platform-works' },
-        { name: 'Our Team', href: '/our-team' },
         {
           name: 'Why us',
           href: '/why-Bain',
         },
+      ],
+    },
+    {
+      name: 'Cohort',
+      children: [
+        { name: 'First Investment Readiness Cohort', href: '/cohort' },
       ],
     },
     {
@@ -48,10 +53,19 @@ export function Navbar() {
         { name: 'News/Updates & Events', href: '/events' },
         { name: 'Blog', href: '/blog' },
         { name: 'Templates', href: '/templates' },
-        { name: 'Cohort', href: '/cohort' },
       ],
     },
-    { name: 'Mentor', href: '/mentor' },
+     {
+      name: 'Our Team',
+      children: [
+        { name: 'Board of Directors', href: '/our-team' },
+        { name: 'Angel Investors', href: '/angel-investors' },
+        { name: 'Mentors', href: '/mentor' },
+      ],
+    },
+    // { name: 'Mentor', href: '/mentor' },
+
+    
     { name: 'FAQ', href: '/faqs' },
   ];
 

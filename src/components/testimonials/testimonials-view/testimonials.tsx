@@ -50,19 +50,19 @@ function Testimonials({ testimonials }: TestimonialsProps) {
                       </blockquote>
                       <footer className="mt-4">
                         <div className="flex items-center">
-                          {testimonial.image && (
+                          {/* {testimonial.image && (
                             <img
                               src={testimonial.image}
                               alt={testimonial.name}
                               className="w-12 h-12 rounded-full object-cover mr-4"
                             />
-                          )}
+                          )} */}
                           <div>
                             <cite className="font-semibold text-gray-900 not-italic">
                               {testimonial.name}
                             </cite>
                             {testimonial.source && (
-                              <p className="text-sm text-gray-500">via {testimonial.source}</p>
+                              <p className="text-sm text-gray-500"> {testimonial.source}</p>
                             )}
                           </div>
                         </div>
@@ -87,28 +87,46 @@ function Testimonials({ testimonials }: TestimonialsProps) {
 const staticTestimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'John Doe',
+    name: 'Mubhin Basnet',
     testimonial:
-      'BAIN has made investing so much easier for me. The platform is user-friendly, and their customer service is top-notch!',
-    image: '/startup1.png',
+      "BAIN connected me with opportunities I never thought possible. The transparency and guidance throughout the process made investing simple and reliable.",
+    // image: '/startup1.png',
+    source: 'Investor',
   },
   {
     id: 2,
-    name: 'Jane Smith',
+    name: 'Ishika Bhandari',
     testimonial:
-      "I was able to diversify my portfolio easily with BAIN's wide range of investment options. Highly recommended!",
-    image: '/startup2.png', // Placeholder image
-    source: 'Happy Client',
+      "As a first-time investor, I was nervous, but BAIN’s platform gave me confidence. Their insights and support are unmatched.",
+    // image: '/startup2.png',
+    source: 'Angel Investor',
   },
   {
     id: 3,
-    name: 'Jane Smith',
+    name: 'Sheran Singh Lama',
     testimonial:
-      "I was able to diversify my portfolio easily with BAIN's wide range of investment options. Highly recommended!",
-    image: '/start.png', // Placeholder image
+      "What I love about BAIN is how easy it is to diversify and track investments. It truly feels like my money is working smarter for me.",
+    // image: '/startup3.png',
+    source: 'Entrepreneur & Investor',
+  },
+  {
+    id: 4,
+    name: 'Shirish Kafley',
+    testimonial:
+      "BAIN bridges the gap between promising startups and investors. I’ve discovered ventures that align perfectly with my values and goals.",
+    // image: '/startup4.png',
+    source: 'Private Investor',
+  },
+  {
+    id: 5,
+    name: 'Ronij Joshi',
+    testimonial:
+      "Partnering with BAIN has been one of my best financial decisions. Their professionalism and vision set them apart in the investment space.",
+    // image: '/startup5.png',
     source: 'Happy Client',
   },
 ];
+
 
 const TestimonialsApp = () => <Testimonials testimonials={staticTestimonials} />;
 

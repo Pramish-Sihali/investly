@@ -212,7 +212,7 @@ const Partners = () => {
             )}
 
             {/* Company Stats */}
-            <div className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
+            {/* <div className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary">{partners.length}+</div>
                 <div className="mt-1 text-sm text-gray-600">Partner Companies</div>
@@ -229,7 +229,7 @@ const Partners = () => {
                 <div className="text-4xl font-bold text-primary">50+</div>
                 <div className="mt-1 text-sm text-gray-600">Active Investors</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

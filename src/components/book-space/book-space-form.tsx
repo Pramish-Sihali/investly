@@ -32,6 +32,7 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
+  FormDescription,
 } from '@/components/ui/form';
 
 const formSchema = z.object({
@@ -68,6 +69,28 @@ const generateTimeSlots = () => {
   }
   return slots;
 };
+
+// const generateTimeSlots = () => {
+//   const slots: string[] = [];
+
+//   for (let hour = 9; hour < 18; hour++) {
+//     for (let minute = 0; minute < 60; minute += 15) {
+//       const startHour = hour.toString().padStart(2, "0");
+//       const startMinute = minute.toString().padStart(2, "0");
+
+//       const endTotalMinutes = hour * 60 + minute + 15;
+//       const endHour = Math.floor(endTotalMinutes / 60)
+//         .toString()
+//         .padStart(2, "0");
+//       const endMinute = (endTotalMinutes % 60).toString().padStart(2, "0");
+
+//       slots.push(`${startHour}:${startMinute} - ${endHour}:${endMinute}`);
+//     }
+//   }
+
+//   return slots;
+// };
+
 
 const timeSlots = generateTimeSlots();
 
@@ -176,7 +199,7 @@ export default function BookSpaceForm() {
                       <FormItem>
                         <FormLabel className="text-base font-medium">Full Name *</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" className="h-12" {...field} />
+                          <Input placeholder="Enter your full name" className="h-12" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -192,12 +215,11 @@ export default function BookSpaceForm() {
                         <FormControl>
                           <Input
                             type="email"
-                            placeholder="john@example.com"
+                            placeholder="Enter your email address"
                             className="h-12"
                             {...field}
                           />
                         </FormControl>
-
                         <FormMessage />
                       </FormItem>
                     )}
@@ -210,7 +232,11 @@ export default function BookSpaceForm() {
                       <FormItem>
                         <FormLabel className="text-base font-medium">Phone Number</FormLabel>
                         <FormControl>
-                          <Input placeholder="+977-9800000000" className="h-12" {...field} />
+                          <Input
+                            placeholder="Enter your phone number"
+                            className="h-12"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -291,6 +317,7 @@ export default function BookSpaceForm() {
                         ))}
                       </SelectContent>
                     </Select>
+                    <FormDescription>Note: Your selection reserves a 15-minute slot. </FormDescription>
                   </FormItem>
 
                   <FormField
@@ -301,12 +328,11 @@ export default function BookSpaceForm() {
                         <FormLabel className="text-base font-medium">Additional Message</FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder="Any special requirements or notes..."
+                            placeholder="Add any notes, requests, or requirements"
                             className="min-h-[100px] resize-none"
                             {...field}
                           />
                         </FormControl>
-
                         <FormMessage />
                       </FormItem>
                     )}
