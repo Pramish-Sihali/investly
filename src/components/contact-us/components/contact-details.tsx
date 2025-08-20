@@ -19,14 +19,14 @@ export default function ContactDetails() {
             <h3 className="font-semibold text-lg mb-2">Address</h3>
             <a
               href={`https://maps.google.com/?q=${encodeURIComponent(
-                `${address.address} ${address.street}`
+                `${address.address} `
               )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary text-sm transition-colors"
             >
               <p>{address.address}</p>
-              <p>{address.street}</p>
+              {/* <p>{address.street}</p> */}
             </a>
           </div>
         </div>
