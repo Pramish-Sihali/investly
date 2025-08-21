@@ -52,7 +52,7 @@ import HeadingSection from '@/components/common/heading-section';
         id: 26,
         name: 'Mr. Nand Kishor Rathi',
         profilePicture: '/angelInvestors/Mr. Nand Kishor Rathi.jpg',
-        role: 'President, Chamber  of Industries Morang',
+        role: 'Managing Director, Bagmati Group',
       },
       {
         id: 6,
