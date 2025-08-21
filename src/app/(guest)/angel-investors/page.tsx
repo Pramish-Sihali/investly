@@ -100,7 +100,7 @@ import HeadingSection from '@/components/common/heading-section';
         id: 8,
         name: 'Mr. Roman Kattel',
         profilePicture: '/angelInvestors/MrRomanKattel.png',
-        role:"Director, Panam Group",
+        role:"Director, Pranam Group",
       },
       {
         id: 9,
