@@ -14,10 +14,13 @@ const bricolage_grotesque = Bricolage_Grotesque({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'BAIN',
   description: 'BAIN',
-  icons:{
-    icon:"/mainlogo.png"
-  }
+  icons: {
+    icon: '/mainlogo.png',
+    shortcut: '/mainlogo.png',
+    apple: '/mainlogo.png',
+  },
 };
+
 
 export default function RootLayout({
   children,
