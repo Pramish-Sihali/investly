@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   title: 'BAIN',
   description: 'BAIN',
   icons: {
-    icon: '/mainlogo.png',
-    shortcut: '/mainlogo.png',
-    apple: '/mainlogo.png',
+    icon: '/mainlogo.ico',
+    shortcut: '/mainlogo.ico',
+    apple: '/mainlogo.ico',
   },
 };
 
