@@ -48,6 +48,12 @@ import HeadingSection from '@/components/common/heading-section';
         profilePicture: '/angelInvestors/MrSuyeshPyakurel.jpeg',
         role: 'Managing Director, MM Group of Companies',
       },
+       {
+        id: 26,
+        name: 'Mr. Nand Kishor Rathi',
+        profilePicture: '/angelInvestors/Mr. Nand Kishor Rathi.jpg',
+        role: 'President, Chamber  of Industries Morang',
+      },
       {
         id: 6,
         name: 'Mr. Rakesh Surana',
