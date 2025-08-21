@@ -40,152 +40,158 @@ import HeadingSection from '@/components/common/heading-section';
         id: 13,
         name: 'Mr. Surendra Kumar Golchha',
         profilePicture: '/angelInvestors/MrSurendraKumarGolchha.jpeg',
-        role:"Director, Golchha Organisation (Hulas Food)"
+        role: 'Director, Golchha Organisation (Hulas Food)',
       },
       {
         id: 14,
         name: 'Mr. Suyesh Pyakurel',
         profilePicture: '/angelInvestors/MrSuyeshPyakurel.jpeg',
-        role:"Managing Director, MM Group of Companies"
+        role: 'Managing Director, MM Group of Companies',
       },
       {
         id: 6,
         name: 'Mr. Rakesh Surana',
         profilePicture: '/angelInvestors/MrRakeshSurana.jpeg',
-        role:" Managing Director, Reliance Thermopoly"
+        role: ' Managing Director, Reliance Thermopoly',
       },
       {
         id: 11,
-        name: 'Mr. Siddhart Kabra',
+        name: 'Mr. Siddharth Kabra',
         profilePicture: '/angelInvestors/MrSiddhartKabra.jpeg',
-        role:"Director, Kabra Group",
+        role: 'Director, Kabra Group',
       },
       {
         id: 1,
         name: 'CA Manoj Adhikari',
         profilePicture: '/angelInvestors/CAManojAdhikari.jpeg',
-        role: "Managing Director, Adhikari and Associates"
+        role: 'Managing Director, Adhikari and Associates',
       },
       {
         id: 2,
         name: 'Mr. Bholeshwor Dulal',
         profilePicture: '/angelInvestors/MrBholeshworDulal.jpeg',
-        role:"Managing Director, Purbanchal Lube Oil Pvt Ltd",
+        role: 'Managing Director, Purbanchal Lube Oil Pvt Ltd',
       },
       {
         id: 3,
         name: 'Mr. Bipin Kabra',
         profilePicture: '/angelInvestors/MrBipinKabra.jpeg',
-        role:"Director, Kabra G Group of Companies",
+        role: 'Director, Kabra G Group of Companies',
       },
       {
         id: 4,
         name: 'Mr. Birendra Rathi',
         profilePicture: '/angelInvestors/MrBirendraRathi.jpeg',
-        role:"Managing Director, Pashupati Poli Propylene Pvt. Ltd.",
+        role: 'Managing Director, Pashupati Poli Propylene Pvt. Ltd.',
       },
       {
         id: 5,
         name: 'Mr. Pratik Raut',
         profilePicture: '/angelInvestors/MrPratikRaut.jpeg',
-        role:"Managing Director, Shivam Organisation"
+        role: 'Managing Director, Shivam Organisation',
       },
       {
         id: 7,
         name: 'Mr. Raj Kumar Golchha',
         profilePicture: '/angelInvestors/MrRaj KumarGolchha.jpeg',
-        role:"Managing Director, RKG Group"
+        role: 'Managing Director, RKG Group',
       },
       {
         id: 8,
         name: 'Mr. Roman Kattel',
         profilePicture: '/angelInvestors/MrRomanKattel.png',
-        role:"Director, Pranam Group",
+        role: 'Director, Pranam Group',
       },
       {
         id: 9,
         name: 'Mr. Santosh Kumar Bhagat',
         profilePicture: '/angelInvestors/MrSantosh KumarBhagat.jpeg',
-        role:"Director, ACC Itta Udgyog Pvt. Ltd"
+        role: 'Director, New ACC Itta Udgyog Pvt. Ltd',
       },
       {
         id: 10,
         name: 'Mr. Saurav Sharda',
         profilePicture: '/angelInvestors/MrSauravSharda.jpeg',
-        role:"Director, Sharda Group"
+        role: 'Director, Sharda Group',
       },
       {
         id: 12,
         name: 'Mr. Sujit Jha',
         profilePicture: '/angelInvestors/MrSujitJha.jpeg',
-        role:"Managing Director, Techfinity Solutions &amp; Research Center Pvt Ltd"
+        role: 'Managing Director, Techfinity Solutions &amp; Research Center Pvt Ltd',
       },
       {
         id: 15,
         name: 'Mr. Anuj Poddar',
         profilePicture: '/angelInvestors/Anuj_Poddar,Director, Jayshree Polymers Pvt. Ltd.jpg',
-        role:"Director, Jayshree Polymers Pvt. Ltd"
+        role: 'Managing Director , Jayshree Polymers Pvt. Ltd',
       },
       {
         id: 16,
         name: 'Mr. Binod Poudel',
         profilePicture: '/angelInvestors/Binod Poudel, Director, JSRRMC Ind. Pvt Ltd..png',
-        role:"Director, JSRRMC Ind. Pvt Ltd"
+        role: 'Managing Director, Nirman Sakti Payble',
       },
       {
         id: 17,
-        name: 'Mr. Pradeep Sharda',
+        name: 'Mr. Pradip Sharda',
         profilePicture: '/angelInvestors/Pradeep Sharda, Director, Nutri Foods Pvt. Ltd.jpg',
-        role:"Director, Nutri Foods Pvt. Ltd.jpg"
+        role: 'Managing Director, Nutri Foods Pvt. Ltd.jpg',
       },
       {
         id: 18,
         name: 'Mr. Deepak Kumar Agarwal',
         profilePicture: '/angelInvestors/Mr. Deepak Agarwal.jpg',
-        role:"Director, Bagmati Oil Industries"
+        role: 'Director, Bagmati Oil Industries',
       },
       {
         id: 19,
         name: 'Mr. Jayendra Sharma',
         profilePicture: '/angelInvestors/Mr. Jayendra Sharma.jpg',
-        role:"Director, Rabindra Hosiery& Garment Embroidery Industires"
+        role: 'Director, Rabindra Hosiery& Garment Embroidery Industires',
       },
       {
         id: 20,
         name: 'Mrs. Kiran Byas',
         profilePicture: '/angelInvestors/Mr. Kiran Byas.jpg',
-        role:"Director, Kiran Cake Parlor"
+        role: 'Director, Kiran Cake Parlor',
       },
       {
         id: 21,
         name: 'Mr. Paras Golchha',
         profilePicture: '/angelInvestors/Mr. Paras Golchha.jpg',
-        role:"Director, Hulas Wire Industries Pvt Ltd "
+        role: 'Director, Hulas Wire Industries Pvt Ltd ',
       },
       {
         id: 22,
         name: 'Mr. Paras Luniya',
         profilePicture: '/angelInvestors/Mr. Paras Luniya.jpg',
-        role:"Executive Director, Arihant Group of Industries"
+        role: 'Executive Director, Arihant Group of Industries',
       },
       {
         id: 23,
         name: 'Mr. Srijan Pyakurel',
         profilePicture: '/angelInvestors/Mr. Srijan Pyakurel.jpg',
-        role:"Director, MM Plastic Udhyog Pvt Ltd"
+        role: 'Director, MM Plastic Udhyog Pvt Ltd',
       },
       {
         id: 24,
         name: 'Mr. Subodh Koirala',
         profilePicture: '/angelInvestors/Mr. Subodh Pyakurel.jpg',
-        role:"Director, Fujima Oil Compan Pvt Ltd ",
+        role: 'Director, Fujima Oil Compan Pvt Ltd ',
       },
       {
         id: 25,
         name: 'Mr. Ukesh Agarwal',
         profilePicture: '/angelInvestors/Mr. Ukesh Agarwal.jpg',
-        role:"Proprietor, Jaya Shree Electrixal Udhyog "
+        role: 'Proprietor, Jaya Shree Electrixal Udhyog ',
       },
+      // {
+      //   id: 26,
+      //   name: 'Mr. Chudamani Bhattarai',
+      //   profilePicture: '/angelInvestors/Mr. Ukesh Agarwal.jpg',
+      //   role: 'Proprietor, Jaya Shree Electrixal Udhyog ',
+      // },
     ];
 
 
