@@ -138,6 +138,54 @@ import HeadingSection from '@/components/common/heading-section';
         profilePicture: '/angelInvestors/Pradeep Sharda, Director, Nutri Foods Pvt. Ltd.jpg',
         role:"Director, Nutri Foods Pvt. Ltd.jpg"
       },
+      {
+        id: 18,
+        name: 'Mr. Deepak Kumar Agarwal',
+        profilePicture: '/angelInvestors/Mr. Deepak Agarwal.jpg',
+        role:"Director, Bagmati Oil Industries"
+      },
+      {
+        id: 19,
+        name: 'Mr. Jayendra Sharma',
+        profilePicture: '/angelInvestors/Mr. Jayendra Sharma.jpg',
+        role:"Director, Rabindra Hosiery& Garment Embroidery Industires"
+      },
+      {
+        id: 20,
+        name: 'Mrs. Kiran Byas',
+        profilePicture: '/angelInvestors/Mr. Kiran Byas.jpg',
+        role:"Director, Kiran Cake Parlor"
+      },
+      {
+        id: 21,
+        name: 'Mr. Paras Golchha',
+        profilePicture: '/angelInvestors/Mr. Paras Golchha.jpg',
+        role:"Director, Hulas Wire Industries Pvt Ltd "
+      },
+      {
+        id: 22,
+        name: 'Mr. Paras Luniya',
+        profilePicture: '/angelInvestors/Mr. Paras Luniya.jpg',
+        role:"Executive Director, Arihant Group of Industries"
+      },
+      {
+        id: 23,
+        name: 'Mr. Srijan Pyakurel',
+        profilePicture: '/angelInvestors/Mr. Srijan Pyakurel.jpg',
+        role:"Director, MM Plastic Udhyog Pvt Ltd"
+      },
+      {
+        id: 24,
+        name: 'Mr. Subodh Koirala',
+        profilePicture: '/angelInvestors/Mr. Subodh Pyakurel.jpg',
+        role:"Director, Fujima Oil Compan Pvt Ltd ",
+      },
+      {
+        id: 25,
+        name: 'Mr. Ukesh Agarwal',
+        profilePicture: '/angelInvestors/Mr. Ukesh Agarwal.jpg',
+        role:"Proprietor, Jaya Shree Electrixal Udhyog "
+      },
     ];
 
 
