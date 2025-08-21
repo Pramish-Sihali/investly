@@ -58,18 +58,19 @@ import HeadingSection from '@/components/common/heading-section';
         id: 11,
         name: 'Mr. Siddhart Kabra',
         profilePicture: '/angelInvestors/MrSiddhartKabra.jpeg',
-        role:" ",
+        role:"Director, Kabra Group",
       },
       {
         id: 1,
         name: 'CA Manoj Adhikari',
         profilePicture: '/angelInvestors/CAManojAdhikari.jpeg',
+        role: "Managing Director, Adhikari and Associates"
       },
       {
         id: 2,
         name: 'Mr. Bholeshwor Dulal',
         profilePicture: '/angelInvestors/MrBholeshworDulal.jpeg',
-        role:"",
+        role:"Managing Director, Purbanchal Lube Oil Pvt Ltd",
       },
       {
         id: 3,
@@ -111,11 +112,31 @@ import HeadingSection from '@/components/common/heading-section';
         id: 10,
         name: 'Mr. Saurav Sharda',
         profilePicture: '/angelInvestors/MrSauravSharda.jpeg',
+        role:"Director, Sharda Group"
       },
       {
         id: 12,
         name: 'Mr. Sujit Jha',
         profilePicture: '/angelInvestors/MrSujitJha.jpeg',
+        role:"Managing Director, Techfinity Solutions &amp; Research Center Pvt Ltd"
+      },
+      {
+        id: 15,
+        name: 'Mr. Anuj Poddar',
+        profilePicture: '/angelInvestors/Anuj_Poddar,Director, Jayshree Polymers Pvt. Ltd.jpg',
+        role:"Director, Jayshree Polymers Pvt. Ltd"
+      },
+      {
+        id: 16,
+        name: 'Mr. Binod Poudel',
+        profilePicture: '/angelInvestors/Binod Poudel, Director, JSRRMC Ind. Pvt Ltd..png',
+        role:"Director, JSRRMC Ind. Pvt Ltd"
+      },
+      {
+        id: 17,
+        name: 'Mr. Pradeep Sharda',
+        profilePicture: '/angelInvestors/Pradeep Sharda, Director, Nutri Foods Pvt. Ltd.jpg',
+        role:"Director, Nutri Foods Pvt. Ltd.jpg"
       },
     ];
 

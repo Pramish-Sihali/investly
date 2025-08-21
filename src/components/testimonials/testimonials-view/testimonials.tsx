@@ -91,7 +91,6 @@ const staticTestimonials: Testimonial[] = [
     testimonial:
       "I had a great learning session on the cohort, I got introduced to new concepts but important required for any business personnel.",
     // image: '/startup1.png',
-    source: 'Angel Investor',
   },
   {
     id: 2,
@@ -99,7 +98,6 @@ const staticTestimonials: Testimonial[] = [
     testimonial:
       "BAIN’s service has been top notch with deal flow, investment agreements and post investment support. ",
     // image: '/startup2.png',
-    source: 'Angel Investor',
   },
 
 ];
